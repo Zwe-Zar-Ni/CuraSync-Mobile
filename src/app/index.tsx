@@ -1,9 +1,10 @@
-import { Text, View } from "react-native";
+import { Link } from "expo-router";
+import { View } from "react-native";
 
 const index = () => {
   return (
     <View>
-      <Text>index</Text>
+      <Link href="/patient/profile">To Patient Profile</Link>
     </View>
   );
 };

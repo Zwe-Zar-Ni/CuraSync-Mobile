@@ -1,28 +1,26 @@
+import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
-import { useTranslation } from "react-i18next";
-
+import { StatusBar } from "react-native";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import { useUniwind } from "uniwind";
 import "../common/localisation/i18n";
 import "../global.css";
 
-import { Camera } from "lucide-react-native";
-import { Text, TouchableOpacity, View } from "react-native";
-
 SplashScreen.preventAutoHideAsync();
 
-export default function TabLayout() {
-  const { t, i18n } = useTranslation();
-  const changeLanguage = () => {
-    console.log(i18n.language);
-    i18n.changeLanguage(i18n.language === "en" ? "mm" : "en");
-  };
-
+export default function RootLayout() {
+  const { theme } = useUniwind();
+  console.log(theme);
   return (
-    <View>
-      <Text className="text-3xl">{t("welcome")}</Text>
-      <TouchableOpacity onPress={changeLanguage}>
-        <Camera />
-        <Text>Change</Text>
-      </TouchableOpacity>
-    </View>
+    <SafeAreaProvider>
+      <Stack>
+        <Stack.Screen name="index" options={{ headerShown: true }} />
+        <Stack.Screen name="patient" options={{ headerShown: false }} />
+      </Stack>
+      <StatusBar
+        barStyle={theme.includes("dark") ? "light-content" : "dark-content"}
+        animated={true}
+      />
+    </SafeAreaProvider>
   );
 }
