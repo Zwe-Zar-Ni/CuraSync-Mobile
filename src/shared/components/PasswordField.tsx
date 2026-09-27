@@ -7,12 +7,14 @@ type Props = {
   disabled?: boolean;
   label?: string;
   placeholder?: string;
+  error?: string;
 } & TextInputProps;
 
 const PasswordField = ({
   label,
   placeholder,
   disabled = false,
+  error,
   ...props
 }: Props) => {
   const { text } = useTheme();
@@ -28,7 +30,7 @@ const PasswordField = ({
       <View className="relative">
         <TextInput
           placeholder={placeholder}
-          secureTextEntry={show}
+          secureTextEntry={!show}
           className={`w-full bg-surface rounded-lg p-3.5 border-[0.5px] border-border text-text-primary text-md font-regular ${disabled ? "opacity-75" : "opacity-100"}`}
           placeholderTextColor="#61656C"
           {...props}
@@ -38,12 +40,15 @@ const PasswordField = ({
           onPress={() => setShow(!show)}
         >
           {show ? (
-            <Eye size={21} color={text.secondary} />
-          ) : (
             <EyeClosed size={21} color={text.secondary} />
+          ) : (
+            <Eye size={21} color={text.secondary} />
           )}
         </Pressable>
       </View>
+      {error ? (
+        <Text className="text-xs text-red-500 font-medium mt-1">{error}</Text>
+      ) : null}
     </View>
   );
 };

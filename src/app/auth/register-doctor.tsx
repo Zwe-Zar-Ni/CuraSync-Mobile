@@ -1,4 +1,4 @@
-import RegisterDoctorPage from "@/domain/auth/RegisterDoctorPage";
+import RegisterDoctorPage from "@/domain/auth/pages/RegisterDoctorPage";
 
 const RegisterDoctor = () => {
   return <RegisterDoctorPage />;

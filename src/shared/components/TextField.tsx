@@ -4,12 +4,14 @@ type Props = {
   disabled?: boolean;
   label?: string;
   placeholder?: string;
+  error?: string;
 } & TextInputProps;
 
 const TextField = ({
   label,
   placeholder,
   disabled = false,
+  error,
   ...props
 }: Props) => {
   return (
@@ -25,6 +27,9 @@ const TextField = ({
         placeholderTextColor="#61656C"
         {...props}
       />
+      {error ? (
+        <Text className="text-xs text-red-500 font-medium mt-1">{error}</Text>
+      ) : null}
     </View>
   );
 };

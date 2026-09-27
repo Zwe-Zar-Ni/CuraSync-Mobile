@@ -5,8 +5,8 @@
     :root {
 
         @variant dark {
-            --color-primary: #c2410c;
-            --color-secondary: #431407;
+            --color-primary: #f97316;
+            --color-secondary: #fdba74;
             --color-background: #161218;
             --color-surface: #2a252e;
             --color-border: #3d3642;
