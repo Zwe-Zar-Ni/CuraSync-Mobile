@@ -10,7 +10,7 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const { theme } = useUniwind();
-  console.log(theme);
+
   return (
     <SafeAreaProvider>
       <Stack>
