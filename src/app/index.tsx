@@ -23,12 +23,12 @@ const index = () => {
           ease. Personalized care is just a click away.
         </Text>
         <Button
-          onPress={() => router.push("/auth/register")}
+          onPress={() => router.push("/auth/doctor-profile")}
           text="Create an account"
           className="mt-8"
         />
         <Button
-          onPress={() => router.push("/auth/login")}
+          onPress={() => router.push("/auth/patient-profile")}
           text="Login"
           variant="outline"
           className="mt-2"

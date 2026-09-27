@@ -1,0 +1,153 @@
+import useTheme from "@/common/hooks/useTheme";
+import Button from "@/shared/components/Button";
+import PasswordField from "@/shared/components/PasswordField";
+import TextField from "@/shared/components/TextField";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { router } from "expo-router";
+import { ChevronLeft } from "lucide-react-native";
+import { Controller, useForm } from "react-hook-form";
+import { Pressable, Text, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useUpdateDoctorProfile } from "../queries";
+import {
+  DoctorProfileSchema,
+  DoctorProfileValidator
+} from "../validations/doctor-profile";
+
+const DoctorProfilePage = () => {
+  const insets = useSafeAreaInsets();
+  const { text } = useTheme();
+
+  const { mutate, isPending } = useUpdateDoctorProfile();
+  const {
+    control,
+    handleSubmit,
+    formState: { errors, isSubmitting }
+  } = useForm<DoctorProfileSchema>({
+    resolver: zodResolver(DoctorProfileValidator),
+    defaultValues: {
+      name: ""
+    }
+  });
+
+  const onSubmit = (data: DoctorProfileSchema) => {
+    mutate(data, {
+      onSuccess: (response) => {
+        console.log("response - ", response);
+      },
+      onError: (error) => {
+        console.log("error - ", error);
+      }
+    });
+  };
+
+  return (
+    <View
+      className="flex-1 bg-background px-3"
+      style={{ paddingTop: insets.top + 16 }}
+    >
+      <View className="mb-4">
+        {router.canGoBack() ? (
+          <Pressable onPress={() => router.back()} className="mb-4">
+            <ChevronLeft color={text.secondary} size={24} />
+          </Pressable>
+        ) : null}
+        <Text className="text-3xl font-medium text-text-primary">
+          Set up your profile
+        </Text>
+        <Text className="font-medium text-text-secondary">
+          Let us know a little about you
+        </Text>
+      </View>
+      <View className="gap-4">
+        // ! TODO: Add profile picture input
+        <Controller
+          control={control}
+          name="name"
+          render={({ field: { onChange, onBlur, value } }) => (
+            <TextField
+              value={value ?? ""}
+              onBlur={onBlur}
+              onChangeText={onChange}
+              label="Name"
+              placeholder="Enter your name"
+              error={errors.name ? errors.name.message : undefined}
+            />
+          )}
+        />
+        <Controller
+          control={control}
+          name="phone_number"
+          render={({ field: { onChange, onBlur, value } }) => (
+            <TextField
+              value={value ?? ""}
+              onBlur={onBlur}
+              onChangeText={onChange}
+              label="Phone Number"
+              placeholder="Enter your phone number"
+              keyboardType="phone-pad"
+              error={errors.name ? errors.name.message : undefined}
+            />
+          )}
+        />
+        <Controller
+          control={control}
+          name="license_number"
+          render={({ field: { onChange, onBlur, value } }) => (
+            <TextField
+              value={value ?? ""}
+              onBlur={onBlur}
+              onChangeText={onChange}
+              label="License Number"
+              placeholder="Enter your license number"
+              error={errors.name ? errors.name.message : undefined}
+            />
+          )}
+        />
+        <Controller
+          control={control}
+          name="standard_consultation_fee"
+          render={({ field: { onChange, onBlur, value } }) => (
+            <TextField
+              value={value ?? ""}
+              onBlur={onBlur}
+              onChangeText={onChange}
+              label="Standard Consultation Fee"
+              placeholder="Standard Consultation Fee"
+              keyboardType="numeric"
+              error={errors.name ? errors.name.message : undefined}
+            />
+          )}
+        />
+        <Controller
+          control={control}
+          name="bio"
+          render={({ field: { onChange, onBlur, value } }) => (
+            <TextField
+              value={value ?? ""}
+              onBlur={onBlur}
+              onChangeText={onChange}
+              label="Bio"
+              placeholder="Enter your bio"
+              error={errors.name ? errors.name.message : undefined}
+            />
+          )}
+        />
+        <Button
+          onPress={handleSubmit(onSubmit)}
+          text="Continue"
+          className="mt-4"
+          disabled={isSubmitting || isPending}
+        />
+        <Button
+          onPress={() => router.push("/patient/profile")}
+          text="Maybe Later"
+          variant="outline"
+          disabled={isSubmitting || isPending}
+        />
+      </View>
+    </View>
+  );
+};
+
+export default DoctorProfilePage;

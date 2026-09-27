@@ -1,7 +1,6 @@
-export type RegisterResponse = {
-  token: string;
-};
+import { UserProfile } from "@/common/types";
 
-export type LoginResponse = {
+export type AuthResponse = {
   token: string;
+  user: UserProfile;
 };
