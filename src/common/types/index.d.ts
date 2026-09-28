@@ -1,14 +1,16 @@
+export type PatinationMeta = {
+  currentPage: number;
+  perPage: number;
+  total: number;
+  lastPage: number;
+  hasMorePages: boolean;
+  nextPageUrl: string | null;
+  previousPageUrl: string | null;
+};
+
 export type PaginatedResponse<T> = {
   data: T[];
-  meta: {
-    current_page: number;
-    from: number;
-    last_page: number;
-    path: string;
-    per_page: number;
-    to: number;
-    total: number;
-  };
+  meta: PatinationMeta;
 };
 
 export type ApiError = {
