@@ -60,7 +60,6 @@ const DoctorProfilePage = () => {
         </Text>
       </View>
       <View className="gap-4">
-        // ! TODO: Add profile picture input
         <Controller
           control={control}
           name="name"

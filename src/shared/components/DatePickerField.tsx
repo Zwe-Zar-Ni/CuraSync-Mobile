@@ -32,7 +32,7 @@ const DatePickerField = ({
   const [visibility, setVisibility] = useState(false);
 
   return (
-    <View className="mt-6">
+    <View>
       <Text className="text-sm font-medium text-text-secondary mb-3">
         {label}
       </Text>

@@ -27,11 +27,17 @@ const PatientProfilePage = () => {
   } = useForm<PatientProfileSchema>({
     resolver: zodResolver(PatientProfileValidator),
     defaultValues: {
-      name: ""
+      name: null,
+      phone_number: null,
+      profile_url: null,
+      date_of_birth: null,
+      gender: null,
+      blood_type: null
     }
   });
 
   const onSubmit = (data: PatientProfileSchema) => {
+    router.push("/patient/home");
     mutate(data, {
       onSuccess: (response) => {
         console.log("response - ", response);
