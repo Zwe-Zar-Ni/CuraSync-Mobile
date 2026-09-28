@@ -13,6 +13,7 @@ import {
   PatientProfileSchema,
   PatientProfileValidator
 } from "../validations/patient-profile";
+import DatePickerField from "@/shared/components/DatePickerField";
 
 const PatientProfilePage = () => {
   const insets = useSafeAreaInsets();
@@ -122,6 +123,19 @@ const PatientProfilePage = () => {
                 </Pressable>
               </View>
             </View>
+          )}
+        />
+
+        <Controller
+          control={control}
+          name="date_of_birth"
+          render={({ field: { onChange, onBlur, value } }) => (
+            <DatePickerField
+              setDate={(e) => onChange(e)}
+              date={value ?? ""}
+              label="Date of Birth"
+              placeholder="Enter your date of birth"
+            />
           )}
         />
 
