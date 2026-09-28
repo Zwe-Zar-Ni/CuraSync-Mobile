@@ -21,4 +21,42 @@ export type ApiError = {
   };
 };
 
-export type UserProfile = {};
+export type User = {
+  id: number;
+  name: string;
+  email: string;
+  phone_number: string | null;
+  profile_url: string | null;
+};
+
+export type DoctorProfile = {
+  id: number;
+  status: string;
+  license_number: string | null;
+  standard_consultation_fee: number | null;
+  bio: string | null;
+  total_patient_count: number;
+  rating_count: number;
+  average_rating: number;
+};
+
+export type PatientProfile = {
+  id: number;
+  date_of_birth: string | null;
+  gender: "M" | "F" | null;
+  blood_type: string | null;
+};
+
+export type Doctor = {
+  user: User;
+  role: "doctor";
+  profile: Doctor;
+};
+
+export type Patient = {
+  user: User;
+  role: "patient";
+  profile: Patient;
+};
+
+export type UserProfile = Doctor | Patient;
