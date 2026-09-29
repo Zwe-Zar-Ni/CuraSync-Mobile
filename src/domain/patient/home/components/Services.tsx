@@ -34,7 +34,7 @@ const Services = () => {
             resizeMode="cover"
             className="w-12 h-12 rounded-full"
           />
-          <Text className="text-text-primary text-center font-medium">
+          <Text className="text-text-primary text-center font-medium text-xs">
             {item.name}
           </Text>
         </View>

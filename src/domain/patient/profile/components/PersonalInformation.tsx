@@ -1,5 +1,5 @@
 import { View, Text, Pressable } from "react-native";
-import { BeanOff, ChevronRight, Tablets, UserPen } from "lucide-react-native";
+import { NutOff, ChevronRight, Tablets, UserPen } from "lucide-react-native";
 import useTheme from "@/common/hooks/useTheme";
 
 const PersonalInformation = () => {
@@ -16,7 +16,7 @@ const PersonalInformation = () => {
           <ChevronRight color={text.secondary} size={24} />
         </Pressable>
         <Pressable className="flex-row items-center gap-3 py-3 border-b border-border">
-          <BeanOff color={colors.secondary} size={22} />
+          <NutOff color={colors.secondary} size={22} />
           <Text className="flex-1 text-text-primary">Allergies</Text>
           <ChevronRight color={text.secondary} size={24} />
         </Pressable>

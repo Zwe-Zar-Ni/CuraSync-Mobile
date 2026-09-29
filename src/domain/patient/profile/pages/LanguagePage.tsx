@@ -46,7 +46,7 @@ const LanguagePage = () => {
               </Text>
             </View>
             {i18n.language === language.id ? (
-              <CircleCheck color={text.primary} size={24} />
+              <CircleCheck color={colors.primary} size={24} />
             ) : (
               <Circle color={text.primary} size={24} />
             )}

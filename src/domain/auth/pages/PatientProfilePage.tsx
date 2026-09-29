@@ -14,6 +14,7 @@ import {
   PatientProfileValidator
 } from "../validations/patient-profile";
 import DatePickerField from "@/shared/components/DatePickerField";
+import BloodTypeField from "@/shared/components/BloodTypeField";
 
 const PatientProfilePage = () => {
   const { t } = useTranslation();
@@ -143,6 +144,14 @@ const PatientProfilePage = () => {
               label={t("labels.dateOfBirth")}
               placeholder="Enter your date of birth"
             />
+          )}
+        />
+
+        <Controller
+          control={control}
+          name="blood_type"
+          render={({ field: { onChange, onBlur, value } }) => (
+            <BloodTypeField onChange={(e) => onChange(e)} value={value ?? ""} />
           )}
         />
 
