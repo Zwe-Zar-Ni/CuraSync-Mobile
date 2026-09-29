@@ -23,4 +23,9 @@ i18n.use(initReactI18next).init({
   }
 });
 
+export const languages = [
+  { id: "en", name: "English", flag: "🇬🇧" },
+  { id: "mm", name: "Burmese", flag: "🇲🇲" }
+] as const;
+
 export default i18n;

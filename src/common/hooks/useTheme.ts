@@ -1,4 +1,7 @@
-import { useUniwind } from "uniwind";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Uniwind, useUniwind } from "uniwind";
+import { Moon, Sun, Waves } from "lucide-react-native";
+import { useEffect } from "react";
 
 type ColorScheme = {
   primary: string;
@@ -59,16 +62,41 @@ const themeMap = {
   "ocean-dark": oceanDark
 };
 
+export const themes = [
+  { name: "light", label: "Light", icon: Sun },
+  { name: "dark", label: "Dark", icon: Moon },
+  { name: "ocean-light", label: "Ocean Light", icon: Waves },
+  { name: "ocean-dark", label: "Ocean Dark", icon: Waves }
+];
+
+const THEME_KEY = "theme";
+
 const useTheme = () => {
   const { theme } = useUniwind();
 
   const colors = themeMap[theme];
 
+  const changeTheme = async (theme: string) => {
+    Uniwind.setTheme(theme as any);
+    await AsyncStorage.setItem(THEME_KEY, theme);
+  };
+
+  useEffect(() => {
+    const setTheme = async () => {
+      const theme = await AsyncStorage.getItem(THEME_KEY);
+      if (theme) {
+        Uniwind.setTheme(theme as any);
+      }
+    };
+    setTheme();
+  }, []);
+
   return {
     theme,
     text: theme.includes("dark") ? textDark : textLight,
     isDark: theme.includes("dark"),
-    colors: colors
+    colors: colors,
+    changeTheme
   };
 };
 

@@ -1,17 +1,11 @@
 import { View, Text, Image, Pressable } from "react-native";
-import React from "react";
-import {
-  ArrowUpRight,
-  Calendar,
-  Monitor,
-  MoreVertical
-} from "lucide-react-native";
+import { ArrowUpRight, Calendar, Monitor } from "lucide-react-native";
 import useTheme from "@/common/hooks/useTheme";
 
 const UpcomingConsultation = () => {
-  const { text } = useTheme();
+  const { text, colors } = useTheme();
   return (
-    <View className="p-4 rounded-2xl border border-border bg-surface">
+    <View className="p-4 rounded-2xl border border-border bg-surface/50">
       <View className="flex-row gap-2">
         <Image
           src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT12Y4yRJOMGIw__Zmc5zT16Ci_9w3_EMoH2FGP20yHew&s=10"
@@ -45,7 +39,7 @@ const UpcomingConsultation = () => {
           </View>
           <Pressable className="flex-row justify-center items-center rounded-full bg-primary gap-2 p-3">
             <ArrowUpRight color="white" size={18} />
-            <Text className="text-white font-medium">More</Text>
+            <Text className="text-white font-medium">View</Text>
           </Pressable>
         </View>
       </View>

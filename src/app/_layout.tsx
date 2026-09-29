@@ -3,18 +3,18 @@ import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { useUniwind } from "uniwind";
 import queryClient from "../common/api/queryClient";
 import "../common/localisation/i18n";
 import "../global.css";
 import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { getLocale } from "@/common/localisation/utils";
+import useTheme from "@/common/hooks/useTheme";
 
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-  const { theme } = useUniwind();
+  const { theme } = useTheme();
   const { i18n } = useTranslation();
 
   useEffect(() => {

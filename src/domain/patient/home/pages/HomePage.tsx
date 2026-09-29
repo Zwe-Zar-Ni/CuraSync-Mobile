@@ -1,4 +1,4 @@
-import { View, Text } from "react-native";
+import { View } from "react-native";
 import Heading from "../components/Heading";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import UpcomingConsultations from "../components/UpcomingConsultations";
@@ -6,6 +6,7 @@ import Specializations from "../components/Specializations";
 import { FlashList } from "@shopify/flash-list";
 import { useGetDoctors } from "../queries";
 import DoctorCard from "../components/DoctorCard";
+import Services from "../components/Services";
 
 const PatientHomePage = () => {
   const insets = useSafeAreaInsets();
@@ -23,6 +24,7 @@ const PatientHomePage = () => {
           <>
             <Heading />
             <UpcomingConsultations />
+            <Services />
             <Specializations />
           </>
         )}
@@ -31,7 +33,7 @@ const PatientHomePage = () => {
             <DoctorCard />
           </View>
         )}
-        ListFooterComponent={() => <View className="h-20" />}
+        ListFooterComponent={() => <View className="h-12" />}
       />
     </View>
   );

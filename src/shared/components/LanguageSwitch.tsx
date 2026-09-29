@@ -1,19 +1,15 @@
 import useTheme from "@/common/hooks/useTheme";
+import { languages } from "@/common/localisation/i18n";
 import { setLocale } from "@/common/localisation/utils";
-import { Circle, CircleCheck, Languages, X } from "lucide-react-native";
+import { Circle, CircleCheck, X } from "lucide-react-native";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Pressable, View, Text } from "react-native";
 import Modal from "react-native-modal";
 
-const languages = [
-  { id: "en", name: "English", flag: "🇬🇧" },
-  { id: "mm", name: "Burmese", flag: "🇲🇲" }
-] as const;
-
 const LanguageSwitch = () => {
   const { text } = useTheme();
-  const { t, i18n } = useTranslation();
+  const { i18n } = useTranslation();
 
   const [visibility, setVisibility] = useState(false);
 

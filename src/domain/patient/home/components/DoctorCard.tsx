@@ -27,7 +27,7 @@ const DoctorCard = () => {
       <Text className="text-text-secondary font-medium">Cardiologist</Text>
       <View className="absolute -bottom-7 left-1/2 right-1/2 rounded-full justify-center items-center">
         <Pressable
-          className="bg-primary rounded-full w-14 h-14 justify-center items-center"
+          className="bg-primary rounded-full w-14 h-14 justify-center items-center border-3 border-background"
           style={{
             elevation: 1
           }}
