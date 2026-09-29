@@ -10,8 +10,10 @@ import { Pressable, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useRegisterPatient } from "../queries";
 import { RegisterSchema, RegisterValidator } from "../validations/register";
+import { useTranslation } from "react-i18next";
 
 const RegisterPage = () => {
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const { text } = useTheme();
 
@@ -31,6 +33,7 @@ const RegisterPage = () => {
   });
 
   const onSubmit = (data: RegisterSchema) => {
+    router.push("/auth/patient-profile");
     mutate(data, {
       onSuccess: (response) => {
         console.log("response - ", response);
@@ -52,11 +55,11 @@ const RegisterPage = () => {
             <ChevronLeft color={text.secondary} size={24} />
           </Pressable>
         ) : null}
-        <Text className="text-3xl font-medium text-text-primary">
-          Create an account
+        <Text className="text-3xl  leading-12  font-medium text-text-primary">
+          {t("auth.createAccount")}
         </Text>
         <Text className="font-medium text-text-secondary">
-          Excited to have you on board
+          {t("auth.excitedToHaveYouOnBoard")}
         </Text>
       </View>
       <View className="gap-4">
@@ -68,7 +71,7 @@ const RegisterPage = () => {
               value={value}
               onBlur={onBlur}
               onChangeText={onChange}
-              label="Name"
+              label={t("labels.name")}
               placeholder="Enter your name"
               error={errors.name ? errors.name.message : undefined}
             />
@@ -83,7 +86,7 @@ const RegisterPage = () => {
               value={value}
               onBlur={onBlur}
               onChangeText={onChange}
-              label="Email"
+              label={t("labels.email")}
               placeholder="Enter your email"
               error={errors.email ? errors.email.message : undefined}
               keyboardType="email-address"
@@ -100,7 +103,7 @@ const RegisterPage = () => {
               value={value}
               onBlur={onBlur}
               onChangeText={onChange}
-              label="Password"
+              label={t("labels.password")}
               placeholder="Enter your password"
               error={errors.password ? errors.password.message : undefined}
               autoCapitalize="none"
@@ -116,7 +119,7 @@ const RegisterPage = () => {
               value={value}
               onBlur={onBlur}
               onChangeText={onChange}
-              label="Confirm Password"
+              label={t("labels.confirmPassword")}
               placeholder="Re-enter your password"
               error={
                 errors.password_confirmation
@@ -129,15 +132,17 @@ const RegisterPage = () => {
         />
         <Button
           onPress={handleSubmit(onSubmit)}
-          text="Create account"
+          text={t("actions.createAccount")}
           className="mt-4"
           disabled={isSubmitting || isPending}
         />
       </View>
       <View className="flex-row justify-center gap-1 mt-6">
-        <Text className="text-text-primary">Already have an account?</Text>
+        <Text className="text-text-primary">
+          {t("auth.alreadyHaveAnAccount")}
+        </Text>
         <Pressable onPress={() => router.push("/auth/login")}>
-          <Text className="text-primary underline">Sign In</Text>
+          <Text className="text-primary underline">{t("auth.signIn")}</Text>
         </Pressable>
       </View>
     </View>

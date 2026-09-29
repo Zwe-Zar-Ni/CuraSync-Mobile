@@ -7,11 +7,27 @@ import { useUniwind } from "uniwind";
 import queryClient from "../common/api/queryClient";
 import "../common/localisation/i18n";
 import "../global.css";
+import { useEffect } from "react";
+import { useTranslation } from "react-i18next";
+import { getLocale } from "@/common/localisation/utils";
 
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   const { theme } = useUniwind();
+  const { i18n } = useTranslation();
+
+  useEffect(() => {
+    SplashScreen.hideAsync();
+  }, []);
+
+  useEffect(() => {
+    const setLanguage = async () => {
+      const locale = await getLocale();
+      i18n.changeLanguage(locale ?? "en");
+    };
+    setLanguage();
+  }, []);
 
   return (
     <SafeAreaProvider>

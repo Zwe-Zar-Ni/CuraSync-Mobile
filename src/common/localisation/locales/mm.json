@@ -1,3 +1,55 @@
 {
-  "welcome": "မင်္ဂလာပါ"
+  "index": {
+    "title": "Cura Sync မှ ကြိုဆိုပါသည်",
+    "subtitle": "အထူးကုဆရာဝန်ပေါင်းများစွာမှ စိတ်ကြိုက်ရွေးချယ်ပြီး ရက်ချိန်းများကို လွယ်ကူစွာ ရယူပါ။ သင့်အတွက် သီးသန့် ကျန်းမာရေးစောင့်ရှောက်မှုက ကလစ်တစ်ချက်နှိပ်ရုံပါပဲ။",
+    "createAccount": "အကောင့်သစ်ဖွင့်မည်",
+    "login": "Login",
+    "doctor": "သင်သည် ဆရာဝန်တစ်ဦးဖြစ်ပါသလား။",
+    "doctorRegister": "ဒီမှာ စာရင်းသွင်းပါ"
+  },
+  "auth": {
+    "createAccount": "အကောင့်သစ်ဖွင့်မည်",
+    "excitedToHaveYouOnBoard": "ကျွန်ုပ်တို့နှင့် ပူးပေါင်းပါဝင်လာသည့်အတွက် ဝမ်းမြောက်ပါသည်",
+    "alreadyHaveAnAccount": "အကောင့်ရှိပြီးသားလား။",
+    "signIn": "Sign In",
+    "doctor": "သင်သည် ဆရာဝန်တစ်ဦးဖြစ်ပါသလား။",
+    "doctorRegister": "ဒီမှာ စာရင်းသွင်းပါ",
+    "name": "အမည်",
+    "email": "အီးမေးလ်",
+    "password": "စကားဝှက်",
+    "confirmPassword": "စကားဝှက် အတည်ပြုပါ",
+    "login": "Login",
+    "welcomeBack": "ပြန်လည်ကြိုဆိုပါသည်",
+    "welcomeBackToCuraSync": "Cura Sync မှ ပြန်လည်ကြိုဆိုပါသည်",
+    "dontHaveAnAccount": "အကောင့်မရှိသေးပါလား။",
+    "setUpYourProfile": "သင့်ပရိုဖိုင်ကို ပြင်ဆင်ပါ",
+    "tellUsAboutYourself": "သင့်အကြောင်း အနည်းငယ် ပြောပြပေးပါ"
+  },
+  "labels": {
+    "name": "အမည်",
+    "email": "အီးမေးလ်",
+    "password": "စကားဝှက်",
+    "confirmPassword": "စကားဝှက် အတည်ပြုပါ",
+    "phoneNumber": "ဖုန်းနံပါတ်",
+    "licenseNumber": "လိုင်စင်နံပါတ်",
+    "standardConsultationFee": "ပုံမှန် ဆွေးနွေးကုသခ",
+    "bio": "ကိုယ်ရေးအကျဉ်း",
+    "dateOfBirth": "မွေးသက္ကရာဇ်",
+    "gender": "ကျား/မ",
+    "bloodType": "သွေးအမျိုးအစား",
+    "profileUrl": "ပရိုဖိုင် URL"
+  },
+  "options": {
+    "male": "ကျား",
+    "female": "မ"
+  },
+  "actions": {
+    "continue": "ဆက်လုပ်မည်",
+    "createAccount": "အကောင့်သစ်ဖွင့်မည်",
+    "login": "Login",
+    "register": "စာရင်းသွင်းမည်",
+    "registerDoctor": "ဆရာဝန်အဖြစ် စာရင်းသွင်းမည်",
+    "maybeLater": "နောက်မှလုပ်မည်",
+    "done": "ပြီးပါပြီ"
+  }
 }

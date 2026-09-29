@@ -1,12 +1,12 @@
 import useTheme from "@/common/hooks/useTheme";
 import Button from "@/shared/components/Button";
-import PasswordField from "@/shared/components/PasswordField";
 import TextField from "@/shared/components/TextField";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { router } from "expo-router";
 import { ChevronLeft } from "lucide-react-native";
 import { Controller, useForm } from "react-hook-form";
 import { Pressable, Text, View } from "react-native";
+import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useUpdateDoctorProfile } from "../queries";
 import {
@@ -15,6 +15,7 @@ import {
 } from "../validations/doctor-profile";
 
 const DoctorProfilePage = () => {
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const { text } = useTheme();
 
@@ -52,11 +53,11 @@ const DoctorProfilePage = () => {
             <ChevronLeft color={text.secondary} size={24} />
           </Pressable>
         ) : null}
-        <Text className="text-3xl font-medium text-text-primary">
-          Set up your profile
+        <Text className="text-3xl  leading-12  font-medium text-text-primary">
+          {t("auth.setUpYourProfile")}
         </Text>
         <Text className="font-medium text-text-secondary">
-          Let us know a little about you
+          {t("auth.tellUsAboutYourself")}
         </Text>
       </View>
       <View className="gap-4">
@@ -68,7 +69,7 @@ const DoctorProfilePage = () => {
               value={value ?? ""}
               onBlur={onBlur}
               onChangeText={onChange}
-              label="Name"
+              label={t("labels.name")}
               placeholder="Enter your name"
               error={errors.name ? errors.name.message : undefined}
             />
@@ -82,7 +83,7 @@ const DoctorProfilePage = () => {
               value={value ?? ""}
               onBlur={onBlur}
               onChangeText={onChange}
-              label="Phone Number"
+              label={t("labels.phoneNumber")}
               placeholder="Enter your phone number"
               keyboardType="phone-pad"
               error={errors.name ? errors.name.message : undefined}
@@ -97,7 +98,7 @@ const DoctorProfilePage = () => {
               value={value ?? ""}
               onBlur={onBlur}
               onChangeText={onChange}
-              label="License Number"
+              label={t("labels.licenseNumber")}
               placeholder="Enter your license number"
               error={errors.name ? errors.name.message : undefined}
             />
@@ -111,8 +112,8 @@ const DoctorProfilePage = () => {
               value={value ?? ""}
               onBlur={onBlur}
               onChangeText={onChange}
-              label="Standard Consultation Fee"
-              placeholder="Standard Consultation Fee"
+              label={t("labels.standardConsultationFee")}
+              placeholder={t("labels.standardConsultationFee")}
               keyboardType="numeric"
               error={errors.name ? errors.name.message : undefined}
             />
@@ -126,7 +127,7 @@ const DoctorProfilePage = () => {
               value={value ?? ""}
               onBlur={onBlur}
               onChangeText={onChange}
-              label="Bio"
+              label={t("labels.bio")}
               placeholder="Enter your bio"
               error={errors.name ? errors.name.message : undefined}
             />
@@ -134,13 +135,13 @@ const DoctorProfilePage = () => {
         />
         <Button
           onPress={handleSubmit(onSubmit)}
-          text="Continue"
+          text={t("actions.continue")}
           className="mt-4"
           disabled={isSubmitting || isPending}
         />
         <Button
           onPress={() => router.push("/patient/profile")}
-          text="Maybe Later"
+          text={t("actions.maybeLater")}
           variant="outline"
           disabled={isSubmitting || isPending}
         />

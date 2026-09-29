@@ -7,7 +7,7 @@ const Heading = () => {
   return (
     <View>
       <View className="flex-row justify-between items-center gap-4">
-        <Text className="text-text-primary font-medium text-2xl">
+        <Text className="text-text-primary font-medium text-2xl leading-10 ">
           Hello, Leon Kennedy
         </Text>
         <Pressable className="rounded-full bg-surface p-2">

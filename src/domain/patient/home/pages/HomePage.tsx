@@ -31,6 +31,7 @@ const PatientHomePage = () => {
             <DoctorCard />
           </View>
         )}
+        ListFooterComponent={() => <View className="h-20" />}
       />
     </View>
   );

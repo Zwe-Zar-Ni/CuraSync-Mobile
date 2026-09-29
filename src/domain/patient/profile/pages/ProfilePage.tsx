@@ -25,7 +25,7 @@ const ProfilePage = () => {
                       `}
           >
             <Text
-              className={`text-2xl ${activeTheme === t.name ? "text-text-primary" : "text-text-secondary"}`}
+              className={`text-2xl leading-10  ${activeTheme === t.name ? "text-text-primary" : "text-text-secondary"}`}
             >
               {t.icon}
             </Text>
@@ -39,24 +39,24 @@ const ProfilePage = () => {
       </View>
       <View className="mt-4">
         <View className="w-full h-40 bg-surface rounded-lg border-2 border-border p-4">
-          <Text className="text-text-primary text-xl font-bold">
+          <Text className="text-text-primary text-xl     font-bold">
             Hello world sdfasdfsdf
           </Text>
-          <Text className="text-text-secondary text-xl font-bold">
+          <Text className="text-text-secondary text-xl     font-bold">
             Hello world sdfasdfsdf
           </Text>
-          <Text className="text-text-tertiary text-xl font-bold">
+          <Text className="text-text-tertiary text-xl     font-bold">
             Hello world sdfasdfsdf
           </Text>
         </View>
         <View className="gap-y-2 mt-4">
-          <Text className="text-xl font-bold text-text-primary">
+          <Text className="text-xl     font-bold text-text-primary">
             Text Primary
           </Text>
-          <Text className="text-xl font-bold text-text-secondary">
+          <Text className="text-xl     font-bold text-text-secondary">
             Text secondary
           </Text>
-          <Text className="text-xl font-bold text-text-tertiary">
+          <Text className="text-xl     font-bold text-text-tertiary">
             Text tertiary
           </Text>
         </View>

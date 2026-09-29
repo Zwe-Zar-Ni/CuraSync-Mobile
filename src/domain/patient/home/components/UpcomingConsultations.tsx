@@ -9,7 +9,7 @@ const UpcomingConsultations = () => {
   return (
     <View className="mt-8">
       <View className="flex-row justify-between items-center gap-4">
-        <Text className="text-text-primary text-xl font-semibold">
+        <Text className="text-text-primary text-xl     font-semibold">
           Upcoming Consultations
         </Text>
         <Link href="/patient/profile">
@@ -28,7 +28,7 @@ const UpcomingConsultations = () => {
                 height={64}
               />
               <View>
-                <Text className="text-xl font-semibold text-text-primary">
+                <Text className="text-xl     font-semibold text-text-primary">
                   Dr. Madam Curie
                 </Text>
                 <Text className="font-medium text-text-secondary">

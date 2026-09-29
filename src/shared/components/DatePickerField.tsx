@@ -1,10 +1,9 @@
 import DatePicker from "@/shared/components/DatePicker";
 import dayjs from "dayjs";
 import { Calendar, X } from "lucide-react-native";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { Pressable, View, Text } from "react-native";
 import { DateType } from "react-native-ui-datepicker";
-import { useUniwind } from "uniwind";
 import Modal from "react-native-modal";
 import useTheme from "@/common/hooks/useTheme";
 import Button from "./Button";
@@ -26,7 +25,7 @@ const DatePickerField = ({
   displayDateFormat = "MMM DD, YYYY",
   disabled = false
 }: Props) => {
-  const { isDark, text } = useTheme();
+  const { text } = useTheme();
   const [uiDate, setUiDate] = useState<DateType>(new Date());
 
   const [visibility, setVisibility] = useState(false);

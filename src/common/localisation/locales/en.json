@@ -1,3 +1,55 @@
 {
-  "welcome": "Welcome"
+  "index": {
+    "title": "Welcome to Cura Sync",
+    "subtitle": "Choose from a wide range of specialists and book appointments with ease. Personalized care is just a click away.",
+    "createAccount": "Create an account",
+    "login": "Login",
+    "doctor": "Are you a doctor?",
+    "doctorRegister": "Register Here!"
+  },
+  "auth": {
+    "createAccount": "Create an account",
+    "excitedToHaveYouOnBoard": "Excited to have you on board",
+    "alreadyHaveAnAccount": "Already have an account?",
+    "signIn": "Sign In",
+    "doctor": "Are you a doctor?",
+    "doctorRegister": "Register Here!",
+    "name": "Name",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "login": "Login",
+    "welcomeBack": "Welcome Back!",
+    "welcomeBackToCuraSync": "Welcome back to Cura Sync",
+    "dontHaveAnAccount": "Doesn't have an account?",
+    "setUpYourProfile": "Set up your profile",
+    "tellUsAboutYourself": "Let us know a little about you"
+  },
+  "labels": {
+    "name": "Name",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm Password",
+    "phoneNumber": "Phone Number",
+    "licenseNumber": "License Number",
+    "standardConsultationFee": "Standard Consultation Fee",
+    "bio": "Bio",
+    "dateOfBirth": "Date of Birth",
+    "gender": "Gender",
+    "bloodType": "Blood Type",
+    "profileUrl": "Profile URL"
+  },
+  "options": {
+    "male": "Male",
+    "female": "Female"
+  },
+  "actions": {
+    "continue": "Continue",
+    "createAccount": "Create account",
+    "login": "Login",
+    "register": "Register",
+    "registerDoctor": "Register Doctor",
+    "maybeLater": "Maybe Later",
+    "done": "Done"
+  }
 }

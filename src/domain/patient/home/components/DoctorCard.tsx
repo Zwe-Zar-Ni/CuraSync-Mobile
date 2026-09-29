@@ -21,7 +21,7 @@ const DoctorCard = () => {
           <Text className="text-text-secondary font-medium text-sm">★ 4.5</Text>
         </View>
       </View>
-      <Text className="text-text-primary text-xl font-semibold mt-1">
+      <Text className="text-text-primary text-xl     font-semibold mt-1">
         Dr. Madam Curie
       </Text>
       <Text className="text-text-secondary font-medium">Cardiologist</Text>

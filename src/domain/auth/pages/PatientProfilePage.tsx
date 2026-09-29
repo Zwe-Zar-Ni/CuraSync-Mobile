@@ -1,12 +1,12 @@
 import useTheme from "@/common/hooks/useTheme";
 import Button from "@/shared/components/Button";
-import PasswordField from "@/shared/components/PasswordField";
 import TextField from "@/shared/components/TextField";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { router } from "expo-router";
 import { ChevronLeft } from "lucide-react-native";
 import { Controller, useForm } from "react-hook-form";
 import { Pressable, Text, View } from "react-native";
+import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useUpdatePatientProfile } from "../queries";
 import {
@@ -16,6 +16,7 @@ import {
 import DatePickerField from "@/shared/components/DatePickerField";
 
 const PatientProfilePage = () => {
+  const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const { text } = useTheme();
 
@@ -59,11 +60,11 @@ const PatientProfilePage = () => {
             <ChevronLeft color={text.secondary} size={24} />
           </Pressable>
         ) : null}
-        <Text className="text-3xl font-medium text-text-primary">
-          Set up your profile
+        <Text className="text-3xl  leading-12  font-medium text-text-primary">
+          {t("auth.setUpYourProfile")}
         </Text>
         <Text className="font-medium text-text-secondary">
-          Let us know a little about you
+          {t("auth.tellUsAboutYourself")}
         </Text>
       </View>
       <View className="gap-4">
@@ -75,7 +76,7 @@ const PatientProfilePage = () => {
               value={value ?? ""}
               onBlur={onBlur}
               onChangeText={onChange}
-              label="Name"
+              label={t("labels.name")}
               placeholder="Enter your name"
               error={errors.name ? errors.name.message : undefined}
             />
@@ -90,7 +91,7 @@ const PatientProfilePage = () => {
               value={value ?? ""}
               onBlur={onBlur}
               onChangeText={onChange}
-              label="Phone Number"
+              label={t("labels.phoneNumber")}
               placeholder="Enter your phone number"
               keyboardType="phone-pad"
               error={errors.name ? errors.name.message : undefined}
@@ -104,7 +105,7 @@ const PatientProfilePage = () => {
           render={({ field: { onChange, value } }) => (
             <View>
               <Text className="text-sm font-medium text-text-tertiary mb-1">
-                Gender
+                {t("labels.gender")}
               </Text>
               <View className="flex-row gap-2">
                 <Pressable
@@ -114,7 +115,7 @@ const PatientProfilePage = () => {
                   <Text
                     className={`${value === "M" ? "text-secondary" : "text-text-primary"}`}
                   >
-                    Male
+                    {t("options.male")}
                   </Text>
                 </Pressable>
                 <Pressable
@@ -124,7 +125,7 @@ const PatientProfilePage = () => {
                   <Text
                     className={`${value === "F" ? "text-secondary" : "text-text-primary"}`}
                   >
-                    Female
+                    {t("options.female")}
                   </Text>
                 </Pressable>
               </View>
@@ -139,7 +140,7 @@ const PatientProfilePage = () => {
             <DatePickerField
               setDate={(e) => onChange(e)}
               date={value ?? ""}
-              label="Date of Birth"
+              label={t("labels.dateOfBirth")}
               placeholder="Enter your date of birth"
             />
           )}
@@ -147,13 +148,13 @@ const PatientProfilePage = () => {
 
         <Button
           onPress={handleSubmit(onSubmit)}
-          text="Continue"
+          text={t("actions.continue")}
           className="mt-4"
           disabled={isSubmitting || isPending}
         />
         <Button
           onPress={() => router.push("/patient/profile")}
-          text="Maybe Later"
+          text={t("actions.maybeLater")}
           variant="outline"
           disabled={isSubmitting || isPending}
         />

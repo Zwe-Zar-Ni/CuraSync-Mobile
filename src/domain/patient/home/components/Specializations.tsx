@@ -14,7 +14,9 @@ const Specializations = () => {
   return (
     <View className="mt-8 mb-4">
       <View className="flex-row justify-between items-center gap-4 mb-2">
-        <Text className="text-text-primary text-xl font-semibold">Doctors</Text>
+        <Text className="text-text-primary text-xl     font-semibold">
+          Doctors
+        </Text>
         <Link href="/patient/profile">
           <Text className="text-primary font-medium">See All</Text>
         </Link>
