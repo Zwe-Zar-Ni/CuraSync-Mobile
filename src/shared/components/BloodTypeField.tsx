@@ -1,5 +1,5 @@
 import useTheme from "@/common/hooks/useTheme";
-import { Circle, CircleCheck, HeartPulse, X } from "lucide-react-native";
+import { HeartPulse, X } from "lucide-react-native";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { View, Text, Pressable } from "react-native";

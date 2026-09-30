@@ -1,24 +1,38 @@
 import { View, Text, Image, Pressable } from "react-native";
 import { ArrowUpRight, Calendar, Monitor } from "lucide-react-native";
+import dayjs from "dayjs";
+import { useTranslation } from "react-i18next";
 import useTheme from "@/common/hooks/useTheme";
+import type { Consultation } from "../types";
 
-const UpcomingConsultation = () => {
-  const { text, colors } = useTheme();
+type Props = {
+  consultation: Consultation;
+};
+
+const UpcomingConsultation = ({ consultation }: Props) => {
+  const { t } = useTranslation();
+  const { text } = useTheme();
+  const { doctor, scheduled_at, visit_type } = consultation;
+
   return (
     <View className="p-4 rounded-2xl border border-border bg-surface/50">
       <View className="flex-row gap-2">
-        <Image
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT12Y4yRJOMGIw__Zmc5zT16Ci_9w3_EMoH2FGP20yHew&s=10"
-          className="w-16 h-16 rounded-full"
-          resizeMode="cover"
-          width={64}
-          height={64}
-        />
+        {doctor.profile_url ? (
+          <Image
+            src={doctor.profile_url}
+            className="w-16 h-16 rounded-full"
+            resizeMode="cover"
+            width={64}
+            height={64}
+          />
+        ) : null}
         <View>
-          <Text className="text-xl     font-semibold text-text-primary">
-            Dr. Madam Curie
+          <Text className="text-xl font-semibold text-text-primary">
+            {doctor.name}
           </Text>
-          <Text className="font-medium text-text-secondary">Cardiologist</Text>
+          <Text className="font-medium text-text-secondary">
+            {doctor.specilizations[0]?.name ?? ""}
+          </Text>
         </View>
       </View>
       <View className="mt-4">
@@ -27,19 +41,21 @@ const UpcomingConsultation = () => {
             <View className="flex-row gap-2 items-center">
               <Calendar color={text.secondary} size={18} />
               <Text className="text-text-secondary font-medium">
-                2026-09-30 at 10:00 AM
+                {dayjs(scheduled_at).format("DD MMM YYYY, h:mm A")}
               </Text>
             </View>
             <View className="flex-row mt-1 gap-2 items-center">
               <Monitor color={text.secondary} size={18} />
               <Text className="text-text-secondary font-medium">
-                Virtual Visit
+                {visit_type === "virtual"
+                  ? t("home.virtualVisit")
+                  : t("home.inPersonVisit")}
               </Text>
             </View>
           </View>
           <Pressable className="flex-row justify-center items-center rounded-full bg-primary gap-2 p-3">
             <ArrowUpRight color="white" size={18} />
-            <Text className="text-white font-medium">View</Text>
+            <Text className="text-white font-medium">{t("home.view")}</Text>
           </Pressable>
         </View>
       </View>

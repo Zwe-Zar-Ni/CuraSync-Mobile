@@ -13,11 +13,11 @@ const resources = {
   mm: { translation: mm }
 };
 
+// eslint-disable-next-line import/no-named-as-default-member
 i18n.use(initReactI18next).init({
   resources,
-  lng: deviceLanguage, //  ? Set default language to device preference
+  lng: deviceLanguage ?? "en", //  ? Set default language to device preference
   fallbackLng: "en", // ? Use English if a translation key is missing
-  compatibilityJSON: "v3", // ? Required for older Android environments
   interpolation: {
     escapeValue: false // ? React already safeguards against XSS
   }

@@ -6,8 +6,9 @@ import WelcomeImage from "../assets/images/welcome.png";
 import { useTranslation } from "react-i18next";
 import LanguageSwitch from "@/shared/components/LanguageSwitch";
 
-const index = () => {
+const WelcomePage = () => {
   const { t } = useTranslation();
+
   return (
     <View className="flex-1 h-screen bg-background justify-center items-center px-3">
       <View className="flex-row justify-end w-full">
@@ -51,4 +52,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default WelcomePage;

@@ -1,22 +1,24 @@
 import { View, Text, Image } from "react-native";
 import { Link } from "expo-router";
+import { useTranslation } from "react-i18next";
 import { useGetSpecializations } from "../queries";
-import useTheme from "@/common/hooks/useTheme";
 import { FlashList } from "@shopify/flash-list";
 
 const img =
   "https://static.vecteezy.com/system/resources/previews/005/495/317/non_2x/dental-clinic-logo-template-dental-care-logo-designs-tooth-teeth-smile-dentist-logo-vector.jpg";
 
 const Specializations = () => {
-  const { text } = useTheme();
-  const { data, isPending } = useGetSpecializations();
+  const { t } = useTranslation();
+  const { data } = useGetSpecializations();
 
   return (
     <View className="mt-8 mb-4">
       <View className="flex-row justify-between items-center gap-4 mb-2">
-        <Text className="text-text-primary text-xl font-semibold">Doctors</Text>
+        <Text className="text-text-primary text-xl font-semibold">
+          {t("home.doctors")}
+        </Text>
         <Link href="/patient/profile">
-          <Text className="text-primary font-medium">See All</Text>
+          <Text className="text-primary font-medium">{t("home.seeAll")}</Text>
         </Link>
       </View>
       <FlashList
@@ -26,7 +28,7 @@ const Specializations = () => {
         renderItem={({ item }) => (
           <View className="p-2 mr-2 flex-row items-center rounded-full border border-border bg-surface/50">
             <Image
-              src={img}
+              src={item.icon_url ?? img}
               width={24}
               height={24}
               resizeMode="cover"

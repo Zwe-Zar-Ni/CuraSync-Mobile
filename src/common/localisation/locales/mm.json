@@ -25,6 +25,28 @@
     "setUpYourProfile": "သင့်ပရိုဖိုင်ကို ပြင်ဆင်ပါ",
     "tellUsAboutYourself": "သင့်အကြောင်း အနည်းငယ် ပြောပြပေးပါ"
   },
+  "profile": {
+    "personalInformation": "ကိုယ်ရေးအချက်အလက်များ",
+    "editPersonalInformation": "ကိုယ်ရေးအချက်အလက်များ ပြင်မည်",
+    "updatePersonalDetails": "သင့်ကိုယ်ရေးအချက်အလက်များကို ပြောင်းလဲမည်",
+    "allergies": "ဓာတ်မတည့်မှုများ",
+    "conditions": "ကျန်းမာရေးအခြေအနေများ",
+    "settings": "ဆက်တင်",
+    "language": "ဘာသာစကား",
+    "theme": "အပြင်အဆင်",
+    "logout": "ထွက်မည်",
+    "deleteAccount": "အကောင့်ဖျက်မည်"
+  },
+  "home": {
+    "greeting": "မင်္ဂလာပါ, {{name}}",
+    "search": "ရှာဖွေမည်",
+    "upcomingConsultations": "လာမည့်ဆွေးနွေးကုသမှုများ",
+    "seeAll": "အားလုံး",
+    "doctors": "ဆရာဝန်များ",
+    "virtualVisit": "Online ဆွေးနွေးကုသ",
+    "inPersonVisit": "ဆေးခန်းသွားဆွေးနွေးကုသ",
+    "view": "ကြည့်မည်"
+  },
   "labels": {
     "name": "အမည်",
     "email": "အီးမေးလ်",
@@ -50,6 +72,8 @@
     "register": "စာရင်းသွင်းမည်",
     "registerDoctor": "ဆရာဝန်အဖြစ် စာရင်းသွင်းမည်",
     "maybeLater": "နောက်မှလုပ်မည်",
-    "done": "ပြီးပါပြီ"
+    "done": "ပြီးပါပြီ",
+    "save": "ပြောင်းလဲမှုများ သိမ်းဆည်းမည်",
+    "cancel": "ပယ်ဖျက်မည်"
   }
 }

@@ -15,6 +15,7 @@ import {
 } from "../validations/patient-profile";
 import DatePickerField from "@/shared/components/DatePickerField";
 import BloodTypeField from "@/shared/components/BloodTypeField";
+import GenderField from "@/shared/components/GenderField";
 
 const PatientProfilePage = () => {
   const { t } = useTranslation();
@@ -104,33 +105,11 @@ const PatientProfilePage = () => {
           control={control}
           name="gender"
           render={({ field: { onChange, value } }) => (
-            <View>
-              <Text className="text-sm font-medium text-text-tertiary mb-1">
-                {t("labels.gender")}
-              </Text>
-              <View className="flex-row gap-2">
-                <Pressable
-                  className={`flex-1 justify-center items-center h-12 border ${value === "M" ? "border-secondary" : "border-surface"} rounded-xl`}
-                  onPress={() => onChange("M")}
-                >
-                  <Text
-                    className={`${value === "M" ? "text-secondary" : "text-text-primary"}`}
-                  >
-                    {t("options.male")}
-                  </Text>
-                </Pressable>
-                <Pressable
-                  className={`flex-1 justify-center items-center h-12 border ${value === "F" ? "border-secondary" : "border-surface"} rounded-xl`}
-                  onPress={() => onChange("F")}
-                >
-                  <Text
-                    className={`${value === "F" ? "text-secondary" : "text-text-primary"}`}
-                  >
-                    {t("options.female")}
-                  </Text>
-                </Pressable>
-              </View>
-            </View>
+            <GenderField
+              value={value ?? null}
+              onChange={onChange}
+              error={errors.gender ? errors.gender.message : undefined}
+            />
           )}
         />
 

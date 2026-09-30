@@ -1,7 +1,14 @@
 import { ArrowUpRight } from "lucide-react-native";
 import { View, Text, Image, Pressable } from "react-native";
+import type { Doctor } from "../types";
 
-const DoctorCard = () => {
+type Props = {
+  doctor: Doctor;
+};
+
+const DoctorCard = ({ doctor }: Props) => {
+  const { name, profile_url, average_rating, specilizations } = doctor;
+
   return (
     <View
       className="bg-surface relative pb-12 p-2 rounded-2xl mb-10"
@@ -10,21 +17,27 @@ const DoctorCard = () => {
       }}
     >
       <View className="relative h-40">
-        <Image
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT12Y4yRJOMGIw__Zmc5zT16Ci_9w3_EMoH2FGP20yHew&s=10"
-          className="w-full h-full rounded-xl"
-          resizeMode="cover"
-          width={64}
-          height={64}
-        />
+        {profile_url ? (
+          <Image
+            src={profile_url}
+            className="w-full h-full rounded-xl"
+            resizeMode="cover"
+            width={64}
+            height={64}
+          />
+        ) : null}
         <View className="absolute bottom-2 right-2 bg-surface rounded-full border border-border py-1 px-2">
-          <Text className="text-text-secondary font-medium text-sm">★ 4.5</Text>
+          <Text className="text-text-secondary font-medium text-sm">
+            ★ {average_rating}
+          </Text>
         </View>
       </View>
-      <Text className="text-text-primary text-xl     font-semibold mt-1">
-        Dr. Madam Curie
+      <Text className="text-text-primary text-xl font-semibold mt-1">
+        {name}
       </Text>
-      <Text className="text-text-secondary font-medium">Cardiologist</Text>
+      <Text className="text-text-secondary font-medium">
+        {specilizations[0]?.name ?? ""}
+      </Text>
       <View className="absolute -bottom-7 left-1/2 right-1/2 rounded-full justify-center items-center">
         <Pressable
           className="bg-primary rounded-full w-14 h-14 justify-center items-center border-3 border-background"

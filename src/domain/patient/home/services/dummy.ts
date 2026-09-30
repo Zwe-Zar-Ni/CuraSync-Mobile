@@ -7,7 +7,7 @@ export const specs = [
     name: "Cardiology",
     description:
       "Diagnoses and treats diseases of the heart, blood vessels and circulation. Covers chest pain, hypertension, heart failure, arrhythmias, heart attack and cardiac imaging such as ECG and echocardiogram.",
-    icon_url: "http://localhost:8000/heart.png",
+    icon_url: null,
     doctors_count: 1
   },
   {
@@ -15,7 +15,7 @@ export const specs = [
     name: "Dermatology",
     description:
       "Care for skin, hair and nail conditions including acne, eczema, psoriasis, rashes, infections and skin cancer. Performs skin checks, biopsies and cosmetic dermatology.",
-    icon_url: "http://localhost:8000/heart.png",
+    icon_url: null,
     doctors_count: 1
   },
   {
@@ -23,7 +23,7 @@ export const specs = [
     name: "Endocrinology",
     description:
       "Manages hormones and metabolic disorders such as diabetes, thyroid disease, PCOS and osteoporosis. Handles insulin, thyroid medication and hormone replacement therapy.",
-    icon_url: "http://localhost:8000/heart.png",
+    icon_url: null,
     doctors_count: 1
   },
   {
@@ -31,7 +31,7 @@ export const specs = [
     name: "Gastroenterology",
     description:
       "Treats the digestive tract, including the oesophagus, stomach, intestines, liver, pancreas and gallbladder. Addresses acidity, IBS, ulcers, hepatitis, gallstones and colonoscopy.",
-    icon_url: "http://localhost:8000/heart.png",
+    icon_url: null,
     doctors_count: 1
   },
   {
@@ -39,7 +39,7 @@ export const specs = [
     name: "Neurology",
     description:
       "Specializes in the brain, spinal cord, nerves and muscles. Treats migraine, epilepsy, stroke, neuropathy, Parkinson disease and multiple sclerosis with EEG and brain imaging.",
-    icon_url: "http://localhost:8000/heart.png",
+    icon_url: null,
     doctors_count: 1
   },
   {
@@ -47,7 +47,7 @@ export const specs = [
     name: "Obstetrics & Gynecology",
     description:
       "Covers pregnancy, childbirth, fertility and women\u2019s reproductive health. Includes antenatal care, deliveries, contraception, PCOS, menstrual disorders and cervical screening.",
-    icon_url: "http://localhost:8000/heart.png",
+    icon_url: null,
     doctors_count: 1
   },
   {
@@ -55,7 +55,7 @@ export const specs = [
     name: "Orthopedics",
     description:
       "Cares for bones, joints, ligaments, tendons and the spine. Manages fractures, arthritis, joint replacement, sports injuries, scoliosis and physiotherapy planning.",
-    icon_url: "http://localhost:8000/heart.png",
+    icon_url: null,
     doctors_count: 1
   },
   {
@@ -63,7 +63,7 @@ export const specs = [
     name: "Pediatrics",
     description:
       "Medical care for infants, children and adolescents, from newborn checkups to growth monitoring. Treats childhood infections, asthma, allergies, vaccinations and developmental concerns.",
-    icon_url: "http://localhost:8000/heart.png",
+    icon_url: null,
     doctors_count: 0
   },
   {
@@ -71,7 +71,7 @@ export const specs = [
     name: "Psychiatry",
     description:
       "Diagnosis and treatment of mental health conditions including depression, anxiety, bipolar disorder, schizophrenia and eating disorders. Provides counselling, medication management and psychological therapy.",
-    icon_url: "http://localhost:8000/heart.png",
+    icon_url: null,
     doctors_count: 0
   },
   {
@@ -79,7 +79,7 @@ export const specs = [
     name: "Pulmonology",
     description:
       "Specializes in the lungs and airways, treating asthma, COPD, pneumonia, tuberculosis, bronchitis and sleep apnea. Performs lung function tests, chest imaging and long-term breathing care.",
-    icon_url: "http://localhost:8000/heart.png",
+    icon_url: null,
     doctors_count: 0
   }
 ] as Specialization[];

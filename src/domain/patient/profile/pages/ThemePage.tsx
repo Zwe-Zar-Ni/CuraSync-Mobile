@@ -4,9 +4,11 @@ import useTheme, { themes } from "@/common/hooks/useTheme";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ChevronLeft, Circle, CircleCheck } from "lucide-react-native";
 import { router } from "expo-router";
+import { useTranslation } from "react-i18next";
 
 const ThemePage = () => {
   const insets = useSafeAreaInsets();
+  const { t } = useTranslation();
   const { changeTheme, theme, colors, text } = useTheme();
 
   return (
@@ -18,7 +20,9 @@ const ThemePage = () => {
         <Pressable onPress={() => router.back()} className="p-2 pl-0">
           <ChevronLeft color={text.secondary} size={24} />
         </Pressable>
-        <Text className="text-text-primary font-semibold text-xl">Theme</Text>
+        <Text className="text-text-primary font-semibold text-xl">
+          {t("profile.theme")}
+        </Text>
       </View>
       {themes.map((t) => (
         <Pressable

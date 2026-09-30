@@ -8,7 +8,7 @@ import { View, Text, Pressable } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const LanguagePage = () => {
-  const { i18n } = useTranslation();
+  const { t, i18n } = useTranslation();
   const insets = useSafeAreaInsets();
   const { colors, text } = useTheme();
 
@@ -27,7 +27,7 @@ const LanguagePage = () => {
           <ChevronLeft color={text.secondary} size={24} />
         </Pressable>
         <Text className="text-text-primary font-semibold text-xl">
-          Language
+          {t("profile.language")}
         </Text>
       </View>
       <View className="gap-2 p-2">

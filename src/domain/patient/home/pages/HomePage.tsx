@@ -10,7 +10,7 @@ import Services from "../components/Services";
 
 const PatientHomePage = () => {
   const insets = useSafeAreaInsets();
-  const { data, isPending } = useGetDoctors();
+  const { data } = useGetDoctors();
   return (
     <View
       className="flex-1 bg-background px-3"
@@ -30,7 +30,7 @@ const PatientHomePage = () => {
         )}
         renderItem={({ item, index }) => (
           <View className={`${index % 2 === 0 ? "pr-1" : "pl-1"}`}>
-            <DoctorCard />
+            <DoctorCard doctor={item} />
           </View>
         )}
         ListFooterComponent={() => <View className="h-12" />}

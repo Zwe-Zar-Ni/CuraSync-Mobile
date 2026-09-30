@@ -27,7 +27,7 @@ export default function RootLayout() {
       i18n.changeLanguage(locale ?? "en");
     };
     setLanguage();
-  }, []);
+  }, [i18n]);
 
   return (
     <SafeAreaProvider>

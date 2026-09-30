@@ -1,9 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const TOKEN_KEY = "accessToken";
-const USER_KEY = "user";
-const ROLE_KEY = "role";
-const PROFILE_KEY = "profile";
 
 export const setToken = async (token: string) => {
   try {

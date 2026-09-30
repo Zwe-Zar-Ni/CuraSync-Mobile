@@ -17,12 +17,13 @@ const handleError = (error: AxiosError<ApiError>) => {
   return Promise.reject(error.response);
 };
 
+// eslint-disable-next-line import/no-named-as-default-member
 export const httpClient = axios.create(BASE_CONFIG);
 
 httpClient.interceptors.request.use(
-  (config) => {
+  async (config) => {
     try {
-      const token = getToken();
+      const token = await getToken();
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;
       }

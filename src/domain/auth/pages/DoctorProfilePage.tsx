@@ -26,9 +26,7 @@ const DoctorProfilePage = () => {
     formState: { errors, isSubmitting }
   } = useForm<DoctorProfileSchema>({
     resolver: zodResolver(DoctorProfileValidator),
-    defaultValues: {
-      name: ""
-    }
+    defaultValues: {}
   });
 
   const onSubmit = (data: DoctorProfileSchema) => {
@@ -86,7 +84,9 @@ const DoctorProfilePage = () => {
               label={t("labels.phoneNumber")}
               placeholder="Enter your phone number"
               keyboardType="phone-pad"
-              error={errors.name ? errors.name.message : undefined}
+              error={
+                errors.phone_number ? errors.phone_number.message : undefined
+              }
             />
           )}
         />
@@ -100,7 +100,11 @@ const DoctorProfilePage = () => {
               onChangeText={onChange}
               label={t("labels.licenseNumber")}
               placeholder="Enter your license number"
-              error={errors.name ? errors.name.message : undefined}
+              error={
+                errors.license_number
+                  ? errors.license_number.message
+                  : undefined
+              }
             />
           )}
         />
@@ -115,7 +119,11 @@ const DoctorProfilePage = () => {
               label={t("labels.standardConsultationFee")}
               placeholder={t("labels.standardConsultationFee")}
               keyboardType="numeric"
-              error={errors.name ? errors.name.message : undefined}
+              error={
+                errors.standard_consultation_fee
+                  ? errors.standard_consultation_fee.message
+                  : undefined
+              }
             />
           )}
         />
@@ -129,7 +137,7 @@ const DoctorProfilePage = () => {
               onChangeText={onChange}
               label={t("labels.bio")}
               placeholder="Enter your bio"
-              error={errors.name ? errors.name.message : undefined}
+              error={errors.bio ? errors.bio.message : undefined}
             />
           )}
         />

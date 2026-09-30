@@ -1,7 +1,6 @@
 import DateTimePicker, { DateType } from "react-native-ui-datepicker";
-import { useUniwind } from "uniwind";
 import { Pressable, ScrollView, View, Text } from "react-native";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import dayjs from "dayjs";
 import { ChevronLeft, ChevronRight } from "lucide-react-native";
 import useTheme from "@/common/hooks/useTheme";
@@ -45,6 +44,19 @@ const DatePicker = ({
   const initialVisibleDate = dayjs(date ?? minDate ?? new Date());
   const [visibleMonth, setVisibleMonth] = useState(initialVisibleDate.month());
   const [visibleYear, setVisibleYear] = useState(initialVisibleDate.year());
+  const [lastDate, setLastDate] = useState(date);
+
+  if (date !== lastDate) {
+    setLastDate(date);
+
+    if (date) {
+      const selectedDate = dayjs(date);
+      if (selectedDate.isValid()) {
+        setVisibleMonth(selectedDate.month());
+        setVisibleYear(selectedDate.year());
+      }
+    }
+  }
 
   const months = useMemo(() => {
     const start = dayjs(minDate ?? new Date()).startOf("month");
@@ -61,16 +73,6 @@ const DatePicker = ({
 
     return monthItems;
   }, [maxDate, minDate]);
-
-  useEffect(() => {
-    if (!date) return;
-
-    const selectedDate = dayjs(date);
-    if (!selectedDate.isValid()) return;
-
-    setVisibleMonth(selectedDate.month());
-    setVisibleYear(selectedDate.year());
-  }, [date]);
 
   const onSelectMonth = (monthDate: dayjs.Dayjs) => {
     setVisibleMonth(monthDate.month());

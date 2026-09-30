@@ -25,6 +25,28 @@
     "setUpYourProfile": "Set up your profile",
     "tellUsAboutYourself": "Let us know a little about you"
   },
+  "profile": {
+    "personalInformation": "Personal Information",
+    "editPersonalInformation": "Edit Personal Information",
+    "updatePersonalDetails": "Update your personal details",
+    "allergies": "Allergies",
+    "conditions": "Conditions",
+    "settings": "Settings",
+    "language": "Language",
+    "theme": "Theme",
+    "logout": "Logout",
+    "deleteAccount": "Delete Account"
+  },
+  "home": {
+    "greeting": "Hello, {{name}}",
+    "search": "Search",
+    "upcomingConsultations": "Upcoming Consultations",
+    "seeAll": "See All",
+    "doctors": "Doctors",
+    "virtualVisit": "Virtual Visit",
+    "inPersonVisit": "In-person Visit",
+    "view": "View"
+  },
   "labels": {
     "name": "Name",
     "email": "Email",
@@ -50,6 +72,8 @@
     "register": "Register",
     "registerDoctor": "Register Doctor",
     "maybeLater": "Maybe Later",
-    "done": "Done"
+    "done": "Done",
+    "save": "Save Changes",
+    "cancel": "Cancel"
   }
 }

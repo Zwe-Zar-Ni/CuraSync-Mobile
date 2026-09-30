@@ -12,7 +12,7 @@ export const useGetSpecializations = () => {
 
 export const useGetDoctors = (specializationId?: number) => {
   return useQuery<PaginatedResponse<Doctor>, ApiError>({
-    queryKey: ["doctors"],
+    queryKey: ["doctors", specializationId],
     queryFn: () => homeService.getDoctors(specializationId)
   });
 };
