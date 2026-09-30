@@ -52,13 +52,13 @@ export type PatientProfile = {
 export type Doctor = {
   user: User;
   role: "doctor";
-  profile: Doctor;
+  profile: DoctorProfile;
 };
 
 export type Patient = {
   user: User;
   role: "patient";
-  profile: Patient;
+  profile: PatientProfile;
 };
 
 export type UserProfile = Doctor | Patient;

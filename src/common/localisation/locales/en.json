@@ -47,6 +47,24 @@
     "inPersonVisit": "In-person Visit",
     "view": "View"
   },
+  "allergies": {
+    "title": "Allergies",
+    "subtitle": "Keep your allergy list up to date so your doctor has the full picture.",
+    "empty": "No allergies recorded yet",
+    "emptyHint": "Tap the + button to add your first allergy.",
+    "add": "Add Allergy",
+    "edit": "Edit Allergy",
+    "allergyName": "Allergy Name",
+    "allergyNamePlaceholder": "e.g. Penicillin",
+    "severity": "Severity",
+    "mild": "Mild",
+    "moderate": "Moderate",
+    "severe": "Severe",
+    "note": "Note",
+    "notePlaceholder": "Anything your doctor should know about this allergy",
+    "deleteTitle": "Delete allergy?",
+    "deleteMessage": "This allergy will be removed from your profile."
+  },
   "labels": {
     "name": "Name",
     "email": "Email",
@@ -74,6 +92,7 @@
     "maybeLater": "Maybe Later",
     "done": "Done",
     "save": "Save Changes",
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "delete": "Delete"
   }
 }

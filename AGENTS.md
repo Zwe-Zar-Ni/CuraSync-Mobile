@@ -1,5 +1,43 @@
 This is an Expo/React Native mobile application (Cura Sync — a doctor-booking app). Prioritize mobile-first patterns, performance, and cross-platform compatibility.
 
+## Current phase: UI and frontend flow only
+
+**There is no end-to-end API consumption. The backend is not running and must not be relied on.** Current work is limited to screens, navigation, forms, validation, theming, localisation, list rendering, and mock data.
+
+- Do not attempt to make requests succeed, do not wire up real endpoints, and do not "fix" the API integration. That is a later phase.
+- `EXPO_PUBLIC_BASE_URL` / `EXPO_PUBLIC_BASE_VERSION` in `.env` are intentionally empty, so `httpClient`'s `baseURL` is `undefined/undefined` and every call fails immediately. Leave them empty.
+- Mock data (`services/dummy.ts`, hardcoded lists) is the intended data source. Extend it rather than adding a network call.
+- `router.push(...)` running **before** `mutate(...)` in the auth pages is deliberate: the flow must navigate regardless of the never-sent request.
+- Mocks must still mirror the real backend contract — `snake_case` fields, the `{data, errors, message, status}` envelope, real enum values — so the wiring phase is a deletion rather than a rewrite.
+- Verify work with `npx expo lint`, `npx tsc --noEmit`, and by driving the flow in the dev build/simulator. Never report a task as working because a request "should" succeed.
+- State plainly, in your summary, which parts are still mocked.
+
+## Backend: read it as a contract, never call it
+
+Sibling repo: `/home/vaddshah/Documents/projects/CuraSync/backend` — API-only Laravel (routes in `routes/api.php`, controllers in `app/Http/Controllers/V1`, its own `AGENTS.md`). It is a **read-only reference** for the shape of the API. Do not edit it from this repo, and do not depend on it running.
+
+Read it whenever you need ground truth for:
+
+- endpoint paths, verbs, and middleware (`auth:sanctum`, `role:patient`, `role:doctor`) — `routes/api.php`
+- request validation rules → mirror them in the Zod schema (`app/Http/Requests/**`)
+- response field names, relations, and enum values → mirror them in `types` (`app/Models/**`, `app/Enums/**`, `app/Http/Resources/**`)
+
+Current surface, all under the `v1` prefix (full paths `/api/v1/…`):
+
+| Method                    | Path                                             | Notes                                                                                       |
+| ------------------------- | ------------------------------------------------ | ------------------------------------------------------------------------------------------- |
+| POST                      | `/auth/login`                                    | `email`, `password`                                                                          |
+| POST                      | `/auth/register/patient`                         | `name`, `email`, `password`, `password_confirmation`                                        |
+| POST                      | `/auth/register/doctor`                          | same, plus doctor fields; `status` defaults to `PENDING_VERIFICATION`                        |
+| GET                       | `/me`                                            | sanctum                                                                                      |
+| PATCH                     | `/patients/profile`                             | role:patient — `name`, `phone_number`, `profile_url`, `date_of_birth`, `gender` (`M`/`F`), `blood_type` |
+| PATCH                     | `/doctors/profile`                              | role:doctor — `name`, `phone_number`, `profile_url`, `license_number`, `standard_consultation_fee`, `bio` |
+| apiResource               | `/patients/{allergies,conditions,contacts}`      | role:patient                                                                                 |
+| apiResource               | `/doctors/{qualifications,schedules,schedule-overrides}` | role:doctor; `/doctors/specialties` is store + destroy only                          |
+| GET                       | `/public/specializations`, `/public/doctors`, `/public/doctors/{id}` | unauthenticated                       |
+
+Every response body is `{data, errors, message, status}`. Paginated lists nest `data` + `meta` (`currentPage`, `perPage`, `total`, `lastPage`, `hasMorePages`, `nextPageUrl`, `previousPageUrl`) inside `data`. Enum columns are `UPPER_SNAKE` (`ACTIVE`, `PENDING_VERIFICATION`, `MILD`, `UNAVAILABLE`, …). Match these in mock data and types.
+
 ## Expo has changed — do not trust your training data
 
 Expo ships breaking changes every SDK release. APIs you remember are likely renamed, moved, or removed. Before writing any code that touches an Expo, EAS, or React Native API:
@@ -128,7 +166,7 @@ Use `FlashList` for any data-backed list (`vertical` or `horizontal`). Header/fo
 
 ## Data layer
 
-Follow the existing four-layer chain per feature: `pages/components` → `queries` → `services` → `httpClient`. Never call `httpClient` from a component.
+Follow the existing four-layer chain per feature: `pages/components` → `queries` → `services` → `httpClient`. Never call `httpClient` from a component. This is the target wiring for the later API phase; during the UI phase the `services` layer returns mock data and the `httpClient` code below it stays unwired.
 
 **`src/common/api/apiClient.ts`** — a single axios instance. Request interceptor attaches `Bearer <token>`; response interceptor returns `res.data` (the response body) and rejects with `error.response` on failure. Base URL is `EXPO_PUBLIC_BASE_URL` + `/` + `EXPO_PUBLIC_BASE_VERSION` from `.env` (see `.env.example`; only `EXPO_PUBLIC_`-prefixed vars reach the bundle).
 
@@ -154,7 +192,7 @@ export const useLogin = () =>
   });
 ```
 
-Keys are kebab-case string arrays. Query functions that take arguments must be wrapped (`queryFn: () => homeService.getDoctors(id)`) and the arguments belong in the `queryKey` — see the `useGetDoctors` bug in `domain/patient/home/queries`.
+Keys are kebab-case string arrays. Query functions that take arguments must be wrapped (`queryFn: () => homeService.getDoctors(id)`) and the arguments belong in the `queryKey` — see `useGetDoctors` in `domain/patient/home/queries`.
 
 **`queryClient.ts`** sets global defaults (5-minute `staleTime`, no refetch on focus, 2 retries except on 401). Don't override these per hook without a reason.
 
@@ -211,7 +249,7 @@ Docs: https://docs.expo.dev/eas/index.md
 - If `ios/` and `android/` directories do not exist, they are generated (Continuous Native Generation). Never create or edit them by hand — configure native behavior in `app.json` and config plugins.
 - Expo Go only includes its bundled native modules. After adding a library with native code, the app needs a development build: `npx expo run:ios|android` locally, or `eas build --profile development`.
 - Prefer recommended Expo modules over third-party libraries, and check your available skills before adding dependencies. Docs: https://docs.expo.dev/versions/latest/index.md
-- Keep placeholders explicit. Where a feature is stubbed (hardcoded doctor names, `services/dummy.ts`, `console.log` in mutation handlers), say so in your summary rather than shipping it as if it were wired up.
+- Keep placeholders explicit. Where a feature is stubbed (hardcoded doctor names, `services/dummy.ts`, `console.log` in mutation handlers), say so in your summary rather than shipping it as if it were wired up. See "Current phase" above.
 
 ## Known issues — do not propagate these
 
@@ -219,3 +257,4 @@ Fix them if you are already editing the file; never copy the pattern.
 
 - Auth pages call `router.push(...)` **before** `mutate(...)`, because the backend server is not available right now, and we are only doing UI development, so navigation happens regardless of whether the request succeeds.
 - `domain/patient/home/services/index.ts` returns `docs` / `specs` from `dummy.ts` before its real `httpClient` calls, which are dead code below the early return since development right now is UI only, no end-to-end api bindings.
+- `domain/auth/services/index.ts` posts to `/auth/register-patient` and `/auth/register-doctor`; the backend routes are `/auth/register/patient` and `/auth/register/doctor`. Correct the paths when the API is wired, not before.
