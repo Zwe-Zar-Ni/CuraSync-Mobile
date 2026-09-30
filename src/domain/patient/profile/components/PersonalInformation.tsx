@@ -31,7 +31,10 @@ const PersonalInformation = () => {
           <Text className="flex-1 text-text-primary">{t("profile.allergies")}</Text>
           <ChevronRight color={text.secondary} size={24} />
         </Pressable>
-        <Pressable className="flex-row items-center gap-3 py-3">
+        <Pressable
+          className="flex-row items-center gap-3 py-3"
+          onPress={() => router.push("/patient/profile/conditions")}
+        >
           <Tablets color={colors.secondary} size={22} />
           <Text className="flex-1 text-text-primary">
             {t("profile.conditions")}

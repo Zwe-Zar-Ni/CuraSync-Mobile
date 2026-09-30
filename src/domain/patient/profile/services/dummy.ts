@@ -1,6 +1,8 @@
 import { Patient } from "@/common/types";
 import type { Allergy } from "../types/allergy";
+import type { Condition } from "../types/condition";
 import type { AllergySchema } from "../validations/allergy";
+import type { ConditionSchema } from "../validations/condition";
 
 export const patientProfile: Patient = {
   user: {
@@ -88,5 +90,81 @@ export const allergyStore = {
     const allergy = allergyRecords.find((record) => record.id === id) ?? null;
     allergyRecords = allergyRecords.filter((record) => record.id !== id);
     return allergy;
+  }
+};
+
+//! UI phase only — in-memory stand-in for /patients/conditions. Swap for httpClient calls once the API is wired.
+let conditionRecords: Condition[] = [
+  {
+    id: 3,
+    patient_id: 1,
+    name: "Type 2 diabetes",
+    diagnosis_date: "2024-11-08",
+    status: "ACTIVE",
+    note: "Metformin twice daily.",
+    created_at: "2026-08-19T07:20:00.000000Z",
+    updated_at: "2026-08-19T07:20:00.000000Z"
+  },
+  {
+    id: 2,
+    patient_id: 1,
+    name: "Migraine",
+    diagnosis_date: "2019-04-02",
+    status: "RECURRENCE",
+    note: "Triggers bright light and missed meals.",
+    created_at: "2026-06-11T11:40:00.000000Z",
+    updated_at: "2026-06-11T11:40:00.000000Z"
+  },
+  {
+    id: 1,
+    patient_id: 1,
+    name: "Seasonal allergies",
+    diagnosis_date: null,
+    status: "RESOLVED",
+    note: null,
+    created_at: "2026-03-30T16:00:00.000000Z",
+    updated_at: "2026-03-30T16:00:00.000000Z"
+  }
+];
+
+let conditionSequence = 3;
+
+export const conditionStore = {
+  list: () => [...conditionRecords].sort((a, b) => b.id - a.id),
+  create: (input: ConditionSchema) => {
+    const timestamp = new Date().toISOString();
+    const condition: Condition = {
+      id: ++conditionSequence,
+      patient_id: 1,
+      name: input.name,
+      diagnosis_date: input.diagnosis_date,
+      status: input.status,
+      note: input.note,
+      created_at: timestamp,
+      updated_at: timestamp
+    };
+    conditionRecords = [condition, ...conditionRecords];
+    return condition;
+  },
+  update: (id: number, input: ConditionSchema) => {
+    const condition = conditionRecords.find((record) => record.id === id);
+    if (!condition) return null;
+    const updated: Condition = {
+      ...condition,
+      name: input.name,
+      diagnosis_date: input.diagnosis_date,
+      status: input.status,
+      note: input.note,
+      updated_at: new Date().toISOString()
+    };
+    conditionRecords = conditionRecords.map((record) =>
+      record.id === id ? updated : record
+    );
+    return updated;
+  },
+  remove: (id: number) => {
+    const condition = conditionRecords.find((record) => record.id === id) ?? null;
+    conditionRecords = conditionRecords.filter((record) => record.id !== id);
+    return condition;
   }
 };

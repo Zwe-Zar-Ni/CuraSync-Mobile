@@ -95,10 +95,10 @@ src/
   domain/                 # feature modules, one folder per feature
     <feature>/
       pages/              # screen-level components (PascalCase .tsx)
-      components/         # feature-local presentational components
-      queries/            # TanStack Query hooks (index.ts)
-      services/           # API calls (index.ts + optional dummy.ts)
-      types/              # feature-scoped types (index.ts)
+      components/         # feature-local presentational components (+ one sub-folder per sub-feature)
+      queries/            # TanStack Query hooks — index.ts, or <sub-feature>.ts
+      services/           # API calls — index.ts, or <sub-feature>.ts (+ shared dummy.ts)
+      types/              # feature-scoped types — index.ts, or <sub-feature>.ts
       validations/        # Zod schemas (one file per form)
   common/                 # cross-feature infrastructure
     api/                  # apiClient.ts, queryClient.ts
@@ -113,13 +113,36 @@ src/
 
 `src/domain/doctor/` exists but is empty — the doctor area is unbuilt.
 
+### Sub-features get their own file per layer
+
+When a domain carries several sibling resources (allergies, conditions, contacts, …), **each resource gets one file per layer instead of growing a shared `index.ts`**. See `domain/patient/profile` for the reference implementation:
+
+```
+domain/patient/profile/
+  pages/ConditionsPage.tsx                  # one screen per resource
+  pages/AllergiesPage.tsx
+  components/condition/ConditionCard.tsx    # components grouped per resource
+  components/condition/ConditionFormSheet.tsx
+  components/condition/ConditionDeleteSheet.tsx
+  components/condition/StatusField.tsx
+  types/condition.ts                        # Allergy + AllergySeverity live in types/allergy.ts
+  validations/condition.ts                  # <Resource>Validator + <Resource>Schema, + <Resource>Id on update
+  services/condition.ts                     # class ConditionService, default-exported instance
+  queries/condition.ts                      # useGet/useCreate/useUpdate/useDelete hooks
+  services/dummy.ts                         # <resource>Store mocks, shared by every service in the domain
+```
+
+- `index.ts` stays for the domain's own concern (here: `profileService` + `useGetProfile` / `useUpdateProfile`) and is not a dumping ground.
+- `services/dummy.ts` holds one `<resource>Store` per resource — `{ list, create, update, remove }` over a module-level array, with `//!` comment marking it as a UI-phase stand-in. Mutations invalidate the list query key, so CRUD visibly works with no server.
+- Resources that share a control (severity chips, status chips) keep it resource-local; promote to `shared/components` only when a second *domain* needs it.
+
 ### Path aliases
 
 `tsconfig.json` defines `@/* → ./src/*` and `@/assets/* → ./assets/*`.
 
 - Cross-directory imports use `@/…` (e.g. `import useTheme from "@/common/hooks/useTheme"`).
 - **Gotcha:** `@/assets/*` points at the _root_ `assets/` (app icon, splash icon), not `src/assets/`. App images in `src/assets/images` are currently imported relatively.
-- Within a `src/domain/<feature>` folder, sibling imports are relative (`../queries`, `./Heading`).
+- Within a `src/domain/<feature>` folder, sibling imports are relative (`../queries`, `./Heading`). From inside `components/<sub-feature>/` that means `../../types/<sub-feature>`, `../../queries/<sub-feature>`, and `./` for its own siblings.
 
 ## Code structure conventions
 
@@ -164,13 +187,20 @@ Use `FlashList` for any data-backed list (`vertical` or `horizontal`). Header/fo
 
 `react-native-modal` with `style={{ justifyContent: "flex-end", margin: 0 }}` and `backdropColor="#0C0C0C"`, with `onBackdropPress` and `onBackButtonPress` closing it. Sheet body is `bg-background` → `bg-surface` header (title + absolute-positioned `X` close button) → options → footer with a full-width `Button text="Done"`. Follow this shape in `DatePickerField`, `BloodTypeField`, and `LanguageSwitch`.
 
+The same shape carries the resource CRUD sheets in `domain/patient/profile/components/{allergy,condition}/`:
+
+- `…FormSheet` — `{ isVisible, <resource>?, onClose }`, adds `avoidKeyboard` for the inputs, scrolls the body, and owns its own `useForm` + create/update mutation. It resets the form in a `useEffect` keyed on `[isVisible, <resource>]` so create and update share one component.
+- `…DeleteSheet` — `{ <resource>: <T> | null, onClose }`, `isVisible={!!<resource>}`, confirms then calls the delete mutation.
+- The page holds the visibility state (`isFormVisible`, `selected`, `removing`) and passes callbacks down; `onBackdropPress` just closes.
+- Fields that need a picker render it inline (`SeverityField` row, `StatusField` chips) rather than opening a second modal.
+
 ## Data layer
 
 Follow the existing four-layer chain per feature: `pages/components` → `queries` → `services` → `httpClient`. Never call `httpClient` from a component. This is the target wiring for the later API phase; during the UI phase the `services` layer returns mock data and the `httpClient` code below it stays unwired.
 
 **`src/common/api/apiClient.ts`** — a single axios instance. Request interceptor attaches `Bearer <token>`; response interceptor returns `res.data` (the response body) and rejects with `error.response` on failure. Base URL is `EXPO_PUBLIC_BASE_URL` + `/` + `EXPO_PUBLIC_BASE_VERSION` from `.env` (see `.env.example`; only `EXPO_PUBLIC_`-prefixed vars reach the bundle).
 
-**`services/index.ts`** — a class per feature, instantiated once and default-exported:
+**`services/<feature>.ts`** — a class per feature, instantiated once and default-exported:
 
 ```ts
 class AuthService {
@@ -182,7 +212,7 @@ class AuthService {
 export default authService;
 ```
 
-**`queries/index.ts`** — one hook per endpoint, always explicitly typed, with an `ApiError` error type:
+**`queries/<feature>.ts`** — one hook per endpoint, always explicitly typed, with an `ApiError` error type:
 
 ```ts
 export const useLogin = () =>
@@ -196,15 +226,20 @@ Keys are kebab-case string arrays. Query functions that take arguments must be w
 
 **`queryClient.ts`** sets global defaults (5-minute `staleTime`, no refetch on focus, 2 retries except on 401). Don't override these per hook without a reason.
 
+### Resource CRUD screens
+
+`AllergiesPage` / `ConditionsPage` are the template for any profile resource list: back chevron + title + subtitle, a `FlashList` of `<Resource>Card` (whole card opens the update sheet, trailing trash opens the delete sheet), `ItemSeparatorComponent={() => <View className="h-3" />}`, a `ListEmptyComponent` with an icon plus two lines of copy, and an absolutely positioned `bg-primary` circular `Plus` `Pressable` that opens the create sheet. Both sheets are rendered unconditionally; the page owns `isFormVisible` / `selected` / `removing` state.
+
 ## Forms
 
-Every form follows the same shape (see `LoginPage`, `RegisterPage`, `DoctorProfilePage`):
+Every form follows the same shape (see `LoginPage`, `RegisterPage`, `DoctorProfilePage`, `ConditionFormSheet`):
 
 1. A Zod schema in `validations/<form-name>.ts` exporting `<Name>Validator` and `type <Name>Schema = z.infer<typeof <Name>Validator>`. Use Zod v4 top-level string formats (`z.email()`), not `z.string().email()`.
 2. `useForm<<Name>Schema>({ resolver: zodResolver(<Name>Validator), defaultValues: … })` with a `defaultValues` block covering every field.
 3. One `Controller` per field, rendering a `shared/components` field (`TextField`, `PasswordField`, `DatePickerField`, `BloodTypeField`) or a custom `Pressable` group (see the gender toggle in `PatientProfilePage`).
 4. Field values are passed as `value={value ?? ""}` because the profile schemas use `nullable()`.
 5. Submit button gets `disabled={isSubmitting || isPending}`.
+6. The schema mirrors the backend `FormRequest` field-for-field, including limits — e.g. allergy `note` is `max(1000)` but condition `note` is `max(255)`.
 
 Naming: use `.ts` for validation modules.
 
@@ -222,22 +257,23 @@ Naming: use `.ts` for validation modules.
 
 - Declare every screen in its `_layout.tsx` with `options={{ headerShown: false }}`; the app draws its own headers.
 - Import `Link`, `router`, `useLocalSearchParams`, `usePathname` from `expo-router`. Use `router.push()` for imperative navigation and `<Link href>` for inline text affordances. Wrap a back chevron in `{router.canGoBack() ? … : null}`.
+- Adding a route invalidates the generated route types: `.expo/types/router.d.ts` is produced by the dev server, so `npx tsc --noEmit` will reject `router.push("/patient/profile/conditions")` until `npx expo start` has run once with the new file in place. Start the server (or let the user run it) instead of loosening the `tsconfig` types.
 - Docs: https://docs.expo.dev/router/introduction.md
 
 ## Types
 
 - Shared API envelope types (`ApiError`, `PaginatedResponse<T>`, `User`, `UserProfile`, `Doctor`, `Patient`) live in `src/common/types/index.d.ts` and are imported as values from `@/common/types`.
-- Feature-specific response shapes go in `src/domain/<feature>/types/index.ts`.
+- Feature-specific response shapes go in `src/domain/<feature>/types/` — one `index.ts` per feature, or `<sub-feature>.ts` when the feature has several resources.
 - Backend field names are `snake_case`; keep them as-is in types and form schemas, and do the conversion at the API boundary.
 - Be careful: `Doctor` is declared twice with different shapes (in `common/types` (profile type for doctor) and in `domain/patient/home/types` (public doctor entity type)). Don't add a third; consolidate when you touch it.
 
 ## Localization
 
-- Locales: `src/common/localisation/locales/en.json` and `mm.json`. **Both must be updated in the same commit** — keys are grouped by namespace: `index`, `auth`, then shared `labels`, `options`, `actions`.
+- Locales: `src/common/localisation/locales/en.json` and `mm.json`. **Both must be updated in the same commit** — keys are grouped by namespace: `index`, `auth`, `profile`, `home`, then one namespace per resource screen (`allergies`, `conditions`), then shared `labels`, `options`, `actions`.
 - `i18n.ts` initializes i18next with the device language and exports the `languages` array (`id`, `name`, `flag`) used by the language switcher. Register new locales there and in `resources`.
 - Persisted choice: `getLocale` / `setLocale` in `localisation/utils.ts` (AsyncStorage key `locale`), re-applied by the root layout on mount.
 - In components: `const { t } = useTranslation();` then `t("labels.email")`. Shared components take already-translated `label` props.
-- The patient home and profile screens still hardcode English strings — that's a gap, not a pattern. Use `t()` for anything you add.
+- The patient home screen and the profile header cards still hardcode English strings — that's a gap, not a pattern. Use `t()` for anything you add.
 
 ## Building with EAS
 
