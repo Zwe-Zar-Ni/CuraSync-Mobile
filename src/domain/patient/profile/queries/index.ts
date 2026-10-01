@@ -21,3 +21,17 @@ export const useUpdateProfile = () => {
     }
   });
 };
+
+export const useLogout = () => {
+  return useMutation<{ success: boolean }, ApiError, void>({
+    mutationKey: ["logout"],
+    mutationFn: profileService.logout
+  });
+};
+
+export const useDeleteAccount = () => {
+  return useMutation<{ success: boolean }, ApiError, void>({
+    mutationKey: ["delete-account"],
+    mutationFn: profileService.deleteAccount
+  });
+};

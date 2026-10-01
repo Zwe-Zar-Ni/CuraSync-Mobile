@@ -35,7 +35,9 @@
     "language": "ဘာသာစကား",
     "theme": "အပြင်အဆင်",
     "logout": "ထွက်မည်",
-    "deleteAccount": "အကောင့်ဖျက်မည်"
+    "deleteAccount": "အကောင့်ဖျက်မည်",
+    "logoutConfirm": "Are you sure you want to logout?",
+    "deleteConfirm": "Are you sure you want to delete your account? This action cannot be undone."
   },
   "home": {
     "greeting": "မင်္ဂလာပါ, {{name}}",

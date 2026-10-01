@@ -35,7 +35,9 @@
     "language": "Language",
     "theme": "Theme",
     "logout": "Logout",
-    "deleteAccount": "Delete Account"
+    "deleteAccount": "Delete Account",
+    "logoutConfirm": "Are you sure you want to logout?",
+    "deleteConfirm": "Are you sure you want to delete your account? This action cannot be undone."
   },
   "home": {
     "greeting": "Hello, {{name}}",

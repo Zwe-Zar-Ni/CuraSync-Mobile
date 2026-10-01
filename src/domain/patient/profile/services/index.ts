@@ -26,6 +26,16 @@ class ProfileService {
     });
     return response.data;
   }
+
+  async logout() {
+    return { success: true };
+    await httpClient.post("/me/logout");
+  }
+
+  async deleteAccount() {
+    return { success: true };
+    await httpClient.post("/me/delete-account");
+  }
 }
 
 const profileService = new ProfileService();
