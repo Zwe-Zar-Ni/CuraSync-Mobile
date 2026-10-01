@@ -37,7 +37,7 @@ const StatusField = ({ value, onChange, error }: Props) => {
             onPress={() => onChange(status.value)}
           >
             <Text
-              className={`text-sm ${value === status.value ? "text-secondary" : "text-text-primary"}`}
+              className={`text-sm leading-8 ${value === status.value ? "text-secondary" : "text-text-primary"}`}
             >
               {t(status.label)}
             </Text>

@@ -17,14 +17,12 @@ import {
   EditProfileSchema,
   EditProfileValidator
 } from "../validations/edit-profile";
-import { useQueryClient } from "@tanstack/react-query";
 
 const EditProfilePage = () => {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const { text } = useTheme();
 
-  const queryClient = useQueryClient();
   const { data: profile } = useGetProfile();
   const { mutate, isPending } = useUpdateProfile();
 
@@ -58,9 +56,9 @@ const EditProfilePage = () => {
   }, [profile, reset]);
 
   const onSubmit = (data: EditProfileSchema) => {
+    router.back();
     mutate(data, {
       onSuccess: () => {
-        queryClient.invalidateQueries({ queryKey: ["patient-profile"] });
         router.back();
       },
       onError: (error) => {
@@ -80,7 +78,7 @@ const EditProfilePage = () => {
             <ChevronLeft color={text.secondary} size={24} />
           </Pressable>
         ) : null}
-        <Text className="text-3xl leading-12 font-medium text-text-primary">
+        <Text className="text-2xl leading-10 font-medium text-text-primary">
           {t("profile.editPersonalInformation")}
         </Text>
         <Text className="font-medium text-text-secondary">
@@ -92,6 +90,24 @@ const EditProfilePage = () => {
         keyboardShouldPersistTaps="handled"
       >
         <View className="gap-4 pb-8">
+          {/* <Controller
+            control={control}
+            name="profile_url"
+            render={({ field: { onChange, onBlur, value } }) => (
+              <TextField
+                value={value ?? ""}
+                onBlur={onBlur}
+                onChangeText={onChange}
+                label={t("labels.profileUrl")}
+                placeholder="Enter your profile image url"
+                autoCapitalize="none"
+                error={
+                  errors.profile_url ? errors.profile_url.message : undefined
+                }
+              />
+            )}
+          /> */}
+
           <Controller
             control={control}
             name="name"
@@ -120,24 +136,6 @@ const EditProfilePage = () => {
                 keyboardType="phone-pad"
                 error={
                   errors.phone_number ? errors.phone_number.message : undefined
-                }
-              />
-            )}
-          />
-
-          <Controller
-            control={control}
-            name="profile_url"
-            render={({ field: { onChange, onBlur, value } }) => (
-              <TextField
-                value={value ?? ""}
-                onBlur={onBlur}
-                onChangeText={onChange}
-                label={t("labels.profileUrl")}
-                placeholder="Enter your profile image url"
-                autoCapitalize="none"
-                error={
-                  errors.profile_url ? errors.profile_url.message : undefined
                 }
               />
             )}

@@ -7,6 +7,7 @@ const PatientProfileLayout = () => {
       <Stack.Screen name="edit" options={{ headerShown: false }} />
       <Stack.Screen name="allergies" options={{ headerShown: false }} />
       <Stack.Screen name="conditions" options={{ headerShown: false }} />
+      <Stack.Screen name="contacts" options={{ headerShown: false }} />
       <Stack.Screen name="language" options={{ headerShown: false }} />
       <Stack.Screen name="theme" options={{ headerShown: false }} />
     </Stack>

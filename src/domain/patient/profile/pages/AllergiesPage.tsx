@@ -44,7 +44,7 @@ const AllergiesPage = () => {
             <ChevronLeft color={text.secondary} size={24} />
           </Pressable>
         ) : null}
-        <Text className="text-3xl leading-12 font-medium text-text-primary">
+        <Text className="text-2xl leading-10 font-medium text-text-primary">
           {t("allergies.title")}
         </Text>
         <Text className="font-medium text-text-secondary">

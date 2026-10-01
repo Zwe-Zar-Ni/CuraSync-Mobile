@@ -24,17 +24,17 @@ Read it whenever you need ground truth for:
 
 Current surface, all under the `v1` prefix (full paths `/api/v1/…`):
 
-| Method                    | Path                                             | Notes                                                                                       |
-| ------------------------- | ------------------------------------------------ | ------------------------------------------------------------------------------------------- |
-| POST                      | `/auth/login`                                    | `email`, `password`                                                                          |
-| POST                      | `/auth/register/patient`                         | `name`, `email`, `password`, `password_confirmation`                                        |
-| POST                      | `/auth/register/doctor`                          | same, plus doctor fields; `status` defaults to `PENDING_VERIFICATION`                        |
-| GET                       | `/me`                                            | sanctum                                                                                      |
-| PATCH                     | `/patients/profile`                             | role:patient — `name`, `phone_number`, `profile_url`, `date_of_birth`, `gender` (`M`/`F`), `blood_type` |
-| PATCH                     | `/doctors/profile`                              | role:doctor — `name`, `phone_number`, `profile_url`, `license_number`, `standard_consultation_fee`, `bio` |
-| apiResource               | `/patients/{allergies,conditions,contacts}`      | role:patient                                                                                 |
-| apiResource               | `/doctors/{qualifications,schedules,schedule-overrides}` | role:doctor; `/doctors/specialties` is store + destroy only                          |
-| GET                       | `/public/specializations`, `/public/doctors`, `/public/doctors/{id}` | unauthenticated                       |
+| Method      | Path                                                                 | Notes                                                                                                     |
+| ----------- | -------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| POST        | `/auth/login`                                                        | `email`, `password`                                                                                       |
+| POST        | `/auth/register/patient`                                             | `name`, `email`, `password`, `password_confirmation`                                                      |
+| POST        | `/auth/register/doctor`                                              | same, plus doctor fields; `status` defaults to `PENDING_VERIFICATION`                                     |
+| GET         | `/me`                                                                | sanctum                                                                                                   |
+| PATCH       | `/patients/profile`                                                  | role:patient — `name`, `phone_number`, `profile_url`, `date_of_birth`, `gender` (`M`/`F`), `blood_type`   |
+| PATCH       | `/doctors/profile`                                                   | role:doctor — `name`, `phone_number`, `profile_url`, `license_number`, `standard_consultation_fee`, `bio` |
+| apiResource | `/patients/{allergies,conditions,contacts}`                          | role:patient                                                                                              |
+| apiResource | `/doctors/{qualifications,schedules,schedule-overrides}`             | role:doctor; `/doctors/specialties` is store + destroy only                                               |
+| GET         | `/public/specializations`, `/public/doctors`, `/public/doctors/{id}` | unauthenticated                                                                                           |
 
 Every response body is `{data, errors, message, status}`. Paginated lists nest `data` + `meta` (`currentPage`, `perPage`, `total`, `lastPage`, `hasMorePages`, `nextPageUrl`, `previousPageUrl`) inside `data`. Enum columns are `UPPER_SNAKE` (`ACTIVE`, `PENDING_VERIFICATION`, `MILD`, `UNAVAILABLE`, …). Match these in mock data and types.
 
@@ -134,7 +134,7 @@ domain/patient/profile/
 
 - `index.ts` stays for the domain's own concern (here: `profileService` + `useGetProfile` / `useUpdateProfile`) and is not a dumping ground.
 - `services/dummy.ts` holds one `<resource>Store` per resource — `{ list, create, update, remove }` over a module-level array, with `//!` comment marking it as a UI-phase stand-in. Mutations invalidate the list query key, so CRUD visibly works with no server.
-- Resources that share a control (severity chips, status chips) keep it resource-local; promote to `shared/components` only when a second *domain* needs it.
+- Resources that share a control (severity chips, status chips) keep it resource-local; promote to `shared/components` only when a second _domain_ needs it.
 
 ### Path aliases
 
@@ -239,7 +239,7 @@ Every form follows the same shape (see `LoginPage`, `RegisterPage`, `DoctorProfi
 3. One `Controller` per field, rendering a `shared/components` field (`TextField`, `PasswordField`, `DatePickerField`, `BloodTypeField`) or a custom `Pressable` group (see the gender toggle in `PatientProfilePage`).
 4. Field values are passed as `value={value ?? ""}` because the profile schemas use `nullable()`.
 5. Submit button gets `disabled={isSubmitting || isPending}`.
-6. The schema mirrors the backend `FormRequest` field-for-field, including limits — e.g. allergy `note` is `max(1000)` but condition `note` is `max(255)`.
+6. The schema mirrors the backend `FormRequest` field-for-field, including limits.
 
 Naming: use `.ts` for validation modules.
 
@@ -293,4 +293,5 @@ Fix them if you are already editing the file; never copy the pattern.
 
 - Auth pages call `router.push(...)` **before** `mutate(...)`, because the backend server is not available right now, and we are only doing UI development, so navigation happens regardless of whether the request succeeds.
 - `domain/patient/home/services/index.ts` returns `docs` / `specs` from `dummy.ts` before its real `httpClient` calls, which are dead code below the early return since development right now is UI only, no end-to-end api bindings.
+- The same early-return shape is in `domain/patient/profile/services/{allergy,condition}.ts`, so `npx expo lint` reports one `no-unreachable` warning per method there. Those warnings are expected during this phase — do not "fix" them by deleting the real `httpClient` calls.
 - `domain/auth/services/index.ts` posts to `/auth/register-patient` and `/auth/register-doctor`; the backend routes are `/auth/register/patient` and `/auth/register/doctor`. Correct the paths when the API is wired, not before.

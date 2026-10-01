@@ -90,6 +90,16 @@
     "deleteTitle": "Delete condition?",
     "deleteMessage": "This condition will be removed from your profile."
   },
+  "contacts": {
+    "title": "Contacts",
+    "subtitle": "Keep emergency contacts and important people handy for your care.",
+    "empty": "No contacts recorded yet",
+    "emptyHint": "Tap the + button to add your first contact.",
+    "add": "Add Contact",
+    "edit": "Edit Contact",
+    "deleteTitle": "Delete contact?",
+    "deleteMessage": "This contact will be removed from your profile."
+  },
   "labels": {
     "name": "Name",
     "email": "Email",
@@ -102,7 +112,8 @@
     "dateOfBirth": "Date of Birth",
     "gender": "Gender",
     "bloodType": "Blood Type",
-    "profileUrl": "Profile URL"
+    "profileUrl": "Profile URL",
+    "address": "Address"
   },
   "options": {
     "male": "Male",

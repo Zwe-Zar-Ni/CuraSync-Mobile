@@ -71,7 +71,7 @@ const ConditionCard = ({ condition, onEdit, onDelete }: Props) => {
         </Pressable>
       </View>
       {condition.diagnosis_date ? (
-        <View className="flex-row items-center gap-2 mt-2">
+        <View className="flex-row items-center gap-2 mt-1">
           <CalendarDays color={text.secondary} size={16} />
           <Text className="text-sm text-text-secondary">
             {dayjs(condition.diagnosis_date).format("MMM DD, YYYY")}
@@ -79,7 +79,7 @@ const ConditionCard = ({ condition, onEdit, onDelete }: Props) => {
         </View>
       ) : null}
       {condition.note ? (
-        <Text numberOfLines={2} className="text-sm text-text-secondary mt-2">
+        <Text numberOfLines={2} className="text-sm text-text-secondary mt-1">
           {condition.note}
         </Text>
       ) : null}

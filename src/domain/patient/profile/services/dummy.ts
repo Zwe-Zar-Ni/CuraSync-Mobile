@@ -1,8 +1,10 @@
 import { Patient } from "@/common/types";
 import type { Allergy } from "../types/allergy";
 import type { Condition } from "../types/condition";
+import type { Contact } from "../types/contact";
 import type { AllergySchema } from "../validations/allergy";
 import type { ConditionSchema } from "../validations/condition";
+import type { ContactSchema } from "../validations/contact";
 
 export const patientProfile: Patient = {
   user: {
@@ -166,5 +168,81 @@ export const conditionStore = {
     const condition = conditionRecords.find((record) => record.id === id) ?? null;
     conditionRecords = conditionRecords.filter((record) => record.id !== id);
     return condition;
+  }
+};
+
+//! UI phase only — in-memory stand-in for /patients/contacts. Swap for httpClient calls once the API is wired.
+let contactRecords: Contact[] = [
+  {
+    id: 3,
+    patient_id: 1,
+    name: "Marcus Chen",
+    phone_number: "09451230876",
+    email: "marcus.chen@example.com",
+    address: "12 Bagayar Street, Kamayut, Yangon",
+    created_at: "2026-09-02T09:15:00.000000Z",
+    updated_at: "2026-09-02T09:15:00.000000Z"
+  },
+  {
+    id: 2,
+    patient_id: 1,
+    name: "Grace Lin",
+    phone_number: "09223344556",
+    email: null,
+    address: "Room 402, Sakura Tower, Hlaing",
+    created_at: "2026-07-28T13:00:00.000000Z",
+    updated_at: "2026-07-28T13:00:00.000000Z"
+  },
+  {
+    id: 1,
+    patient_id: 1,
+    name: "Dr. Min Aye",
+    phone_number: "09199887766",
+    email: "minaye.hospital@example.com",
+    address: null,
+    created_at: "2026-05-09T08:00:00.000000Z",
+    updated_at: "2026-05-09T08:00:00.000000Z"
+  }
+];
+
+let contactSequence = 3;
+
+export const contactStore = {
+  list: () => [...contactRecords].sort((a, b) => b.id - a.id),
+  create: (input: ContactSchema) => {
+    const timestamp = new Date().toISOString();
+    const contact: Contact = {
+      id: ++contactSequence,
+      patient_id: 1,
+      name: input.name,
+      phone_number: input.phone_number,
+      email: input.email,
+      address: input.address,
+      created_at: timestamp,
+      updated_at: timestamp
+    };
+    contactRecords = [contact, ...contactRecords];
+    return contact;
+  },
+  update: (id: number, input: ContactSchema) => {
+    const contact = contactRecords.find((record) => record.id === id);
+    if (!contact) return null;
+    const updated: Contact = {
+      ...contact,
+      name: input.name,
+      phone_number: input.phone_number,
+      email: input.email,
+      address: input.address,
+      updated_at: new Date().toISOString()
+    };
+    contactRecords = contactRecords.map((record) =>
+      record.id === id ? updated : record
+    );
+    return updated;
+  },
+  remove: (id: number) => {
+    const contact = contactRecords.find((record) => record.id === id) ?? null;
+    contactRecords = contactRecords.filter((record) => record.id !== id);
+    return contact;
   }
 };
