@@ -3,9 +3,7 @@ import { Link } from "expo-router";
 import { useTranslation } from "react-i18next";
 import { useGetSpecializations } from "../queries";
 import { FlashList } from "@shopify/flash-list";
-
-const img =
-  "https://static.vecteezy.com/system/resources/previews/005/495/317/non_2x/dental-clinic-logo-template-dental-care-logo-designs-tooth-teeth-smile-dentist-logo-vector.jpg";
+import Pulse from "@/assets/images/pulse.png";
 
 const Specializations = () => {
   const { t } = useTranslation();
@@ -26,17 +24,25 @@ const Specializations = () => {
         horizontal={true}
         showsHorizontalScrollIndicator={false}
         renderItem={({ item }) => (
-          <View className="p-2 mr-2 flex-row items-center rounded-full border border-border bg-surface/50">
-            <Image
-              src={item.icon_url ?? img}
-              width={24}
-              height={24}
-              resizeMode="cover"
-              className="w-6 h-6 rounded-full"
-            />
-            <Text className="text-text-primary font-medium ml-2">
-              {item.name}
-            </Text>
+          <View className="px-2 py-1 mr-2 gap-2 flex-row items-center rounded-full border border-border bg-surface/50">
+            {item.icon_url && item.icon_url !== "" ? (
+              <Image
+                src={item.icon_url}
+                width={24}
+                height={24}
+                resizeMode="cover"
+                className="w-6 h-6 rounded-full"
+              />
+            ) : (
+              <Image
+                source={Pulse}
+                width={24}
+                height={24}
+                resizeMode="cover"
+                className="w-8 h-8 rounded-full"
+              />
+            )}
+            <Text className="text-text-primary font-medium">{item.name}</Text>
           </View>
         )}
       />

@@ -1,6 +1,7 @@
 import { ArrowUpRight } from "lucide-react-native";
 import { View, Text, Image, Pressable } from "react-native";
 import type { Doctor } from "../types";
+import DoctorProfile from "@/assets/images/doctor-profile.png";
 
 type Props = {
   doctor: Doctor;
@@ -17,7 +18,7 @@ const DoctorCard = ({ doctor }: Props) => {
       }}
     >
       <View className="relative h-40">
-        {profile_url ? (
+        {profile_url && profile_url !== "" ? (
           <Image
             src={profile_url}
             className="w-full h-full rounded-xl"
@@ -25,7 +26,15 @@ const DoctorCard = ({ doctor }: Props) => {
             width={64}
             height={64}
           />
-        ) : null}
+        ) : (
+          <Image
+            source={DoctorProfile}
+            className="w-full h-full rounded-xl"
+            resizeMode="stretch"
+            width={64}
+            height={64}
+          />
+        )}
         <View className="absolute bottom-2 right-2 bg-surface rounded-full border border-border py-1 px-2">
           <Text className="text-text-secondary font-medium text-sm">
             ★ {average_rating}

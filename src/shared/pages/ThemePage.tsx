@@ -1,5 +1,4 @@
 import { View, Text, Pressable } from "react-native";
-import React from "react";
 import useTheme, { themes } from "@/common/hooks/useTheme";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { ChevronLeft, Circle, CircleCheck } from "lucide-react-native";

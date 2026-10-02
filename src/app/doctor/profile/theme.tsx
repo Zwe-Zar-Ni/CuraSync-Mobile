@@ -1,7 +1,7 @@
 import ThemePage from "@/shared/pages/ThemePage";
 
-const PatientTheme = () => {
+const DoctorTheme = () => {
   return <ThemePage />;
 };
 
-export default PatientTheme;
+export default DoctorTheme;

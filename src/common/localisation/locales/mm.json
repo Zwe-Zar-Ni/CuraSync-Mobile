@@ -36,8 +36,8 @@
     "theme": "အပြင်အဆင်",
     "logout": "ထွက်မည်",
     "deleteAccount": "အကောင့်ဖျက်မည်",
-    "logoutConfirm": "Are you sure you want to logout?",
-    "deleteConfirm": "Are you sure you want to delete your account? This action cannot be undone."
+    "logoutConfirm": "အကောင့်မှ ထွက်ရန် သေချာပါသလား။",
+    "deleteConfirm": "အကောင့်ကို ဖျက်ရန် သေချာပါသလား။ ဤလုပ်ဆောင်ချက်ကို ပြန်ပြင်၍ ရမည်မဟုတ်ပါ။"
   },
   "home": {
     "greeting": "မင်္ဂလာပါ, {{name}}",
@@ -130,7 +130,7 @@
     "maybeLater": "နောက်မှလုပ်မည်",
     "done": "ပြီးပါပြီ",
     "save": "ပြောင်းလဲမှုများ သိမ်းဆည်းမည်",
-    "cancel": "ပယ်ဖျက်မည်",
+    "cancel": "မလုပ်ပါ",
     "delete": "ဖျက်မည်"
   }
 }

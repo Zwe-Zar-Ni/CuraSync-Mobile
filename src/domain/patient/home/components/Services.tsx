@@ -1,24 +1,26 @@
 import { View, Text, Image } from "react-native";
-
-const img =
-  "https://static.vecteezy.com/system/resources/previews/005/495/317/non_2x/dental-clinic-logo-template-dental-care-logo-designs-tooth-teeth-smile-dentist-logo-vector.jpg";
+import Pulse from "@/assets/images/pulse.png";
 
 const services = [
   {
     id: 1,
-    name: "General Checkup"
+    name: "General Checkup",
+    icon_url: null
   },
   {
     id: 2,
-    name: "Child Care"
+    name: "Child Care",
+    icon_url: null
   },
   {
     id: 3,
-    name: "Prenatal Care"
+    name: "Prenatal Care",
+    icon_url: null
   },
   {
     id: 4,
-    name: "Physical Therapy"
+    name: "Physical Therapy",
+    icon_url: null
   }
 ];
 
@@ -27,14 +29,24 @@ const Services = () => {
     <View className="mt-8 bg-surface p-3 flex-row items-center justify-around rounded-2xl">
       {services.map((item) => (
         <View key={item.id} className="items-center h-full gap-2 w-1/4">
-          <Image
-            src={img}
-            width={48}
-            height={48}
-            resizeMode="cover"
-            className="w-12 h-12 rounded-full"
-          />
-          <Text className="text-text-primary text-center font-medium text-xs">
+          {item.icon_url && item.icon_url !== "" ? (
+            <Image
+              src={item.icon_url}
+              width={48}
+              height={48}
+              resizeMode="cover"
+              className="w-12 h-12 rounded-full"
+            />
+          ) : (
+            <Image
+              source={Pulse}
+              width={48}
+              height={48}
+              resizeMode="cover"
+              className="w-12 h-12 rounded-full"
+            />
+          )}
+          <Text className="text-text-primary text-center font-medium text-sm">
             {item.name}
           </Text>
         </View>

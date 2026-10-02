@@ -1,7 +1,7 @@
 import LanguagePage from "@/shared/pages/LanguagePage";
 
-const PatientLanguage = () => {
+const DoctorLanguage = () => {
   return <LanguagePage />;
 };
 
-export default PatientLanguage;
+export default DoctorLanguage;

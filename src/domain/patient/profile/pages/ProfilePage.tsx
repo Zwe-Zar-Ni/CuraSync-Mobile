@@ -4,9 +4,11 @@ import Heading from "../components/Heading";
 import PersonalInformation from "../components/PersonalInformation";
 import Settings from "../components/Settings";
 import AccountSettings from "../components/AccountSettings";
+import { useGetProfile } from "../queries";
 
 const ProfilePage = () => {
   const insets = useSafeAreaInsets();
+  const { data: profile, isSuccess } = useGetProfile();
 
   return (
     <View
@@ -14,10 +16,10 @@ const ProfilePage = () => {
       style={{ paddingTop: insets.top + 8 }}
     >
       <ScrollView>
-        <Heading />
-        <PersonalInformation />
+        <Heading profile={profile} isAuthenticated={isSuccess} />
+        <PersonalInformation isAuthenticated={isSuccess} />
         <Settings />
-        <AccountSettings />
+        {isSuccess ? <AccountSettings /> : null}
       </ScrollView>
     </View>
   );

@@ -4,6 +4,7 @@ import dayjs from "dayjs";
 import { useTranslation } from "react-i18next";
 import useTheme from "@/common/hooks/useTheme";
 import type { Consultation } from "../types";
+import DoctorProfile from "@/assets/images/doctor-profile.png";
 
 type Props = {
   consultation: Consultation;
@@ -25,7 +26,15 @@ const UpcomingConsultation = ({ consultation }: Props) => {
             width={64}
             height={64}
           />
-        ) : null}
+        ) : (
+          <Image
+            source={DoctorProfile}
+            className="w-16 h-16 rounded-full"
+            resizeMode="stretch"
+            width={64}
+            height={64}
+          />
+        )}
         <View>
           <Text className="text-xl font-semibold text-text-primary">
             {doctor.name}

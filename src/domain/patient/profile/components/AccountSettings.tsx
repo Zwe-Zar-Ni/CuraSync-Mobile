@@ -94,7 +94,7 @@ const AccountSettings = () => {
           </View>
           <View className="px-4 mt-8">
             <Text className="text-md font-medium text-text-primary">
-              {t("actions.logoutConfirm") ?? "Are you sure you want to logout?"}
+              {t("profile.logoutConfirm") ?? "Are you sure you want to logout?"}
             </Text>
           </View>
           <View className="px-4 mt-8 pb-6 gap-3">
@@ -133,7 +133,7 @@ const AccountSettings = () => {
           </View>
           <View className="px-4 mt-8">
             <Text className="text-md font-medium text-text-primary">
-              {t("actions.deleteConfirm") ??
+              {t("profile.deleteConfirm") ??
                 "Are you sure you want to delete your account? This action cannot be undone."}
             </Text>
           </View>
