@@ -31,7 +31,7 @@ const LoginPage = () => {
   });
 
   const onSubmit = (data: LoginSchema) => {
-    router.push("/patient/home");
+    router.push("/doctor/home");
     mutate(data, {
       onSuccess: (response) => {
         console.log("response - ", response);

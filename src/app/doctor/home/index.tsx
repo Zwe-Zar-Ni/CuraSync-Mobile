@@ -1,11 +1,7 @@
-import { View, Text } from "react-native";
+import DoctorHomePage from "@/domain/doctor/home/pages/HomePage";
 
 const DoctorHome = () => {
-  return (
-    <View>
-      <Text>DoctorHome</Text>
-    </View>
-  );
+  return <DoctorHomePage />;
 };
 
 export default DoctorHome;

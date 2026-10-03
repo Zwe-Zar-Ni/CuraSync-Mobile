@@ -5,7 +5,7 @@ import type { EditProfileSchema } from "../validations/edit-profile";
 
 export const useGetProfile = () => {
   return useQuery<Patient, ApiError>({
-    queryKey: ["patient-profile"],
+    queryKey: ["patient-me"],
     queryFn: profileService.getProfile
   });
 };

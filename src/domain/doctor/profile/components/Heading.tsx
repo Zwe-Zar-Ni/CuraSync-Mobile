@@ -1,4 +1,4 @@
-import { Patient } from "@/common/types";
+import { Doctor } from "@/common/types";
 import { Image, View, Text } from "react-native";
 import UserProfile from "@/assets/images/user-profile.png";
 import Button from "@/shared/components/Button";
@@ -6,7 +6,7 @@ import { router } from "expo-router";
 import { useTranslation } from "react-i18next";
 
 type Props = {
-  profile: Patient | undefined;
+  profile: Doctor | undefined;
   isAuthenticated: boolean;
 };
 
@@ -42,7 +42,7 @@ const Heading = ({ profile, isAuthenticated }: Props) => {
       {!isAuthenticated ? (
         <Button
           text={t("actions.createAccount")}
-          onPress={() => router.push("/auth/register")}
+          onPress={() => router.push("/auth/register-doctor")}
           className="w-full mt-4"
         />
       ) : null}

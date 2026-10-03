@@ -6,10 +6,10 @@ import Settings from "../components/Settings";
 import AccountSettings from "../components/AccountSettings";
 import { useGetProfile } from "../queries";
 
-const PatientProfilePage = () => {
+const DoctorProfilePage = () => {
   const insets = useSafeAreaInsets();
   const { data: profile, isSuccess } = useGetProfile();
-
+  console.log(profile);
   return (
     <View
       className="flex-1 bg-background px-3"
@@ -25,4 +25,4 @@ const PatientProfilePage = () => {
   );
 };
 
-export default PatientProfilePage;
+export default DoctorProfilePage;
