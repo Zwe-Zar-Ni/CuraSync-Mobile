@@ -1,6 +1,15 @@
 import { Doctor } from "@/common/types";
 
-export const doctorProfile: Doctor = {
+export type DoctorProfilePayload = {
+  name: string;
+  phone_number: string | null;
+  license_number: string | null;
+  standard_consultation_fee: number | null;
+  bio: string | null;
+};
+
+//! UI phase only — in-memory stand-in for /me + PATCH /doctors/profile. Swap for httpClient calls once the API is wired.
+let doctorProfile: Doctor = {
   user: {
     id: 1,
     name: "Ada Wong",
@@ -19,5 +28,26 @@ export const doctorProfile: Doctor = {
     license_number: "123456789",
     standard_consultation_fee: 25000.0,
     status: "ACTIVE"
+  }
+};
+
+export const doctorProfileStore = {
+  get: () => doctorProfile,
+  update: (input: DoctorProfilePayload) => {
+    doctorProfile = {
+      ...doctorProfile,
+      user: {
+        ...doctorProfile.user,
+        name: input.name,
+        phone_number: input.phone_number
+      },
+      profile: {
+        ...doctorProfile.profile,
+        license_number: input.license_number,
+        standard_consultation_fee: input.standard_consultation_fee,
+        bio: input.bio
+      }
+    };
+    return doctorProfile;
   }
 };

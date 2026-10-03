@@ -9,7 +9,6 @@ import { useGetProfile } from "../queries";
 const DoctorProfilePage = () => {
   const insets = useSafeAreaInsets();
   const { data: profile, isSuccess } = useGetProfile();
-  console.log(profile);
   return (
     <View
       className="flex-1 bg-background px-3"

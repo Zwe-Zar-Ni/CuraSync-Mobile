@@ -24,7 +24,7 @@ const PersonalInformation = ({ isAuthenticated }: Props) => {
       <View className="bg-surface p-2 rounded-xl border border-border mt-1">
         <Pressable
           className="flex-row items-center gap-3 py-3 border-b border-border"
-          onPress={() => router.push("/doctor/profile")}
+          onPress={() => router.push("/doctor/profile/edit")}
           disabled={!isAuthenticated}
         >
           <UserPen color={colors.secondary} size={22} />
