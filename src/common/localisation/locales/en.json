@@ -106,6 +106,24 @@
     "deleteTitle": "Delete contact?",
     "deleteMessage": "This contact will be removed from your profile."
   },
+  "qualifications": {
+    "title": "Qualifications",
+    "subtitle": "List the degrees and certifications patients should know about.",
+    "empty": "No qualifications added yet",
+    "emptyHint": "Tap the + button to add your first qualification.",
+    "add": "Add Qualification",
+    "edit": "Edit Qualification",
+    "qualificationName": "Qualification",
+    "qualificationNamePlaceholder": "e.g. MBBS",
+    "institution": "Institution",
+    "institutionPlaceholder": "e.g. University of Medicine 1, Yangon",
+    "year": "Year",
+    "yearPlaceholder": "e.g. 2015",
+    "certificateUrl": "Certificate URL",
+    "certificateUrlPlaceholder": "Paste a link to your certificate",
+    "deleteTitle": "Delete qualification?",
+    "deleteMessage": "This qualification will be removed from your profile."
+  },
   "labels": {
     "name": "Name",
     "email": "Email",
