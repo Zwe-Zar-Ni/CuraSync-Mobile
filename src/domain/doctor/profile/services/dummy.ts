@@ -48,7 +48,7 @@ export const qualificationStore = {
       doctor_id: 1,
       name: input.name,
       institution: input.institution,
-      year: Number(input.year),
+      year: input.year,
       certificate_url: input.certificate_url,
       created_at: timestamp,
       updated_at: timestamp
@@ -65,7 +65,7 @@ export const qualificationStore = {
       ...qualification,
       name: input.name,
       institution: input.institution,
-      year: Number(input.year),
+      year: input.year,
       certificate_url: input.certificate_url,
       updated_at: new Date().toISOString()
     };

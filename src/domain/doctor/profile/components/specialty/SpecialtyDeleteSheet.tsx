@@ -20,7 +20,9 @@ const SpecialtyDeleteSheet = ({ specialty, onClose }: Props) => {
 
   return (
     <Modal
-      style={{ justifyContent: "flex-end", margin: 0 }}
+      style={{ justifyContent: "center", margin: 12 }}
+      animationIn="fadeIn"
+      animationOut="fadeOut"
       backdropColor={"#0C0C0C"}
       onBackButtonPress={onClose}
       onBackdropPress={onClose}
@@ -45,7 +47,14 @@ const SpecialtyDeleteSheet = ({ specialty, onClose }: Props) => {
             {t("specialties.deleteMessage")}
           </Text>
         </View>
-        <View className="px-4 mt-8 pb-6 gap-3">
+        <View className="px-4 mt-8 pb-6 gap-3 flex-row">
+          <Button
+            text={t("actions.cancel")}
+            variant="outline"
+            onPress={onClose}
+            disabled={isPending}
+            className="flex-1"
+          />
           <Button
             text={t("actions.delete")}
             onPress={() =>
@@ -57,12 +66,7 @@ const SpecialtyDeleteSheet = ({ specialty, onClose }: Props) => {
               })
             }
             disabled={isPending}
-          />
-          <Button
-            text={t("actions.cancel")}
-            variant="outline"
-            onPress={onClose}
-            disabled={isPending}
+            className="flex-1"
           />
         </View>
       </View>

@@ -2,7 +2,9 @@ import useTheme from "@/common/hooks/useTheme";
 import type { Specialization } from "@/common/types";
 import { Check } from "lucide-react-native";
 import { useTranslation } from "react-i18next";
-import { Pressable, Text, View } from "react-native";
+import { Image, Pressable, ScrollView, Text, View } from "react-native";
+
+import Pulse from "@/assets/images/pulse.png";
 
 type Props = {
   options: Specialization[];
@@ -21,34 +23,46 @@ const SpecializationField = ({ options, value, onChange, error }: Props) => {
         {t("specialties.specialization")}
       </Text>
       {options.length ? (
-        <View className="gap-2">
-          {options.map((option) => {
-            const isSelected = option.id === value;
-
-            return (
-              <Pressable
-                key={option.id}
-                onPress={() => onChange(option.id)}
-                className={`flex-row items-start gap-3 bg-surface rounded-xl border p-3 ${isSelected ? "border-secondary" : "border-border"}`}
-              >
-                <View className="flex-1">
+        <ScrollView className="max-h-120" showsVerticalScrollIndicator={false}>
+          {options.map((option) => (
+            <Pressable
+              key={option.id}
+              onPress={() => onChange(option.id)}
+              className={`bg-surface rounded-xl mb-2 border p-3 flex-row ${option.id === value ? "border-secondary" : "border-border"}`}
+            >
+              <View className="flex-1">
+                <View className="flex-row items-center">
+                  {option.icon_url ? (
+                    <Image
+                      src={option.icon_url}
+                      width={32}
+                      height={32}
+                      className="w-8 h-8"
+                    />
+                  ) : (
+                    <Image
+                      source={Pulse}
+                      width={32}
+                      height={32}
+                      className="w-8 h-8"
+                    />
+                  )}
                   <Text className="text-md font-medium text-text-primary">
                     {option.name}
                   </Text>
-                  {option.description ? (
-                    <Text
-                      numberOfLines={2}
-                      className="text-sm text-text-secondary mt-1"
-                    >
-                      {option.description}
-                    </Text>
-                  ) : null}
                 </View>
-                {isSelected ? <Check color={colors.secondary} size={20} /> : null}
-              </Pressable>
-            );
-          })}
-        </View>
+                {option.description ? (
+                  <Text className="text-[10px] text-text-secondary ml-8">
+                    {option.description}
+                  </Text>
+                ) : null}
+              </View>
+              {option.id === value ? (
+                <Check color={colors.secondary} size={20} />
+              ) : null}
+            </Pressable>
+          ))}
+        </ScrollView>
       ) : (
         <Text className="text-sm text-text-secondary">
           {t("specialties.allAdded")}

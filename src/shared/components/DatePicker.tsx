@@ -40,7 +40,7 @@ const DatePicker = ({
   maxDate,
   showMonthScroller = false
 }: Props) => {
-  const { isDark, text } = useTheme();
+  const { isDark, text, colors } = useTheme();
   const initialVisibleDate = dayjs(date ?? minDate ?? new Date());
   const [visibleMonth, setVisibleMonth] = useState(initialVisibleDate.month());
   const [visibleYear, setVisibleYear] = useState(initialVisibleDate.year());
@@ -187,15 +187,15 @@ const DatePicker = ({
           range_middle: {
             backgroundColor: isDark ? "#1A94FF33" : "#E4EFFE"
           },
-          today: { borderColor: "#1A94FF", borderWidth: 1 },
+          today: { borderColor: colors.secondary, borderWidth: 1 },
           today_label: {
-            color: "#1A94FF"
+            color: colors.secondary
           },
-          selected: { backgroundColor: "#007AFF" },
+          selected: { backgroundColor: colors.primary },
           selected_label: { color: selectedDateLabelColor },
-          range_start: { backgroundColor: "#007AFF" },
+          range_start: { backgroundColor: colors.primary },
           range_start_label: { color: selectedDateLabelColor },
-          range_end: { backgroundColor: "#007AFF" },
+          range_end: { backgroundColor: colors.primary },
           range_end_label: { color: selectedDateLabelColor }
         }}
         onChange={(value: DatePickerChange) => {

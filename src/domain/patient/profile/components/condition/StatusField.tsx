@@ -33,7 +33,7 @@ const StatusField = ({ value, onChange, error }: Props) => {
         {STATUSES.map((status) => (
           <Pressable
             key={status.value}
-            className={`border rounded-full px-3 py-2 ${value === status.value ? "border-secondary" : "border-border"}`}
+            className={`border rounded-full px-3 py-1 ${value === status.value ? "border-secondary" : "border-border"}`}
             onPress={() => onChange(status.value)}
           >
             <Text

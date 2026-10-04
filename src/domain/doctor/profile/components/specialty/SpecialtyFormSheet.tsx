@@ -9,10 +9,7 @@ import { Controller, useForm } from "react-hook-form";
 import { Pressable, ScrollView, Text, View } from "react-native";
 import Modal from "react-native-modal";
 import { useTranslation } from "react-i18next";
-import {
-  useCreateSpecialty,
-  useGetSpecialties
-} from "../../queries/specialty";
+import { useCreateSpecialty, useGetSpecialties } from "../../queries/specialty";
 import {
   SpecialtyValidator,
   type SpecialtySchema
@@ -86,41 +83,37 @@ const SpecialtyFormSheet = ({ isVisible, onClose }: Props) => {
             </Pressable>
           </View>
         </View>
-        <ScrollView
-          keyboardShouldPersistTaps="handled"
-          showsVerticalScrollIndicator={false}
-          className="px-4"
-        >
-          <View className="py-6">
-            <Controller
-              control={control}
-              name="specialization_id"
-              render={({ field: { onChange, value } }) => (
-                <SpecializationField
-                  options={options}
-                  value={value || null}
-                  onChange={onChange}
-                  error={
-                    errors.specialization_id
-                      ? errors.specialization_id.message
-                      : undefined
-                  }
-                />
-              )}
-            />
-          </View>
-        </ScrollView>
-        <View className="px-4 pb-6 gap-3">
-          <Button
-            text={t("actions.save")}
-            onPress={handleSubmit(onSubmit)}
-            disabled={isSubmitting || isPending}
+        <View className="p-4">
+          <Controller
+            control={control}
+            name="specialization_id"
+            render={({ field: { onChange, value } }) => (
+              <SpecializationField
+                options={options}
+                value={value || null}
+                onChange={onChange}
+                error={
+                  errors.specialization_id
+                    ? errors.specialization_id.message
+                    : undefined
+                }
+              />
+            )}
           />
+        </View>
+        <View className="px-4 pb-6 gap-3 flex-row">
           <Button
             text={t("actions.cancel")}
             variant="outline"
             onPress={onClose}
             disabled={isSubmitting || isPending}
+            className="flex-1"
+          />
+          <Button
+            text={t("actions.save")}
+            onPress={handleSubmit(onSubmit)}
+            disabled={isSubmitting || isPending}
+            className="flex-1"
           />
         </View>
       </View>

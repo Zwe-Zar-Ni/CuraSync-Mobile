@@ -46,7 +46,7 @@ export const specializations: Specialization[] = [
     name: "Cardiology",
     description:
       "Cardiology is a branch of medicine that deals with disorders of the heart and blood vessels.",
-    icon_url: "https://example.com/icons/cardiology.png",
+    icon_url: null,
     doctors_count: 5
   },
   {
@@ -54,7 +54,7 @@ export const specializations: Specialization[] = [
     name: "Neurology",
     description:
       "Neurology is a branch of medicine that deals with disorders of the nervous system.",
-    icon_url: "https://example.com/icons/neurology.png",
+    icon_url: null,
     doctors_count: 5
   },
   {
@@ -62,12 +62,19 @@ export const specializations: Specialization[] = [
     name: "Dermatology",
     description:
       "Dermatology is a branch of medicine that deals with disorders of the skin.",
-    icon_url: "https://example.com/icons/dermatology.png",
+    icon_url: null,
     doctors_count: 5
   },
   {
     id: 4,
     name: "Gastroenterology",
+    description: null,
+    icon_url: null,
+    doctors_count: 5
+  },
+  {
+    id: 5,
+    name: "Pediatrics",
     description: null,
     icon_url: null,
     doctors_count: 5

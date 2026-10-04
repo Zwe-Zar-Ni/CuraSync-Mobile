@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { X } from "lucide-react-native";
 import { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { Pressable, ScrollView, Text, View } from "react-native";
+import { Pressable, Text, View } from "react-native";
 import Modal from "react-native-modal";
 import { useTranslation } from "react-i18next";
 import {
@@ -18,6 +18,7 @@ import {
   QualificationValidator,
   type QualificationSchema
 } from "../../validations/qualification";
+import YearPickerField from "@/shared/components/YearPickerField";
 
 type Props = {
   isVisible: boolean;
@@ -48,7 +49,7 @@ const QualificationFormSheet = ({
     defaultValues: {
       name: "",
       institution: "",
-      year: "",
+      year: new Date().getFullYear(),
       certificate_url: null
     }
   });
@@ -58,7 +59,7 @@ const QualificationFormSheet = ({
     reset({
       name: qualification?.name ?? "",
       institution: qualification?.institution ?? "",
-      year: qualification ? String(qualification.year) : "",
+      year: qualification ? qualification.year : new Date().getFullYear(),
       certificate_url: qualification?.certificate_url ?? null
     });
   }, [isVisible, qualification, reset]);
@@ -99,11 +100,7 @@ const QualificationFormSheet = ({
             </Pressable>
           </View>
         </View>
-        <ScrollView
-          keyboardShouldPersistTaps="handled"
-          showsVerticalScrollIndicator={false}
-          className="px-4"
-        >
+        <View className="px-4">
           <View className="gap-4 py-6">
             <Controller
               control={control}
@@ -141,16 +138,7 @@ const QualificationFormSheet = ({
               control={control}
               name="year"
               render={({ field: { onChange, onBlur, value } }) => (
-                <TextField
-                  value={value ?? ""}
-                  onBlur={onBlur}
-                  onChangeText={onChange}
-                  label={t("qualifications.year")}
-                  placeholder="E.g. 2020"
-                  keyboardType="number-pad"
-                  maxLength={4}
-                  error={errors.year ? errors.year.message : undefined}
-                />
+                <YearPickerField value={Number(value)} onChange={onChange} />
               )}
             />
 
@@ -175,18 +163,20 @@ const QualificationFormSheet = ({
               )}
             />
           </View>
-        </ScrollView>
-        <View className="px-4 pb-6 gap-3">
-          <Button
-            text={t("actions.save")}
-            onPress={handleSubmit(onSubmit)}
-            disabled={isSubmitting || isPending}
-          />
+        </View>
+        <View className="px-4 pb-6 gap-3 flex-row">
           <Button
             text={t("actions.cancel")}
             variant="outline"
             onPress={onClose}
             disabled={isSubmitting || isPending}
+            className="flex-1"
+          />
+          <Button
+            text={t("actions.save")}
+            onPress={handleSubmit(onSubmit)}
+            disabled={isSubmitting || isPending}
+            className="flex-1"
           />
         </View>
       </View>
