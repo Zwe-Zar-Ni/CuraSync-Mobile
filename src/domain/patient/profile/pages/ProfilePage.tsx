@@ -4,11 +4,12 @@ import Heading from "../components/Heading";
 import PersonalInformation from "../components/PersonalInformation";
 import Settings from "../components/Settings";
 import AccountSettings from "../components/AccountSettings";
-import { useGetProfile } from "../queries";
+import useAuth from "@/common/hooks/useAuth";
+import { Patient } from "@/common/types";
 
 const PatientProfilePage = () => {
   const insets = useSafeAreaInsets();
-  const { data: profile, isSuccess } = useGetProfile();
+  const { user, isAuthenticated } = useAuth();
 
   return (
     <View
@@ -16,10 +17,10 @@ const PatientProfilePage = () => {
       style={{ paddingTop: insets.top + 8 }}
     >
       <ScrollView showsVerticalScrollIndicator={false}>
-        <Heading profile={profile} isAuthenticated={isSuccess} />
-        <PersonalInformation isAuthenticated={isSuccess} />
+        <Heading profile={user as Patient} isAuthenticated={isAuthenticated} />
+        <PersonalInformation isAuthenticated={isAuthenticated} />
         <Settings />
-        {isSuccess ? <AccountSettings /> : null}
+        {isAuthenticated ? <AccountSettings /> : null}
       </ScrollView>
     </View>
   );

@@ -10,7 +10,10 @@ import { Controller, useForm } from "react-hook-form";
 import { Pressable, ScrollView, Text, View } from "react-native";
 import Modal from "react-native-modal";
 import { useTranslation } from "react-i18next";
-import { useCreateCondition, useUpdateCondition } from "../../queries/condition";
+import {
+  useCreateCondition,
+  useUpdateCondition
+} from "../../queries/condition";
 import type { Condition } from "../../types/condition";
 import {
   ConditionValidator,
@@ -24,7 +27,11 @@ type Props = {
   onClose: () => void;
 };
 
-const ConditionFormSheet = ({ isVisible, condition = null, onClose }: Props) => {
+const ConditionFormSheet = ({
+  isVisible,
+  condition = null,
+  onClose
+}: Props) => {
   const { text } = useTheme();
   const { t } = useTranslation();
 
@@ -109,7 +116,7 @@ const ConditionFormSheet = ({ isVisible, condition = null, onClose }: Props) => 
                   onBlur={onBlur}
                   onChangeText={onChange}
                   label={t("conditions.conditionName")}
-                  placeholder={t("conditions.conditionNamePlaceholder")}
+                  placeholder="e.g. Type 2 diabetes"
                   error={errors.name ? errors.name.message : undefined}
                 />
               )}
@@ -123,7 +130,7 @@ const ConditionFormSheet = ({ isVisible, condition = null, onClose }: Props) => 
                   date={value ?? ""}
                   setDate={(e) => onChange(e)}
                   label={t("conditions.diagnosisDate")}
-                  placeholder={t("conditions.diagnosisDatePlaceholder")}
+                  placeholder="Select your diagnosis date"
                 />
               )}
             />
@@ -149,7 +156,7 @@ const ConditionFormSheet = ({ isVisible, condition = null, onClose }: Props) => 
                   onBlur={onBlur}
                   onChangeText={onChange}
                   label={t("conditions.note")}
-                  placeholder={t("conditions.notePlaceholder")}
+                  placeholder="Anything your doctor should know about this condition"
                   multiline
                   numberOfLines={3}
                   textAlignVertical="top"

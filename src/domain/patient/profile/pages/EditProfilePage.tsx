@@ -6,24 +6,26 @@ import GenderField from "@/shared/components/GenderField";
 import TextField from "@/shared/components/TextField";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { router } from "expo-router";
-import { ChevronLeft } from "lucide-react-native";
+import { ChevronLeft, User } from "lucide-react-native";
 import { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { Pressable, ScrollView, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useGetProfile, useUpdateProfile } from "../queries";
+import { useUpdateProfile } from "../queries";
 import {
   EditProfileSchema,
   EditProfileValidator
 } from "../validations/edit-profile";
+import useAuth from "@/common/hooks/useAuth";
+import { Patient } from "@/common/types";
 
 const EditProfilePage = () => {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const { text } = useTheme();
 
-  const { data: profile } = useGetProfile();
+  const { user } = useAuth();
   const { mutate, isPending } = useUpdateProfile();
 
   const {
@@ -44,16 +46,16 @@ const EditProfilePage = () => {
   });
 
   useEffect(() => {
-    if (!profile) return;
+    if (!user) return;
     reset({
-      name: profile.user.name ?? "",
-      phone_number: profile.user.phone_number ?? "",
-      profile_url: profile.user.profile_url ?? "",
-      date_of_birth: profile.profile.date_of_birth ?? "",
-      gender: profile.profile.gender,
-      blood_type: profile.profile.blood_type ?? ""
+      name: user.user.name ?? "",
+      phone_number: user.user.phone_number ?? "",
+      profile_url: user.user.profile_url ?? "",
+      date_of_birth: (user as Patient).profile.date_of_birth ?? "",
+      gender: (user as Patient).profile.gender,
+      blood_type: (user as Patient).profile.blood_type ?? ""
     });
-  }, [profile, reset]);
+  }, [user, reset]);
 
   const onSubmit = (data: EditProfileSchema) => {
     router.back();

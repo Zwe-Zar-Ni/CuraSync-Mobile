@@ -46,7 +46,7 @@ const PersonalInformation = ({ isAuthenticated }: Props) => {
         </Pressable>
         <Pressable
           className="flex-row items-center gap-3 py-3"
-          onPress={() => router.push("/doctor/profile")}
+          onPress={() => router.push("/doctor/profile/specialty")}
           disabled={!isAuthenticated}
         >
           <HeartPulse color={colors.secondary} size={22} />

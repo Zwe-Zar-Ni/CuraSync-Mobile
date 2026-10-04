@@ -11,7 +11,10 @@ import Modal from "react-native-modal";
 import { useTranslation } from "react-i18next";
 import { useCreateAllergy, useUpdateAllergy } from "../../queries/allergy";
 import type { Allergy } from "../../types/allergy";
-import { AllergyValidator, type AllergySchema } from "../../validations/allergy";
+import {
+  AllergyValidator,
+  type AllergySchema
+} from "../../validations/allergy";
 import SeverityField from "./SeverityField";
 
 type Props = {
@@ -103,7 +106,7 @@ const AllergyFormSheet = ({ isVisible, allergy = null, onClose }: Props) => {
                   onBlur={onBlur}
                   onChangeText={onChange}
                   label={t("allergies.allergyName")}
-                  placeholder={t("allergies.allergyNamePlaceholder")}
+                  placeholder="e.g. Penicillin"
                   error={errors.name ? errors.name.message : undefined}
                 />
               )}
@@ -130,7 +133,7 @@ const AllergyFormSheet = ({ isVisible, allergy = null, onClose }: Props) => {
                   onBlur={onBlur}
                   onChangeText={onChange}
                   label={t("allergies.note")}
-                  placeholder={t("allergies.notePlaceholder")}
+                  placeholder="Anything your doctor should know about this allergy"
                   multiline
                   numberOfLines={3}
                   textAlignVertical="top"

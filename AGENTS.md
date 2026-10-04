@@ -273,7 +273,7 @@ Naming: use `.ts` for validation modules.
 - `i18n.ts` initializes i18next with the device language and exports the `languages` array (`id`, `name`, `flag`) used by the language switcher. Register new locales there and in `resources`.
 - Persisted choice: `getLocale` / `setLocale` in `localisation/utils.ts` (AsyncStorage key `locale`), re-applied by the root layout on mount.
 - In components: `const { t } = useTranslation();` then `t("labels.email")`. Shared components take already-translated `label` props.
-- The patient home screen and the profile header cards still hardcode English strings — that's a gap, not a pattern. Use `t()` for anything you add.
+- Do not translate form input placeholders.
 
 ## Building with EAS
 

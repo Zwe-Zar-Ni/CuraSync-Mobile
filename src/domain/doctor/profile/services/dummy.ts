@@ -1,66 +1,10 @@
-import { Doctor } from "@/common/types";
 import type { Qualification } from "../types/qualification";
+import { DoctorSpecialty, DoctorSpecialtyPayload } from "../types/specialty";
+import { specializations } from "@/common/service/dummy";
+import { UpdateQualificationSchema } from "../validations/qualification";
 
-export type DoctorProfilePayload = {
-  name: string;
-  phone_number: string | null;
-  license_number: string | null;
-  standard_consultation_fee: number | null;
-  bio: string | null;
-};
+//! UI phase only — in-memory stand-in for /doctors/qualifications and /doctors/specialties. Swap for httpClient calls once the API is wired.
 
-export type QualificationPayload = {
-  name: string;
-  institution: string;
-  year: number;
-  certificate_url: string | null;
-};
-
-//! UI phase only — in-memory stand-in for /me + PATCH /doctors/profile. Swap for httpClient calls once the API is wired.
-let doctorProfile: Doctor = {
-  user: {
-    id: 1,
-    name: "Ada Wong",
-    email: "ada.wong@example.com",
-    phone_number: "09123456789",
-    profile_url:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT12Y4yRJOMGIw__Zmc5zT16Ci_9w3_EMoH2FGP20yHew&s=10"
-  },
-  role: "doctor",
-  profile: {
-    id: 1,
-    average_rating: 4.5,
-    total_patient_count: 10,
-    rating_count: 20,
-    bio: "Hello world",
-    license_number: "123456789",
-    standard_consultation_fee: 25000.0,
-    status: "ACTIVE"
-  }
-};
-
-export const doctorProfileStore = {
-  get: () => doctorProfile,
-  update: (input: DoctorProfilePayload) => {
-    doctorProfile = {
-      ...doctorProfile,
-      user: {
-        ...doctorProfile.user,
-        name: input.name,
-        phone_number: input.phone_number
-      },
-      profile: {
-        ...doctorProfile.profile,
-        license_number: input.license_number,
-        standard_consultation_fee: input.standard_consultation_fee,
-        bio: input.bio
-      }
-    };
-    return doctorProfile;
-  }
-};
-
-//! UI phase only — in-memory stand-in for /doctors/qualifications. Swap for httpClient calls once the API is wired.
 let qualificationRecords: Qualification[] = [
   {
     id: 3,
@@ -95,18 +39,16 @@ let qualificationRecords: Qualification[] = [
   }
 ];
 
-let qualificationSequence = 3;
-
 export const qualificationStore = {
   list: () => [...qualificationRecords].sort((a, b) => b.id - a.id),
-  create: (input: QualificationPayload) => {
+  create: (input: UpdateQualificationSchema) => {
     const timestamp = new Date().toISOString();
     const qualification: Qualification = {
-      id: ++qualificationSequence,
+      id: qualificationRecords.length + 1,
       doctor_id: 1,
       name: input.name,
       institution: input.institution,
-      year: input.year,
+      year: Number(input.year),
       certificate_url: input.certificate_url,
       created_at: timestamp,
       updated_at: timestamp
@@ -114,7 +56,7 @@ export const qualificationStore = {
     qualificationRecords = [qualification, ...qualificationRecords];
     return qualification;
   },
-  update: (id: number, input: QualificationPayload) => {
+  update: (id: number, input: UpdateQualificationSchema) => {
     const qualification = qualificationRecords.find(
       (record) => record.id === id
     );
@@ -123,7 +65,7 @@ export const qualificationStore = {
       ...qualification,
       name: input.name,
       institution: input.institution,
-      year: input.year,
+      year: Number(input.year),
       certificate_url: input.certificate_url,
       updated_at: new Date().toISOString()
     };
@@ -139,5 +81,72 @@ export const qualificationStore = {
       (record) => record.id !== id
     );
     return qualification;
+  }
+};
+
+let specialtyRecords: DoctorSpecialty[] = [
+  {
+    id: 1,
+    doctor_id: 1,
+    specialization_id: 1,
+    specialization: {
+      id: 1,
+      name: "General Medicine",
+      description: "General Medicine",
+      icon_url: null,
+      doctors_count: 0
+    }
+  },
+  {
+    id: 2,
+    doctor_id: 1,
+    specialization_id: 2,
+    specialization: {
+      id: 2,
+      name: "Cardiology",
+      description: "Cardiology",
+      icon_url: null,
+      doctors_count: 0
+    }
+  },
+  {
+    id: 3,
+    doctor_id: 1,
+    specialization_id: 3,
+    specialization: {
+      id: 3,
+      name: "Internal Medicine",
+      description: "Internal Medicine",
+      icon_url: null,
+      doctors_count: 0
+    }
+  }
+];
+
+export const specialtyStore = {
+  list: () => [...specialtyRecords].sort((a, b) => b.id - a.id),
+  create: (input: DoctorSpecialtyPayload) => {
+    const specialty: DoctorSpecialty = {
+      id: specialtyRecords.length + 1,
+      doctor_id: 1,
+      specialization_id: input.specialization_id,
+      specialization: specializations.find(
+        (specialization) => specialization.id === input.specialization_id
+      ) ?? {
+        id: input.specialization_id,
+        name: "Unknown",
+        description: "Unknown",
+        icon_url: null,
+        doctors_count: 0
+      }
+    };
+    specialtyRecords = [specialty, ...specialtyRecords];
+    return specialty;
+  },
+  delete: (id: number) => {
+    const specialty = specialtyRecords.find((record) => record.id === id);
+    if (!specialty) return null;
+    specialtyRecords = specialtyRecords.filter((record) => record.id !== id);
+    return specialty;
   }
 };

@@ -1,6 +1,5 @@
 import { httpClient } from "@/common/api/apiClient";
 import type { EditProfileSchema } from "../validations/edit-profile";
-import { patientProfile } from "./dummy";
 import { Patient } from "@/common/types";
 
 const toNullable = (value: string | null) => {
@@ -9,12 +8,6 @@ const toNullable = (value: string | null) => {
 };
 
 class ProfileService {
-  async getProfile() {
-    return patientProfile;
-    const response = await httpClient.get<Patient>("/me");
-    return response.data;
-  }
-
   async updateProfile(input: EditProfileSchema) {
     const response = await httpClient.patch<Patient>("/patients/profile", {
       name: input.name.trim(),
@@ -29,12 +22,12 @@ class ProfileService {
 
   async logout() {
     return { success: true };
-    await httpClient.post("/me/logout");
+    // await httpClient.post("/me/logout");
   }
 
   async deleteAccount() {
     return { success: true };
-    await httpClient.post("/me/delete-account");
+    // await httpClient.post("/me/delete-account");
   }
 }
 

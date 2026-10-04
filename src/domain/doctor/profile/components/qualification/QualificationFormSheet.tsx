@@ -91,9 +91,7 @@ const QualificationFormSheet = ({
       <View className="bg-background">
         <View className="relative bg-surface py-3 px-2 items-center">
           <Text className="text-md text-text-primary font-medium">
-            {qualification
-              ? t("qualifications.edit")
-              : t("qualifications.add")}
+            {qualification ? t("qualifications.edit") : t("qualifications.add")}
           </Text>
           <View className="absolute top-3 right-4">
             <Pressable onPress={onClose}>
@@ -116,7 +114,7 @@ const QualificationFormSheet = ({
                   onBlur={onBlur}
                   onChangeText={onChange}
                   label={t("qualifications.qualificationName")}
-                  placeholder={t("qualifications.qualificationNamePlaceholder")}
+                  placeholder="E.g. MBBS, MD, MS"
                   error={errors.name ? errors.name.message : undefined}
                 />
               )}
@@ -131,11 +129,9 @@ const QualificationFormSheet = ({
                   onBlur={onBlur}
                   onChangeText={onChange}
                   label={t("qualifications.institution")}
-                  placeholder={t("qualifications.institutionPlaceholder")}
+                  placeholder="E.g. Harvard University"
                   error={
-                    errors.institution
-                      ? errors.institution.message
-                      : undefined
+                    errors.institution ? errors.institution.message : undefined
                   }
                 />
               )}
@@ -150,7 +146,7 @@ const QualificationFormSheet = ({
                   onBlur={onBlur}
                   onChangeText={onChange}
                   label={t("qualifications.year")}
-                  placeholder={t("qualifications.yearPlaceholder")}
+                  placeholder="E.g. 2020"
                   keyboardType="number-pad"
                   maxLength={4}
                   error={errors.year ? errors.year.message : undefined}
@@ -167,7 +163,7 @@ const QualificationFormSheet = ({
                   onBlur={onBlur}
                   onChangeText={onChange}
                   label={t("qualifications.certificateUrl")}
-                  placeholder={t("qualifications.certificateUrlPlaceholder")}
+                  placeholder="E.g. https://example.com/certificate.pdf"
                   autoCapitalize="none"
                   keyboardType="url"
                   error={

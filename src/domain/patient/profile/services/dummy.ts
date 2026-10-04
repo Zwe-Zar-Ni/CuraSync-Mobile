@@ -1,28 +1,9 @@
-import { Patient } from "@/common/types";
 import type { Allergy } from "../types/allergy";
 import type { Condition } from "../types/condition";
 import type { Contact } from "../types/contact";
 import type { AllergySchema } from "../validations/allergy";
 import type { ConditionSchema } from "../validations/condition";
 import type { ContactSchema } from "../validations/contact";
-
-export const patientProfile: Patient = {
-  user: {
-    id: 1,
-    name: "Ada Wong",
-    email: "ada.wong@example.com",
-    phone_number: "09123456789",
-    profile_url:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT12Y4yRJOMGIw__Zmc5zT16Ci_9w3_EMoH2FGP20yHew&s=10"
-  },
-  role: "patient",
-  profile: {
-    id: 1,
-    date_of_birth: "1995-04-12",
-    gender: "F",
-    blood_type: "O+"
-  }
-};
 
 //! UI phase only — in-memory stand-in for /patients/allergies. Swap for httpClient calls once the API is wired.
 let allergyRecords: Allergy[] = [
@@ -165,7 +146,8 @@ export const conditionStore = {
     return updated;
   },
   remove: (id: number) => {
-    const condition = conditionRecords.find((record) => record.id === id) ?? null;
+    const condition =
+      conditionRecords.find((record) => record.id === id) ?? null;
     conditionRecords = conditionRecords.filter((record) => record.id !== id);
     return condition;
   }

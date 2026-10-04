@@ -9,18 +9,20 @@ import { Controller, useForm } from "react-hook-form";
 import { Pressable, ScrollView, Text, View } from "react-native";
 import { useTranslation } from "react-i18next";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useGetProfile, useUpdateProfile } from "../queries";
+import { useUpdateProfile } from "../queries";
 import {
   EditProfileSchema,
   EditProfileValidator
 } from "../validations/edit-profile";
+import useAuth from "@/common/hooks/useAuth";
+import { Doctor } from "@/common/types";
 
 const EditProfilePage = () => {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const { text } = useTheme();
 
-  const { data: profile } = useGetProfile();
+  const { user } = useAuth();
   const { mutate, isPending } = useUpdateProfile();
 
   const {
@@ -40,18 +42,18 @@ const EditProfilePage = () => {
   });
 
   useEffect(() => {
-    if (!profile) return;
+    if (!user) return;
     reset({
-      name: profile.user.name ?? "",
-      phone_number: profile.user.phone_number ?? "",
-      license_number: profile.profile.license_number ?? "",
+      name: user.user.name ?? "",
+      phone_number: user.user.phone_number ?? "",
+      license_number: (user as Doctor).profile.license_number ?? "",
       standard_consultation_fee:
-        profile.profile.standard_consultation_fee === null
+        (user as Doctor).profile.standard_consultation_fee === null
           ? ""
-          : String(profile.profile.standard_consultation_fee),
-      bio: profile.profile.bio ?? ""
+          : String((user as Doctor).profile.standard_consultation_fee),
+      bio: (user as Doctor).profile.bio ?? ""
     });
-  }, [profile, reset]);
+  }, [user, reset]);
 
   const onSubmit = (data: EditProfileSchema) => {
     mutate(data, {

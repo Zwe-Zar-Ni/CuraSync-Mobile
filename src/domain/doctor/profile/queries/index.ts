@@ -1,14 +1,7 @@
 import { ApiError, Doctor } from "@/common/types";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import profileService from "../services";
 import type { EditProfileSchema } from "../validations/edit-profile";
-
-export const useGetProfile = () => {
-  return useQuery<Doctor, ApiError>({
-    queryKey: ["doctor-me"],
-    queryFn: profileService.getProfile
-  });
-};
 
 export const useUpdateProfile = () => {
   const queryClient = useQueryClient();
