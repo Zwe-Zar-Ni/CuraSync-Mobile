@@ -7,29 +7,22 @@ import { DateType } from "react-native-ui-datepicker";
 import Modal from "react-native-modal";
 import useTheme from "@/common/hooks/useTheme";
 import Button from "./Button";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+
+dayjs.extend(customParseFormat);
 
 type Props = {
-  date: string;
-  setDate: (e: string) => void;
+  time: string;
+  // e is "HH:mm:ss" format
+  setTime: (e: string) => void;
   label: string;
-  placeholder: string;
-  displayDateFormat?: string;
-  minDate?: string;
   disabled?: boolean;
 };
 
-const DatePickerField = ({
-  date,
-  setDate,
-  label,
-  placeholder,
-  displayDateFormat = "MMM DD, YYYY",
-  minDate,
-  disabled = false
-}: Props) => {
+const TimePickerField = ({ time, setTime, label, disabled = false }: Props) => {
   const { text } = useTheme();
-  const [uiDate, setUiDate] = useState<DateType>(
-    date ? new Date(date) : new Date()
+  const [uiTime, setUiTime] = useState<DateType>(
+    dayjs(time, "HH:mm:ss").isValid() ? dayjs(time, "HH:mm:ss") : new Date()
   );
 
   const [visibility, setVisibility] = useState(false);
@@ -46,11 +39,9 @@ const DatePickerField = ({
       >
         <Calendar color={text.secondary} size={21} />
         <Text
-          className={`text-md font-regular ${date && date.length ? "text-text-primary" : "text-text-tertiary"} flex-1`}
+          className={`text-md font-regular ${time && time.length ? "text-text-primary" : "text-text-tertiary"} flex-1`}
         >
-          {date && date.length
-            ? dayjs(date).format(displayDateFormat)
-            : placeholder}
+          {time && time.length ? time : "00:00:00"}
         </Text>
       </Pressable>
       <Modal
@@ -63,7 +54,7 @@ const DatePickerField = ({
         <View className="bg-background">
           <View className="relative bg-surface py-3 px-2 items-center">
             <Text className="text-md text-text-primary font-medium">
-              Select Date
+              Select Time
             </Text>
             <View className="absolute top-3 right-4">
               <Pressable onPress={() => setVisibility(false)}>
@@ -76,23 +67,18 @@ const DatePickerField = ({
               {label}
             </Text>
             <Text className="text-sm font-semibold text-text-primary">
-              {dayjs(uiDate).format("DD/MM/YYYY")}
+              {dayjs(uiTime).format("HH:mm:ss")}
             </Text>
           </View>
           <View className="px-3">
-            <DatePicker
-              date={uiDate}
-              setDate={setUiDate}
-              mode="single"
-              minDate={minDate}
-            />
+            <DatePicker date={uiTime} setDate={setUiTime} type="time" />
           </View>
-          <View className="pt-3 pb-6 mt-8 px-4">
+          <View className="pt-3 pb-6 mt-4 px-4">
             <Button
               text="Done"
               disabled={false}
               onPress={() => {
-                setDate(dayjs(uiDate).format("YYYY-MM-DD"));
+                setTime(dayjs(uiTime).format("HH:mm:ss"));
                 setVisibility(false);
               }}
             />
@@ -103,4 +89,4 @@ const DatePickerField = ({
   );
 };
 
-export default DatePickerField;
+export default TimePickerField;

@@ -1,7 +1,7 @@
 import useTheme from "@/common/hooks/useTheme";
 import { usePathname } from "expo-router";
 import { TabList, Tabs, TabSlot, TabTrigger } from "expo-router/ui";
-import { Home, Search, User } from "lucide-react-native";
+import { Calendar, Home, User } from "lucide-react-native";
 import { Text, View } from "react-native";
 
 const tabs = [
@@ -9,6 +9,11 @@ const tabs = [
     name: "Home",
     href: "/doctor/home",
     icon: Home
+  },
+  {
+    name: "Schedule",
+    href: "/doctor/schedule",
+    icon: Calendar
   },
   {
     name: "Profile",

@@ -6,7 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { X } from "lucide-react-native";
 import { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { Pressable, ScrollView, Text, View } from "react-native";
+import { Pressable, Text, View } from "react-native";
 import Modal from "react-native-modal";
 import { useTranslation } from "react-i18next";
 import { useCreateSpecialty, useGetSpecialties } from "../../queries/specialty";
