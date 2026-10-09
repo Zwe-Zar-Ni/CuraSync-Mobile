@@ -44,23 +44,23 @@ const DoctorSchedulePage = () => {
             <ChevronLeft color={text.secondary} size={24} />
           </Pressable>
         ) : null}
-<View className="flex-row items-start justify-between">
-        <View className="flex-1">
-          <Text className="text-2xl leading-10 font-medium text-text-primary">
-            {t("schedules.title")}
-          </Text>
-          <Text className="font-medium text-text-secondary">
-            {t("schedules.subtitle")}
-          </Text>
+        <View className="flex-row items-start justify-between">
+          <View className="flex-1">
+            <Text className="text-2xl leading-10 font-medium text-text-primary">
+              {t("schedules.title")}
+            </Text>
+            <Text className="font-medium text-text-secondary">
+              {t("schedules.subtitle")}
+            </Text>
+          </View>
+          <Pressable
+            className="bg-surface border border-border rounded-full p-2"
+            onPress={() => router.push("/doctor/schedule/overrides")}
+            hitSlop={8}
+          >
+            <CalendarOff color={text.secondary} size={20} />
+          </Pressable>
         </View>
-        <Pressable
-          className="bg-surface border border-border rounded-full p-2"
-          onPress={() => router.push("/doctor/schedule/overrides")}
-          hitSlop={8}
-        >
-          <CalendarOff color={text.secondary} size={20} />
-        </Pressable>
-      </View>
       </View>
       <FlashList
         data={schedules ?? []}
@@ -87,7 +87,7 @@ const DoctorSchedulePage = () => {
         contentContainerStyle={{ paddingBottom: 100 }}
       />
       <Pressable
-        className="absolute bottom-6 right-3 bg-primary rounded-full h-14 w-14 items-center justify-center"
+        className="absolute bottom-12 right-6 bg-primary rounded-full h-14 w-14 items-center justify-center"
         onPress={openCreate}
       >
         <Plus color="white" size={28} />

@@ -1,3 +1,4 @@
+import TextField from "@/shared/components/TextField";
 import { useTranslation } from "react-i18next";
 import { Pressable, Text, View } from "react-native";
 
@@ -7,8 +8,8 @@ type Props = {
   error?: string;
 };
 
-//? Presets inside the backend `min:5`/`max:240` bound; any other value still validates in the schema
-const DURATIONS = [10, 15, 20, 30, 45, 60] as const;
+//? Presets inside the backend `min:5`/`max:120` bound; any other value still validates in the schema
+const DURATIONS = [10, 15, 20, 30, 45, 60, 90, 120] as const;
 
 const SlotDurationField = ({ value, onChange, error }: Props) => {
   const { t } = useTranslation();
@@ -18,7 +19,14 @@ const SlotDurationField = ({ value, onChange, error }: Props) => {
       <Text className="text-sm font-medium text-text-tertiary mb-1">
         {t("schedules.slotDuration")}
       </Text>
-      <View className="flex-row flex-wrap gap-2">
+      <TextField
+        value={value ? value.toString() : ""}
+        onChangeText={(e) => onChange(parseInt(e))}
+        keyboardType="numeric"
+        maxLength={3}
+        placeholder={t("schedules.minutesValue", { value: DURATIONS[0] })}
+      />
+      <View className="flex-row flex-wrap gap-2 mt-2">
         {DURATIONS.map((duration) => (
           <Pressable
             key={duration}
@@ -26,7 +34,7 @@ const SlotDurationField = ({ value, onChange, error }: Props) => {
             onPress={() => onChange(duration)}
           >
             <Text
-              className={`text-sm leading-8 ${value === duration ? "text-secondary" : "text-text-primary"}`}
+              className={`text-xs leading-8 ${value === duration ? "text-secondary" : "text-text-primary"}`}
             >
               {t("schedules.minutesValue", { value: duration })}
             </Text>

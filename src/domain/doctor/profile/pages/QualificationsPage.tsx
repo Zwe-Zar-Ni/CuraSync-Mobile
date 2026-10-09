@@ -76,7 +76,7 @@ const QualificationsPage = () => {
         contentContainerStyle={{ paddingBottom: 100 }}
       />
       <Pressable
-        className="absolute bottom-6 right-3 bg-primary rounded-full h-14 w-14 items-center justify-center"
+        className="absolute bottom-12 right-6 bg-primary rounded-full h-14 w-14 items-center justify-center"
         onPress={openCreate}
       >
         <Plus color="white" size={28} />

@@ -9,10 +9,7 @@ import { Controller, useForm } from "react-hook-form";
 import { Pressable, ScrollView, Text, View } from "react-native";
 import Modal from "react-native-modal";
 import { useTranslation } from "react-i18next";
-import {
-  useCreateSchedule,
-  useUpdateSchedule
-} from "../queries/schedule";
+import { useCreateSchedule, useUpdateSchedule } from "../queries/schedule";
 import type { Schedule } from "../types";
 import {
   ScheduleValidator,
@@ -30,15 +27,11 @@ type Props = {
 const defaults: ScheduleSchema = {
   day_of_week: 1,
   start_time: "09:00:00",
-  end_time: "13:00:00",
+  end_time: "12:00:00",
   slot_duration_minutes: 15
 };
 
-const ScheduleFormSheet = ({
-  isVisible,
-  schedule = null,
-  onClose
-}: Props) => {
+const ScheduleFormSheet = ({ isVisible, schedule = null, onClose }: Props) => {
   const { text } = useTheme();
   const { t } = useTranslation();
 
