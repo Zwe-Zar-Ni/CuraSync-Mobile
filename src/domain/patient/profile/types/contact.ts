@@ -5,6 +5,4 @@ export type Contact = {
   phone_number: string;
   email: string | null;
   address: string | null;
-  created_at: string;
-  updated_at: string;
 };

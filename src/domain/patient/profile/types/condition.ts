@@ -15,6 +15,4 @@ export type Condition = {
   diagnosis_date: string | null;
   status: ConditionStatus;
   note: string | null;
-  created_at: string;
-  updated_at: string;
 };

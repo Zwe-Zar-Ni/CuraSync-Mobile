@@ -9,6 +9,4 @@ export type ScheduleOverride = {
   end_time: string | null;
   slot_duration_minutes: number;
   reason: string | null;
-  created_at: string;
-  updated_at: string;
 };

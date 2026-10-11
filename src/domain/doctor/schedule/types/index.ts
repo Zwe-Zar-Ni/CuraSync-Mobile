@@ -7,8 +7,6 @@ export type Schedule = {
   end_time: string;
   slot_duration_minutes: number;
   is_active: boolean;
-  created_at: string;
-  updated_at: string;
 };
 
 export const DAY_KEYS = [

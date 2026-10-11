@@ -6,6 +6,4 @@ export type Allergy = {
   name: string;
   severity: AllergySeverity;
   note: string | null;
-  created_at: string;
-  updated_at: string;
 };
