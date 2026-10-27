@@ -33,10 +33,10 @@ const RegisterPage = () => {
   });
 
   const onSubmit = (data: RegisterSchema) => {
-    router.push("/auth/patient-profile");
     mutate(data, {
       onSuccess: (response) => {
         console.log("response - ", response);
+        router.push("/auth/patient-profile");
       },
       onError: (error) => {
         console.log("error - ", error);

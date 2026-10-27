@@ -1,11 +1,7 @@
 import { httpClient } from "@/common/api/apiClient";
 import type { EditProfileSchema } from "../validations/edit-profile";
 import { Patient } from "@/common/types";
-
-const toNullable = (value: string | null) => {
-  const trimmed = value?.trim();
-  return trimmed ? trimmed : null;
-};
+import { toNullable } from "@/common/utils/transformers";
 
 class ProfileService {
   async updateProfile(input: EditProfileSchema) {
@@ -21,13 +17,11 @@ class ProfileService {
   }
 
   async logout() {
-    return { success: true };
-    // await httpClient.post("/me/logout");
+    await httpClient.post("/me/logout");
   }
 
   async deleteAccount() {
-    return { success: true };
-    // await httpClient.post("/me/delete-account");
+    await httpClient.post("/me/delete-account");
   }
 }
 

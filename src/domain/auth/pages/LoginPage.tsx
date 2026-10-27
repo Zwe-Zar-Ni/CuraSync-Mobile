@@ -31,10 +31,10 @@ const LoginPage = () => {
   });
 
   const onSubmit = (data: LoginSchema) => {
-    router.push("/doctor/home");
     mutate(data, {
       onSuccess: (response) => {
         console.log("response - ", response);
+        router.push("/doctor/home");
       },
       onError: (error) => {
         console.log("error - ", error);

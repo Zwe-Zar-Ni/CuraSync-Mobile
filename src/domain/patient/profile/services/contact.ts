@@ -1,18 +1,12 @@
-// import { httpClient } from "@/common/api/apiClient";
-// import { Contact } from "../types/contact";
+import { httpClient } from "@/common/api/apiClient";
+import { Contact } from "../types/contact";
 import { ContactSchema, UpdateContactSchema } from "../validations/contact";
-import { contactStore } from "./dummy";
-
-const toNullable = (value: string | null) => {
-  const trimmed = value?.trim();
-  return trimmed ? trimmed : null;
-};
+import { toNullable } from "@/common/utils/transformers";
 
 class ContactService {
   async getContacts() {
-    return contactStore.list();
-    // const response = await httpClient.get<Contact[]>("/patients/contacts");
-    // return response.data;
+    const response = await httpClient.get<Contact[]>("/patients/contacts");
+    return response.data;
   }
 
   async createContact(input: ContactSchema) {
@@ -22,12 +16,11 @@ class ContactService {
       email: toNullable(input.email),
       address: toNullable(input.address)
     };
-    return contactStore.create(payload);
-    // const response = await httpClient.post<Contact>(
-    //   "/patients/contacts",
-    //   payload
-    // );
-    // return response.data;
+    const response = await httpClient.post<Contact>(
+      "/patients/contacts",
+      payload
+    );
+    return response.data;
   }
 
   async updateContact({ id, ...input }: UpdateContactSchema) {
@@ -37,17 +30,15 @@ class ContactService {
       email: toNullable(input.email),
       address: toNullable(input.address)
     };
-    return contactStore.update(id, payload);
-    // const response = await httpClient.patch<Contact>(
-    //   `/patients/contacts/${id}`,
-    //   payload
-    // );
-    // return response.data;
+    const response = await httpClient.patch<Contact>(
+      `/patients/contacts/${id}`,
+      payload
+    );
+    return response.data;
   }
 
   async deleteContact(id: number) {
-    return contactStore.remove(id);
-    // await httpClient.delete(`/patients/contacts/${id}`);
+    await httpClient.delete(`/patients/contacts/${id}`);
   }
 }
 

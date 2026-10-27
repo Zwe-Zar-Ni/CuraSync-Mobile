@@ -1,18 +1,12 @@
-// import { httpClient } from "@/common/api/apiClient";
-// import { Allergy } from "../types/allergy";
+import { httpClient } from "@/common/api/apiClient";
+import { Allergy } from "../types/allergy";
 import { AllergySchema, UpdateAllergySchema } from "../validations/allergy";
-import { allergyStore } from "./dummy";
-
-const toNullable = (value: string | null) => {
-  const trimmed = value?.trim();
-  return trimmed ? trimmed : null;
-};
+import { toNullable } from "@/common/utils/transformers";
 
 class AllergyService {
   async getAllergies() {
-    return allergyStore.list();
-    // const response = await httpClient.get<Allergy[]>("/patients/allergies");
-    // return response.data;
+    const response = await httpClient.get<Allergy[]>("/patients/allergies");
+    return response.data;
   }
 
   async createAllergy(input: AllergySchema) {
@@ -21,12 +15,11 @@ class AllergyService {
       severity: input.severity,
       note: toNullable(input.note)
     };
-    return allergyStore.create(payload);
-    // const response = await httpClient.post<Allergy>(
-    //   "/patients/allergies",
-    //   payload
-    // );
-    // return response.data;
+    const response = await httpClient.post<Allergy>(
+      "/patients/allergies",
+      payload
+    );
+    return response.data;
   }
 
   async updateAllergy({ id, ...input }: UpdateAllergySchema) {
@@ -35,17 +28,15 @@ class AllergyService {
       severity: input.severity,
       note: toNullable(input.note)
     };
-    return allergyStore.update(id, payload);
-    // const response = await httpClient.patch<Allergy>(
-    //   `/patients/allergies/${id}`,
-    //   payload
-    // );
-    // return response.data;
+    const response = await httpClient.patch<Allergy>(
+      `/patients/allergies/${id}`,
+      payload
+    );
+    return response.data;
   }
 
   async deleteAllergy(id: number) {
-    return allergyStore.remove(id);
-    // await httpClient.delete(`/patients/allergies/${id}`);
+    await httpClient.delete(`/patients/allergies/${id}`);
   }
 }
 

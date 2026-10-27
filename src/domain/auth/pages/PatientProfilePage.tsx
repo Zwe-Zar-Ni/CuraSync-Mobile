@@ -40,9 +40,9 @@ const PatientProfilePage = () => {
   });
 
   const onSubmit = (data: PatientProfileSchema) => {
-    router.push("/patient/home");
     mutate(data, {
       onSuccess: (response) => {
+        router.push("/patient/home");
         console.log("response - ", response);
       },
       onError: (error) => {
