@@ -1,12 +1,12 @@
-import DatePicker from "@/shared/components/DatePicker";
-import dayjs from "dayjs";
-import { Calendar, X } from "lucide-react-native";
-import { useState } from "react";
-import { Pressable, View, Text } from "react-native";
-import { DateType } from "react-native-ui-datepicker";
-import Modal from "react-native-modal";
-import useTheme from "@/common/hooks/useTheme";
-import Button from "./Button";
+import DatePicker from '@/shared/components/DatePicker';
+import dayjs from 'dayjs';
+import { Calendar, X } from 'lucide-react-native';
+import { useState } from 'react';
+import { Pressable, View, Text } from 'react-native';
+import { DateType } from 'react-native-ui-datepicker';
+import Modal from 'react-native-modal';
+import useTheme from '@/common/hooks/useTheme';
+import Button from './Button';
 
 type Props = {
   date: string;
@@ -23,13 +23,13 @@ const DatePickerField = ({
   setDate,
   label,
   placeholder,
-  displayDateFormat = "MMM DD, YYYY",
+  displayDateFormat = 'MMM DD, YYYY',
   minDate,
-  disabled = false
+  disabled = false,
 }: Props) => {
   const { text } = useTheme();
   const [uiDate, setUiDate] = useState<DateType>(
-    date ? new Date(date) : new Date()
+    date ? new Date(date) : new Date(),
   );
 
   const [visibility, setVisibility] = useState(false);
@@ -40,13 +40,13 @@ const DatePickerField = ({
         {label}
       </Text>
       <Pressable
-        className={`w-full flex-row items-center gap-2 bg-surface rounded-lg p-3 border border-border ${disabled ? "opacity-75" : "opacity-100"}`}
+        className={`w-full flex-row items-center gap-2 bg-surface rounded-lg p-3 border border-border ${disabled ? 'opacity-75' : 'opacity-100'}`}
         onPress={() => setVisibility(true)}
         disabled={disabled}
       >
         <Calendar color={text.secondary} size={21} />
         <Text
-          className={`text-md font-regular ${date && date.length ? "text-text-primary" : "text-text-tertiary"} flex-1`}
+          className={`text-md font-regular ${date && date.length ? 'text-text-primary' : 'text-text-tertiary'} flex-1`}
         >
           {date && date.length
             ? dayjs(date).format(displayDateFormat)
@@ -54,8 +54,8 @@ const DatePickerField = ({
         </Text>
       </Pressable>
       <Modal
-        style={{ justifyContent: "flex-end", margin: 0 }}
-        backdropColor={"#0C0C0C"}
+        style={{ justifyContent: 'flex-end', margin: 0 }}
+        backdropColor={'#0C0C0C'}
         onBackButtonPress={() => setVisibility(false)}
         onBackdropPress={() => setVisibility(false)}
         isVisible={visibility}
@@ -76,7 +76,7 @@ const DatePickerField = ({
               {label}
             </Text>
             <Text className="text-sm font-semibold text-text-primary">
-              {dayjs(uiDate).format("DD/MM/YYYY")}
+              {dayjs(uiDate).format('DD/MM/YYYY')}
             </Text>
           </View>
           <View className="px-3">
@@ -92,7 +92,7 @@ const DatePickerField = ({
               text="Done"
               disabled={false}
               onPress={() => {
-                setDate(dayjs(uiDate).format("YYYY-MM-DD"));
+                setDate(dayjs(uiDate).format('YYYY-MM-DD'));
                 setVisibility(false);
               }}
             />

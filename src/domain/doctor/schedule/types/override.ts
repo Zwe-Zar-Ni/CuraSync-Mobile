@@ -1,4 +1,4 @@
-export type ScheduleOverrideType = "UNAVAILABLE" | "CUSTOM_HOURS";
+export type ScheduleOverrideType = 'UNAVAILABLE' | 'CUSTOM_HOURS';
 
 export type ScheduleOverride = {
   id: number;

@@ -1,16 +1,16 @@
-import { FlashList } from "@shopify/flash-list";
-import useTheme from "@/common/hooks/useTheme";
-import { router } from "expo-router";
-import { ChevronLeft, Plus, Stethoscope } from "lucide-react-native";
-import { useState } from "react";
-import { Pressable, Text, View } from "react-native";
-import { useTranslation } from "react-i18next";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import ConditionCard from "../components/condition/ConditionCard";
-import ConditionDeleteSheet from "../components/condition/ConditionDeleteSheet";
-import ConditionFormSheet from "../components/condition/ConditionFormSheet";
-import { useGetConditions } from "../queries/condition";
-import type { Condition } from "../types/condition";
+import { FlashList } from '@shopify/flash-list';
+import useTheme from '@/common/hooks/useTheme';
+import { router } from 'expo-router';
+import { ChevronLeft, Plus, Stethoscope } from 'lucide-react-native';
+import { useState } from 'react';
+import { Pressable, Text, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import ConditionCard from '../components/condition/ConditionCard';
+import ConditionDeleteSheet from '../components/condition/ConditionDeleteSheet';
+import ConditionFormSheet from '../components/condition/ConditionFormSheet';
+import { useGetConditions } from '../queries/condition';
+import type { Condition } from '../types/condition';
 
 const ConditionsPage = () => {
   const insets = useSafeAreaInsets();
@@ -45,10 +45,10 @@ const ConditionsPage = () => {
           </Pressable>
         ) : null}
         <Text className="text-2xl leading-10 font-medium text-text-primary">
-          {t("conditions.title")}
+          {t('conditions.title')}
         </Text>
         <Text className="font-medium text-text-secondary">
-          {t("conditions.subtitle")}
+          {t('conditions.subtitle')}
         </Text>
       </View>
       <FlashList
@@ -66,10 +66,10 @@ const ConditionsPage = () => {
           <View className="items-center gap-2 mt-20">
             <Stethoscope color={text.secondary} size={40} />
             <Text className="text-md font-medium text-text-primary">
-              {t("conditions.empty")}
+              {t('conditions.empty')}
             </Text>
             <Text className="text-sm text-text-secondary text-center">
-              {t("conditions.emptyHint")}
+              {t('conditions.emptyHint')}
             </Text>
           </View>
         }

@@ -1,7 +1,7 @@
-import useTheme from "@/common/hooks/useTheme";
-import { HeartPulse, Trash2 } from "lucide-react-native";
-import { Pressable, Text, View } from "react-native";
-import type { DoctorSpecialty } from "../../types/specialty";
+import useTheme from '@/common/hooks/useTheme';
+import { HeartPulse, Trash2 } from 'lucide-react-native';
+import { Pressable, Text, View } from 'react-native';
+import type { DoctorSpecialty } from '../../types/specialty';
 
 type Props = {
   specialty: DoctorSpecialty;

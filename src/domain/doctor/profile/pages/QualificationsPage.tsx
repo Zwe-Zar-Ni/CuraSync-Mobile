@@ -1,16 +1,16 @@
-import { FlashList } from "@shopify/flash-list";
-import useTheme from "@/common/hooks/useTheme";
-import { router } from "expo-router";
-import { ChevronLeft, GraduationCap, Plus } from "lucide-react-native";
-import { useState } from "react";
-import { Pressable, Text, View } from "react-native";
-import { useTranslation } from "react-i18next";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import QualificationCard from "../components/qualification/QualificationCard";
-import QualificationDeleteSheet from "../components/qualification/QualificationDeleteSheet";
-import QualificationFormSheet from "../components/qualification/QualificationFormSheet";
-import { useGetQualifications } from "../queries/qualification";
-import type { Qualification } from "../types/qualification";
+import { FlashList } from '@shopify/flash-list';
+import useTheme from '@/common/hooks/useTheme';
+import { router } from 'expo-router';
+import { ChevronLeft, GraduationCap, Plus } from 'lucide-react-native';
+import { useState } from 'react';
+import { Pressable, Text, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import QualificationCard from '../components/qualification/QualificationCard';
+import QualificationDeleteSheet from '../components/qualification/QualificationDeleteSheet';
+import QualificationFormSheet from '../components/qualification/QualificationFormSheet';
+import { useGetQualifications } from '../queries/qualification';
+import type { Qualification } from '../types/qualification';
 
 const QualificationsPage = () => {
   const insets = useSafeAreaInsets();
@@ -45,10 +45,10 @@ const QualificationsPage = () => {
           </Pressable>
         ) : null}
         <Text className="text-2xl leading-10 font-medium text-text-primary">
-          {t("qualifications.title")}
+          {t('qualifications.title')}
         </Text>
         <Text className="font-medium text-text-secondary">
-          {t("qualifications.subtitle")}
+          {t('qualifications.subtitle')}
         </Text>
       </View>
       <FlashList
@@ -66,10 +66,10 @@ const QualificationsPage = () => {
           <View className="items-center gap-2 mt-20">
             <GraduationCap color={text.secondary} size={40} />
             <Text className="text-md font-medium text-text-primary">
-              {t("qualifications.empty")}
+              {t('qualifications.empty')}
             </Text>
             <Text className="text-sm text-text-secondary text-center">
-              {t("qualifications.emptyHint")}
+              {t('qualifications.emptyHint')}
             </Text>
           </View>
         }

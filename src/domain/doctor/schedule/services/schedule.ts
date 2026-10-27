@@ -1,10 +1,10 @@
-import type { Schedule } from "../types";
-import { httpClient } from "@/common/api/apiClient";
-import { ScheduleSchema, UpdateScheduleSchema } from "../validations/schedule";
+import type { Schedule } from '../types';
+import { httpClient } from '@/common/api/apiClient';
+import { ScheduleSchema, UpdateScheduleSchema } from '../validations/schedule';
 
 class ScheduleService {
   async getSchedules() {
-    const response = await httpClient.get<Schedule[]>("/doctors/schedules");
+    const response = await httpClient.get<Schedule[]>('/doctors/schedules');
     return response.data;
   }
 
@@ -13,11 +13,11 @@ class ScheduleService {
       day_of_week: String(input.day_of_week),
       start_time: input.start_time.slice(0, 5),
       end_time: input.end_time.slice(0, 5),
-      slot_duration_minutes: input.slot_duration_minutes
+      slot_duration_minutes: input.slot_duration_minutes,
     };
     const response = await httpClient.post<Schedule>(
-      "/doctors/schedules",
-      payload
+      '/doctors/schedules',
+      payload,
     );
     return response.data;
   }
@@ -27,11 +27,11 @@ class ScheduleService {
       day_of_week: String(input.day_of_week),
       start_time: input.start_time.slice(0, 5),
       end_time: input.end_time.slice(0, 5),
-      slot_duration_minutes: input.slot_duration_minutes
+      slot_duration_minutes: input.slot_duration_minutes,
     };
     const response = await httpClient.patch<Schedule>(
       `/doctors/schedules/${id}`,
-      payload
+      payload,
     );
     return response.data;
   }

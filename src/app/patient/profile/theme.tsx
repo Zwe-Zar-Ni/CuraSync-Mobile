@@ -1,4 +1,4 @@
-import ThemePage from "@/shared/pages/ThemePage";
+import ThemePage from '@/shared/pages/ThemePage';
 
 const PatientTheme = () => {
   return <ThemePage />;

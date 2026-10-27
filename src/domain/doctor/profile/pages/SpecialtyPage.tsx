@@ -1,16 +1,16 @@
-import { FlashList } from "@shopify/flash-list";
-import useTheme from "@/common/hooks/useTheme";
-import { router } from "expo-router";
-import { ChevronLeft, Plus, Stethoscope } from "lucide-react-native";
-import { useState } from "react";
-import { Pressable, Text, View } from "react-native";
-import { useTranslation } from "react-i18next";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import SpecialtyCard from "../components/specialty/SpecialtyCard";
-import SpecialtyDeleteSheet from "../components/specialty/SpecialtyDeleteSheet";
-import SpecialtyFormSheet from "../components/specialty/SpecialtyFormSheet";
-import { useGetSpecialties } from "../queries/specialty";
-import type { DoctorSpecialty } from "../types/specialty";
+import { FlashList } from '@shopify/flash-list';
+import useTheme from '@/common/hooks/useTheme';
+import { router } from 'expo-router';
+import { ChevronLeft, Plus, Stethoscope } from 'lucide-react-native';
+import { useState } from 'react';
+import { Pressable, Text, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import SpecialtyCard from '../components/specialty/SpecialtyCard';
+import SpecialtyDeleteSheet from '../components/specialty/SpecialtyDeleteSheet';
+import SpecialtyFormSheet from '../components/specialty/SpecialtyFormSheet';
+import { useGetSpecialties } from '../queries/specialty';
+import type { DoctorSpecialty } from '../types/specialty';
 
 const SpecialtyPage = () => {
   const insets = useSafeAreaInsets();
@@ -34,10 +34,10 @@ const SpecialtyPage = () => {
           </Pressable>
         ) : null}
         <Text className="text-2xl leading-10 font-medium text-text-primary">
-          {t("specialties.title")}
+          {t('specialties.title')}
         </Text>
         <Text className="font-medium text-text-secondary">
-          {t("specialties.subtitle")}
+          {t('specialties.subtitle')}
         </Text>
       </View>
       <FlashList
@@ -51,10 +51,10 @@ const SpecialtyPage = () => {
           <View className="items-center gap-2 mt-20">
             <Stethoscope color={text.secondary} size={40} />
             <Text className="text-md font-medium text-text-primary">
-              {t("specialties.empty")}
+              {t('specialties.empty')}
             </Text>
             <Text className="text-sm text-text-secondary text-center">
-              {t("specialties.emptyHint")}
+              {t('specialties.emptyHint')}
             </Text>
           </View>
         }

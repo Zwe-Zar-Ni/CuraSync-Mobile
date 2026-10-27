@@ -1,11 +1,11 @@
-import { httpClient } from "@/common/api/apiClient";
-import { Contact } from "../types/contact";
-import { ContactSchema, UpdateContactSchema } from "../validations/contact";
-import { toNullable } from "@/common/utils/transformers";
+import { httpClient } from '@/common/api/apiClient';
+import { Contact } from '../types/contact';
+import { ContactSchema, UpdateContactSchema } from '../validations/contact';
+import { toNullable } from '@/common/utils/transformers';
 
 class ContactService {
   async getContacts() {
-    const response = await httpClient.get<Contact[]>("/patients/contacts");
+    const response = await httpClient.get<Contact[]>('/patients/contacts');
     return response.data;
   }
 
@@ -14,11 +14,11 @@ class ContactService {
       name: input.name.trim(),
       phone_number: input.phone_number.trim(),
       email: toNullable(input.email),
-      address: toNullable(input.address)
+      address: toNullable(input.address),
     };
     const response = await httpClient.post<Contact>(
-      "/patients/contacts",
-      payload
+      '/patients/contacts',
+      payload,
     );
     return response.data;
   }
@@ -28,11 +28,11 @@ class ContactService {
       name: input.name.trim(),
       phone_number: input.phone_number.trim(),
       email: toNullable(input.email),
-      address: toNullable(input.address)
+      address: toNullable(input.address),
     };
     const response = await httpClient.patch<Contact>(
       `/patients/contacts/${id}`,
-      payload
+      payload,
     );
     return response.data;
   }

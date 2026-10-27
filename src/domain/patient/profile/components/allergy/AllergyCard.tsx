@@ -1,8 +1,8 @@
-import { Trash2 } from "lucide-react-native";
-import { Pressable, Text, View } from "react-native";
-import { useTranslation } from "react-i18next";
-import useTheme from "@/common/hooks/useTheme";
-import type { Allergy, AllergySeverity } from "../../types/allergy";
+import { Trash2 } from 'lucide-react-native';
+import { Pressable, Text, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
+import useTheme from '@/common/hooks/useTheme';
+import type { Allergy, AllergySeverity } from '../../types/allergy';
 
 type Props = {
   allergy: Allergy;
@@ -11,21 +11,21 @@ type Props = {
 };
 
 export const severityVariants = {
-  MILD: "border-green-500",
-  MODERATE: "border-amber-500",
-  SEVERE: "border-red-500"
+  MILD: 'border-green-500',
+  MODERATE: 'border-amber-500',
+  SEVERE: 'border-red-500',
 } as const;
 
 export const severityLabelVariants = {
-  MILD: "text-green-500",
-  MODERATE: "text-amber-500",
-  SEVERE: "text-red-500"
+  MILD: 'text-green-500',
+  MODERATE: 'text-amber-500',
+  SEVERE: 'text-red-500',
 } as const;
 
 const severityLabels = {
-  MILD: "allergies.mild",
-  MODERATE: "allergies.moderate",
-  SEVERE: "allergies.severe"
+  MILD: 'allergies.mild',
+  MODERATE: 'allergies.moderate',
+  SEVERE: 'allergies.severe',
 } as const satisfies Record<AllergySeverity, string>;
 
 const AllergyCard = ({ allergy, onEdit, onDelete }: Props) => {

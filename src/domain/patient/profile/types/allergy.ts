@@ -1,4 +1,4 @@
-export type AllergySeverity = "MILD" | "MODERATE" | "SEVERE";
+export type AllergySeverity = 'MILD' | 'MODERATE' | 'SEVERE';
 
 export type Allergy = {
   id: number;

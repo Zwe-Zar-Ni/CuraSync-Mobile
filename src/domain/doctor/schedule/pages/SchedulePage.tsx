@@ -1,16 +1,16 @@
-import { FlashList } from "@shopify/flash-list";
-import useTheme from "@/common/hooks/useTheme";
-import { router } from "expo-router";
-import { CalendarOff, CalendarX, ChevronLeft, Plus } from "lucide-react-native";
-import { useState } from "react";
-import { Pressable, Text, View } from "react-native";
-import { useTranslation } from "react-i18next";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import ScheduleCard from "../components/ScheduleCard";
-import ScheduleDeleteSheet from "../components/ScheduleDeleteSheet";
-import ScheduleFormSheet from "../components/ScheduleFormSheet";
-import { useGetSchedules } from "../queries/schedule";
-import type { Schedule } from "../types";
+import { FlashList } from '@shopify/flash-list';
+import useTheme from '@/common/hooks/useTheme';
+import { router } from 'expo-router';
+import { CalendarOff, CalendarX, ChevronLeft, Plus } from 'lucide-react-native';
+import { useState } from 'react';
+import { Pressable, Text, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import ScheduleCard from '../components/ScheduleCard';
+import ScheduleDeleteSheet from '../components/ScheduleDeleteSheet';
+import ScheduleFormSheet from '../components/ScheduleFormSheet';
+import { useGetSchedules } from '../queries/schedule';
+import type { Schedule } from '../types';
 
 const DoctorSchedulePage = () => {
   const insets = useSafeAreaInsets();
@@ -47,15 +47,15 @@ const DoctorSchedulePage = () => {
         <View className="flex-row items-start justify-between">
           <View className="flex-1">
             <Text className="text-2xl leading-10 font-medium text-text-primary">
-              {t("schedules.title")}
+              {t('schedules.title')}
             </Text>
             <Text className="font-medium text-text-secondary">
-              {t("schedules.subtitle")}
+              {t('schedules.subtitle')}
             </Text>
           </View>
           <Pressable
             className="bg-surface border border-border rounded-full p-2"
-            onPress={() => router.push("/doctor/schedule/overrides")}
+            onPress={() => router.push('/doctor/schedule/overrides')}
             hitSlop={8}
           >
             <CalendarOff color={text.secondary} size={20} />
@@ -77,10 +77,10 @@ const DoctorSchedulePage = () => {
           <View className="items-center gap-2 mt-20">
             <CalendarX color={text.secondary} size={40} />
             <Text className="text-md font-medium text-text-primary">
-              {t("schedules.empty")}
+              {t('schedules.empty')}
             </Text>
             <Text className="text-sm text-text-secondary text-center">
-              {t("schedules.emptyHint")}
+              {t('schedules.emptyHint')}
             </Text>
           </View>
         }

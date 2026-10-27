@@ -1,10 +1,10 @@
-import { QueryCache, QueryClient } from "@tanstack/react-query";
+import { QueryCache, QueryClient } from '@tanstack/react-query';
 
 const queryClient = new QueryClient({
   queryCache: new QueryCache({
     onError: (error, query) => {
-      console.error("Error", error, query);
-    }
+      console.error('Error', error, query);
+    },
   }),
   defaultOptions: {
     queries: {
@@ -17,9 +17,9 @@ const queryClient = new QueryClient({
         //! Otherwise, fall back to the default behavior (up to 3 times)
         return failureCount < 2;
       },
-      refetchOnWindowFocus: false
-    }
-  }
+      refetchOnWindowFocus: false,
+    },
+  },
 });
 
 export default queryClient;

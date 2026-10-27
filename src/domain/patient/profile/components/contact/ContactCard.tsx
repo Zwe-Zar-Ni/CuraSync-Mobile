@@ -1,7 +1,7 @@
-import { Mail, MapPin, Phone, Trash2 } from "lucide-react-native";
-import { Pressable, Text, View } from "react-native";
-import useTheme from "@/common/hooks/useTheme";
-import type { Contact } from "../../types/contact";
+import { Mail, MapPin, Phone, Trash2 } from 'lucide-react-native';
+import { Pressable, Text, View } from 'react-native';
+import useTheme from '@/common/hooks/useTheme';
+import type { Contact } from '../../types/contact';
 
 type Props = {
   contact: Contact;
@@ -43,7 +43,10 @@ const ContactCard = ({ contact, onEdit, onDelete }: Props) => {
         {contact.address ? (
           <View className="flex-row items-center gap-2">
             <MapPin color={text.secondary} size={16} />
-            <Text numberOfLines={2} className="text-sm text-text-secondary flex-1">
+            <Text
+              numberOfLines={2}
+              className="text-sm text-text-secondary flex-1"
+            >
               {contact.address}
             </Text>
           </View>

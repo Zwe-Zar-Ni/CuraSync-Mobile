@@ -1,20 +1,20 @@
-import useTheme from "@/common/hooks/useTheme";
-import { useGetSpecializations } from "@/common/queries";
-import type { ApiError } from "@/common/types";
-import Button from "@/shared/components/Button";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { X } from "lucide-react-native";
-import { useEffect } from "react";
-import { Controller, useForm } from "react-hook-form";
-import { Pressable, Text, View } from "react-native";
-import Modal from "react-native-modal";
-import { useTranslation } from "react-i18next";
-import { useCreateSpecialty, useGetSpecialties } from "../../queries/specialty";
+import useTheme from '@/common/hooks/useTheme';
+import { useGetSpecializations } from '@/common/queries';
+import type { ApiError } from '@/common/types';
+import Button from '@/shared/components/Button';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { X } from 'lucide-react-native';
+import { useEffect } from 'react';
+import { Controller, useForm } from 'react-hook-form';
+import { Pressable, Text, View } from 'react-native';
+import Modal from 'react-native-modal';
+import { useTranslation } from 'react-i18next';
+import { useCreateSpecialty, useGetSpecialties } from '../../queries/specialty';
 import {
   SpecialtyValidator,
-  type SpecialtySchema
-} from "../../validations/specialty";
-import SpecializationField from "./SpecializationField";
+  type SpecialtySchema,
+} from '../../validations/specialty';
+import SpecializationField from './SpecializationField';
 
 type Props = {
   isVisible: boolean;
@@ -34,12 +34,12 @@ const SpecialtyFormSheet = ({ isVisible, onClose }: Props) => {
     control,
     handleSubmit,
     reset,
-    formState: { errors, isSubmitting }
+    formState: { errors, isSubmitting },
   } = useForm<SpecialtySchema>({
     resolver: zodResolver(SpecialtyValidator),
     defaultValues: {
-      specialization_id: 0
-    }
+      specialization_id: 0,
+    },
   });
 
   useEffect(() => {
@@ -52,21 +52,21 @@ const SpecialtyFormSheet = ({ isVisible, onClose }: Props) => {
       onSuccess: () => onClose(),
       onError: (error: ApiError) => {
         console.log(error);
-      }
+      },
     });
   };
 
   const options = (specializations ?? []).filter(
     (specialization) =>
       !(specialties ?? []).some(
-        (specialty) => specialty.specialization_id === specialization.id
-      )
+        (specialty) => specialty.specialization_id === specialization.id,
+      ),
   );
 
   return (
     <Modal
-      style={{ justifyContent: "flex-end", margin: 0 }}
-      backdropColor={"#0C0C0C"}
+      style={{ justifyContent: 'flex-end', margin: 0 }}
+      backdropColor={'#0C0C0C'}
       avoidKeyboard
       onBackButtonPress={onClose}
       onBackdropPress={onClose}
@@ -75,7 +75,7 @@ const SpecialtyFormSheet = ({ isVisible, onClose }: Props) => {
       <View className="bg-background">
         <View className="relative bg-surface py-3 px-2 items-center">
           <Text className="text-md text-text-primary font-medium">
-            {t("specialties.add")}
+            {t('specialties.add')}
           </Text>
           <View className="absolute top-3 right-4">
             <Pressable onPress={onClose}>
@@ -103,14 +103,14 @@ const SpecialtyFormSheet = ({ isVisible, onClose }: Props) => {
         </View>
         <View className="px-4 pb-6 gap-3 flex-row">
           <Button
-            text={t("actions.cancel")}
+            text={t('actions.cancel')}
             variant="outline"
             onPress={onClose}
             disabled={isSubmitting || isPending}
             className="flex-1"
           />
           <Button
-            text={t("actions.save")}
+            text={t('actions.save')}
             onPress={handleSubmit(onSubmit)}
             disabled={isSubmitting || isPending}
             className="flex-1"

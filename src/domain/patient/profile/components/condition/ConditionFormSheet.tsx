@@ -1,25 +1,25 @@
-import useTheme from "@/common/hooks/useTheme";
-import type { ApiError } from "@/common/types";
-import Button from "@/shared/components/Button";
-import DatePickerField from "@/shared/components/DatePickerField";
-import TextField from "@/shared/components/TextField";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { X } from "lucide-react-native";
-import { useEffect } from "react";
-import { Controller, useForm } from "react-hook-form";
-import { Pressable, ScrollView, Text, View } from "react-native";
-import Modal from "react-native-modal";
-import { useTranslation } from "react-i18next";
+import useTheme from '@/common/hooks/useTheme';
+import type { ApiError } from '@/common/types';
+import Button from '@/shared/components/Button';
+import DatePickerField from '@/shared/components/DatePickerField';
+import TextField from '@/shared/components/TextField';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { X } from 'lucide-react-native';
+import { useEffect } from 'react';
+import { Controller, useForm } from 'react-hook-form';
+import { Pressable, ScrollView, Text, View } from 'react-native';
+import Modal from 'react-native-modal';
+import { useTranslation } from 'react-i18next';
 import {
   useCreateCondition,
-  useUpdateCondition
-} from "../../queries/condition";
-import type { Condition } from "../../types/condition";
+  useUpdateCondition,
+} from '../../queries/condition';
+import type { Condition } from '../../types/condition';
 import {
   ConditionValidator,
-  type ConditionSchema
-} from "../../validations/condition";
-import StatusField from "./StatusField";
+  type ConditionSchema,
+} from '../../validations/condition';
+import StatusField from './StatusField';
 
 type Props = {
   isVisible: boolean;
@@ -30,7 +30,7 @@ type Props = {
 const ConditionFormSheet = ({
   isVisible,
   condition = null,
-  onClose
+  onClose,
 }: Props) => {
   const { text } = useTheme();
   const { t } = useTranslation();
@@ -44,24 +44,24 @@ const ConditionFormSheet = ({
     control,
     handleSubmit,
     reset,
-    formState: { errors, isSubmitting }
+    formState: { errors, isSubmitting },
   } = useForm<ConditionSchema>({
     resolver: zodResolver(ConditionValidator),
     defaultValues: {
-      name: "",
-      diagnosis_date: "",
-      status: "ACTIVE",
-      note: ""
-    }
+      name: '',
+      diagnosis_date: '',
+      status: 'ACTIVE',
+      note: '',
+    },
   });
 
   useEffect(() => {
     if (!isVisible) return;
     reset({
-      name: condition?.name ?? "",
-      diagnosis_date: condition?.diagnosis_date ?? "",
-      status: condition?.status ?? "ACTIVE",
-      note: condition?.note ?? ""
+      name: condition?.name ?? '',
+      diagnosis_date: condition?.diagnosis_date ?? '',
+      status: condition?.status ?? 'ACTIVE',
+      note: condition?.note ?? '',
     });
   }, [isVisible, condition, reset]);
 
@@ -70,7 +70,7 @@ const ConditionFormSheet = ({
       onSuccess: () => onClose(),
       onError: (error: ApiError) => {
         console.log(error);
-      }
+      },
     };
 
     if (condition) {
@@ -83,8 +83,8 @@ const ConditionFormSheet = ({
 
   return (
     <Modal
-      style={{ justifyContent: "flex-end", margin: 0 }}
-      backdropColor={"#0C0C0C"}
+      style={{ justifyContent: 'flex-end', margin: 0 }}
+      backdropColor={'#0C0C0C'}
       avoidKeyboard
       onBackButtonPress={onClose}
       onBackdropPress={onClose}
@@ -93,7 +93,7 @@ const ConditionFormSheet = ({
       <View className="bg-background">
         <View className="relative bg-surface py-3 px-2 items-center">
           <Text className="text-md text-text-primary font-medium">
-            {condition ? t("conditions.edit") : t("conditions.add")}
+            {condition ? t('conditions.edit') : t('conditions.add')}
           </Text>
           <View className="absolute top-3 right-4">
             <Pressable onPress={onClose}>
@@ -112,10 +112,10 @@ const ConditionFormSheet = ({
               name="name"
               render={({ field: { onChange, onBlur, value } }) => (
                 <TextField
-                  value={value ?? ""}
+                  value={value ?? ''}
                   onBlur={onBlur}
                   onChangeText={onChange}
-                  label={t("conditions.conditionName")}
+                  label={t('conditions.conditionName')}
                   placeholder="e.g. Type 2 diabetes"
                   error={errors.name ? errors.name.message : undefined}
                 />
@@ -127,9 +127,9 @@ const ConditionFormSheet = ({
               name="diagnosis_date"
               render={({ field: { onChange, value } }) => (
                 <DatePickerField
-                  date={value ?? ""}
+                  date={value ?? ''}
                   setDate={(e) => onChange(e)}
-                  label={t("conditions.diagnosisDate")}
+                  label={t('conditions.diagnosisDate')}
                   placeholder="Select your diagnosis date"
                 />
               )}
@@ -152,10 +152,10 @@ const ConditionFormSheet = ({
               name="note"
               render={({ field: { onChange, onBlur, value } }) => (
                 <TextField
-                  value={value ?? ""}
+                  value={value ?? ''}
                   onBlur={onBlur}
                   onChangeText={onChange}
-                  label={t("conditions.note")}
+                  label={t('conditions.note')}
                   placeholder="Anything your doctor should know about this condition"
                   multiline
                   numberOfLines={3}
@@ -168,12 +168,12 @@ const ConditionFormSheet = ({
         </ScrollView>
         <View className="px-4 pb-6 gap-3">
           <Button
-            text={t("actions.save")}
+            text={t('actions.save')}
             onPress={handleSubmit(onSubmit)}
             disabled={isSubmitting || isPending}
           />
           <Button
-            text={t("actions.cancel")}
+            text={t('actions.cancel')}
             variant="outline"
             onPress={onClose}
             disabled={isSubmitting || isPending}

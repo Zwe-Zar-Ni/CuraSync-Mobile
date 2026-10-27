@@ -45,19 +45,19 @@ export type DoctorProfile = {
 export type PatientProfile = {
   id: number;
   date_of_birth: string | null;
-  gender: "M" | "F" | null;
+  gender: 'M' | 'F' | null;
   blood_type: string | null;
 };
 
 export type Doctor = {
   user: User;
-  role: "doctor";
+  role: 'doctor';
   profile: DoctorProfile;
 };
 
 export type Patient = {
   user: User;
-  role: "patient";
+  role: 'patient';
   profile: PatientProfile;
 };
 

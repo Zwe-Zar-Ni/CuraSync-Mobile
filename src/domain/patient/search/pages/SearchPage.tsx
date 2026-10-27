@@ -1,8 +1,8 @@
-import useTheme from "@/common/hooks/useTheme";
-import { Search } from "lucide-react-native";
-import { useLayoutEffect, useRef } from "react";
-import { View, TextInput } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import useTheme from '@/common/hooks/useTheme';
+import { Search } from 'lucide-react-native';
+import { useLayoutEffect, useRef } from 'react';
+import { View, TextInput } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const SearchPage = () => {
   const insets = useSafeAreaInsets();

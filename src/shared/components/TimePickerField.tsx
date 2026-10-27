@@ -1,13 +1,13 @@
-import DatePicker from "@/shared/components/DatePicker";
-import dayjs from "dayjs";
-import { Calendar, X } from "lucide-react-native";
-import { useState } from "react";
-import { Pressable, View, Text } from "react-native";
-import { DateType } from "react-native-ui-datepicker";
-import Modal from "react-native-modal";
-import useTheme from "@/common/hooks/useTheme";
-import Button from "./Button";
-import customParseFormat from "dayjs/plugin/customParseFormat";
+import DatePicker from '@/shared/components/DatePicker';
+import dayjs from 'dayjs';
+import { Calendar, X } from 'lucide-react-native';
+import { useState } from 'react';
+import { Pressable, View, Text } from 'react-native';
+import { DateType } from 'react-native-ui-datepicker';
+import Modal from 'react-native-modal';
+import useTheme from '@/common/hooks/useTheme';
+import Button from './Button';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
 
 dayjs.extend(customParseFormat);
 
@@ -22,7 +22,7 @@ type Props = {
 const TimePickerField = ({ time, setTime, label, disabled = false }: Props) => {
   const { text } = useTheme();
   const [uiTime, setUiTime] = useState<DateType>(
-    dayjs(time, "HH:mm:ss").isValid() ? dayjs(time, "HH:mm:ss") : new Date()
+    dayjs(time, 'HH:mm:ss').isValid() ? dayjs(time, 'HH:mm:ss') : new Date(),
   );
 
   const [visibility, setVisibility] = useState(false);
@@ -33,20 +33,20 @@ const TimePickerField = ({ time, setTime, label, disabled = false }: Props) => {
         {label}
       </Text>
       <Pressable
-        className={`w-full flex-row items-center gap-2 bg-surface rounded-lg p-3 border border-border ${disabled ? "opacity-75" : "opacity-100"}`}
+        className={`w-full flex-row items-center gap-2 bg-surface rounded-lg p-3 border border-border ${disabled ? 'opacity-75' : 'opacity-100'}`}
         onPress={() => setVisibility(true)}
         disabled={disabled}
       >
         <Calendar color={text.secondary} size={21} />
         <Text
-          className={`text-md font-regular ${time && time.length ? "text-text-primary" : "text-text-tertiary"} flex-1`}
+          className={`text-md font-regular ${time && time.length ? 'text-text-primary' : 'text-text-tertiary'} flex-1`}
         >
-          {time && time.length ? time : "00:00:00"}
+          {time && time.length ? time : '00:00:00'}
         </Text>
       </Pressable>
       <Modal
-        style={{ justifyContent: "flex-end", margin: 0 }}
-        backdropColor={"#0C0C0C"}
+        style={{ justifyContent: 'flex-end', margin: 0 }}
+        backdropColor={'#0C0C0C'}
         onBackButtonPress={() => setVisibility(false)}
         onBackdropPress={() => setVisibility(false)}
         isVisible={visibility}
@@ -67,7 +67,7 @@ const TimePickerField = ({ time, setTime, label, disabled = false }: Props) => {
               {label}
             </Text>
             <Text className="text-sm font-semibold text-text-primary">
-              {dayjs(uiTime).format("HH:mm:ss")}
+              {dayjs(uiTime).format('HH:mm:ss')}
             </Text>
           </View>
           <View className="px-3">
@@ -78,7 +78,7 @@ const TimePickerField = ({ time, setTime, label, disabled = false }: Props) => {
               text="Done"
               disabled={false}
               onPress={() => {
-                setTime(dayjs(uiTime).format("HH:mm:ss"));
+                setTime(dayjs(uiTime).format('HH:mm:ss'));
                 setVisibility(false);
               }}
             />

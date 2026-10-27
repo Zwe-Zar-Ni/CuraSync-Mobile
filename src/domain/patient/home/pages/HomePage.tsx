@@ -1,12 +1,12 @@
-import { View } from "react-native";
-import Heading from "../components/Heading";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import UpcomingConsultations from "../components/UpcomingConsultations";
-import Specializations from "../components/Specializations";
-import { FlashList } from "@shopify/flash-list";
-import { useGetDoctors } from "../queries";
-import DoctorCard from "../components/DoctorCard";
-import Services from "../components/Services";
+import { View } from 'react-native';
+import Heading from '../components/Heading';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import UpcomingConsultations from '../components/UpcomingConsultations';
+import Specializations from '../components/Specializations';
+import { FlashList } from '@shopify/flash-list';
+import { useGetDoctors } from '../queries';
+import DoctorCard from '../components/DoctorCard';
+import Services from '../components/Services';
 
 const PatientHomePage = () => {
   const insets = useSafeAreaInsets();
@@ -23,13 +23,13 @@ const PatientHomePage = () => {
         ListHeaderComponent={() => (
           <>
             <Heading />
-            <UpcomingConsultations />
+            <UpcomingConsultations consultations={[]} />
             <Services />
             <Specializations />
           </>
         )}
         renderItem={({ item, index }) => (
-          <View className={`${index % 2 === 0 ? "pr-1" : "pl-1"}`}>
+          <View className={`${index % 2 === 0 ? 'pr-1' : 'pl-1'}`}>
             <DoctorCard doctor={item} />
           </View>
         )}

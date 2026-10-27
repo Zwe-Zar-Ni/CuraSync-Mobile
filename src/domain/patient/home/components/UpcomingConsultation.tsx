@@ -1,10 +1,10 @@
-import { View, Text, Image, Pressable } from "react-native";
-import { ArrowUpRight, Calendar, Monitor } from "lucide-react-native";
-import dayjs from "dayjs";
-import { useTranslation } from "react-i18next";
-import useTheme from "@/common/hooks/useTheme";
-import type { Consultation } from "../types";
-import DoctorProfile from "@/assets/images/doctor-profile.png";
+import { View, Text, Image, Pressable } from 'react-native';
+import { ArrowUpRight, Calendar, Monitor } from 'lucide-react-native';
+import dayjs from 'dayjs';
+import { useTranslation } from 'react-i18next';
+import useTheme from '@/common/hooks/useTheme';
+import type { Consultation } from '../types';
+import DoctorProfile from '@/assets/images/doctor-profile.png';
 
 type Props = {
   consultation: Consultation;
@@ -40,7 +40,7 @@ const UpcomingConsultation = ({ consultation }: Props) => {
             {doctor.name}
           </Text>
           <Text className="font-medium text-text-secondary">
-            {doctor.specilizations[0]?.name ?? ""}
+            {doctor.specilizations[0]?.name ?? ''}
           </Text>
         </View>
       </View>
@@ -50,21 +50,21 @@ const UpcomingConsultation = ({ consultation }: Props) => {
             <View className="flex-row gap-2 items-center">
               <Calendar color={text.secondary} size={18} />
               <Text className="text-text-secondary font-medium">
-                {dayjs(scheduled_at).format("DD MMM YYYY, h:mm A")}
+                {dayjs(scheduled_at).format('DD MMM YYYY, h:mm A')}
               </Text>
             </View>
             <View className="flex-row mt-1 gap-2 items-center">
               <Monitor color={text.secondary} size={18} />
               <Text className="text-text-secondary font-medium">
-                {visit_type === "virtual"
-                  ? t("home.virtualVisit")
-                  : t("home.inPersonVisit")}
+                {visit_type === 'virtual'
+                  ? t('home.virtualVisit')
+                  : t('home.inPersonVisit')}
               </Text>
             </View>
           </View>
           <Pressable className="flex-row justify-center items-center rounded-full bg-primary gap-2 p-3">
             <ArrowUpRight color="white" size={18} />
-            <Text className="text-white font-medium">{t("home.view")}</Text>
+            <Text className="text-white font-medium">{t('home.view')}</Text>
           </Pressable>
         </View>
       </View>

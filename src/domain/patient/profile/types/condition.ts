@@ -1,12 +1,12 @@
 export type ConditionStatus =
-  | "ACTIVE"
-  | "INACTIVE"
-  | "RESOLVED"
-  | "REMISSION"
-  | "RECURRENCE"
-  | "CONFIRMED"
-  | "PROVISIONAL"
-  | "REFUTED";
+  | 'ACTIVE'
+  | 'INACTIVE'
+  | 'RESOLVED'
+  | 'REMISSION'
+  | 'RECURRENCE'
+  | 'CONFIRMED'
+  | 'PROVISIONAL'
+  | 'REFUTED';
 
 export type Condition = {
   id: number;

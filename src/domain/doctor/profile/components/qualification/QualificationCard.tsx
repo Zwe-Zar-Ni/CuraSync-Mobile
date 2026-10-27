@@ -1,7 +1,7 @@
-import useTheme from "@/common/hooks/useTheme";
-import { Building2, CalendarDays, Link2, Trash2 } from "lucide-react-native";
-import { Linking, Pressable, Text, View } from "react-native";
-import type { Qualification } from "../../types/qualification";
+import useTheme from '@/common/hooks/useTheme';
+import { Building2, CalendarDays, Link2, Trash2 } from 'lucide-react-native';
+import { Linking, Pressable, Text, View } from 'react-native';
+import type { Qualification } from '../../types/qualification';
 
 type Props = {
   qualification: Qualification;
@@ -46,7 +46,7 @@ const QualificationCard = ({ qualification, onEdit, onDelete }: Props) => {
         {qualification.certificate_url ? (
           <Pressable
             className="flex-1 flex-row items-center gap-1"
-            onPress={() => Linking.openURL(qualification.certificate_url ?? "")}
+            onPress={() => Linking.openURL(qualification.certificate_url ?? '')}
           >
             <Link2 color={text.secondary} size={14} />
             <Text

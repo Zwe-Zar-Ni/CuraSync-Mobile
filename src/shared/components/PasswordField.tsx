@@ -1,7 +1,7 @@
-import useTheme from "@/common/hooks/useTheme";
-import { Eye, EyeClosed } from "lucide-react-native";
-import { useState } from "react";
-import { Pressable, Text, TextInput, TextInputProps, View } from "react-native";
+import useTheme from '@/common/hooks/useTheme';
+import { Eye, EyeClosed } from 'lucide-react-native';
+import { useState } from 'react';
+import { Pressable, Text, TextInput, TextInputProps, View } from 'react-native';
 
 type Props = {
   disabled?: boolean;
@@ -31,7 +31,7 @@ const PasswordField = ({
         <TextInput
           placeholder={placeholder}
           secureTextEntry={!show}
-          className={`w-full bg-surface rounded-lg p-3.5 border-[0.5px] border-border text-text-primary text-md font-regular ${disabled ? "opacity-75" : "opacity-100"}`}
+          className={`w-full bg-surface rounded-lg p-3.5 border-[0.5px] border-border text-text-primary text-md font-regular ${disabled ? 'opacity-75' : 'opacity-100'}`}
           placeholderTextColor="#61656C"
           {...props}
         />

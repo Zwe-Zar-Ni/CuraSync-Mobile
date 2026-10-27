@@ -1,4 +1,4 @@
-import { Text, TextInput, TextInputProps, View } from "react-native";
+import { Text, TextInput, TextInputProps, View } from 'react-native';
 
 type Props = {
   disabled?: boolean;
@@ -23,7 +23,7 @@ const TextField = ({
       ) : null}
       <TextInput
         placeholder={placeholder}
-        className={`w-full bg-surface rounded-lg p-3.5 border-[0.5px] border-border text-text-primary text-md font-regular ${disabled ? "opacity-75" : "opacity-100"}`}
+        className={`w-full bg-surface rounded-lg p-3.5 border-[0.5px] border-border text-text-primary text-md font-regular ${disabled ? 'opacity-75' : 'opacity-100'}`}
         placeholderTextColor="#61656C"
         {...props}
       />

@@ -1,16 +1,16 @@
-import useTheme from "@/common/hooks/useTheme";
-import Button from "@/shared/components/Button";
-import PasswordField from "@/shared/components/PasswordField";
-import TextField from "@/shared/components/TextField";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { router } from "expo-router";
-import { ChevronLeft } from "lucide-react-native";
-import { Controller, useForm } from "react-hook-form";
-import { Pressable, Text, View } from "react-native";
-import { useTranslation } from "react-i18next";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useLogin } from "../queries";
-import { LoginSchema, LoginValidator } from "../validations/login";
+import useTheme from '@/common/hooks/useTheme';
+import Button from '@/shared/components/Button';
+import PasswordField from '@/shared/components/PasswordField';
+import TextField from '@/shared/components/TextField';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { router } from 'expo-router';
+import { ChevronLeft } from 'lucide-react-native';
+import { Controller, useForm } from 'react-hook-form';
+import { Pressable, Text, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useLogin } from '../queries';
+import { LoginSchema, LoginValidator } from '../validations/login';
 
 const LoginPage = () => {
   const { t } = useTranslation();
@@ -21,24 +21,24 @@ const LoginPage = () => {
   const {
     control,
     handleSubmit,
-    formState: { errors, isSubmitting }
+    formState: { errors, isSubmitting },
   } = useForm<LoginSchema>({
     resolver: zodResolver(LoginValidator),
     defaultValues: {
-      email: "",
-      password: ""
-    }
+      email: '',
+      password: '',
+    },
   });
 
   const onSubmit = (data: LoginSchema) => {
     mutate(data, {
       onSuccess: (response) => {
-        console.log("response - ", response);
-        router.push("/doctor/home");
+        console.log('response - ', response);
+        router.push('/doctor/home');
       },
       onError: (error) => {
-        console.log("error - ", error);
-      }
+        console.log('error - ', error);
+      },
     });
   };
 
@@ -54,10 +54,10 @@ const LoginPage = () => {
           </Pressable>
         ) : null}
         <Text className="text-3xl  leading-12  font-medium text-text-primary">
-          {t("auth.welcomeBack")}
+          {t('auth.welcomeBack')}
         </Text>
         <Text className="font-medium text-text-secondary">
-          {t("auth.welcomeBackToCuraSync")}
+          {t('auth.welcomeBackToCuraSync')}
         </Text>
       </View>
       <View className="gap-4">
@@ -69,7 +69,7 @@ const LoginPage = () => {
               value={value}
               onBlur={onBlur}
               onChangeText={onChange}
-              label={t("labels.email")}
+              label={t('labels.email')}
               placeholder="Enter your email"
               error={errors.email ? errors.email.message : undefined}
               keyboardType="email-address"
@@ -86,7 +86,7 @@ const LoginPage = () => {
               value={value}
               onBlur={onBlur}
               onChangeText={onChange}
-              label={t("labels.password")}
+              label={t('labels.password')}
               placeholder="Enter your password"
               error={errors.password ? errors.password.message : undefined}
               autoCapitalize="none"
@@ -96,16 +96,16 @@ const LoginPage = () => {
 
         <Button
           onPress={handleSubmit(onSubmit)}
-          text={t("actions.login")}
+          text={t('actions.login')}
           className="mt-4"
           disabled={isSubmitting || isPending}
         />
       </View>
       <View className="flex-row justify-center gap-1 mt-6">
-        <Text className="text-text-primary">{t("auth.dontHaveAnAccount")}</Text>
-        <Pressable onPress={() => router.push("/auth/register")}>
+        <Text className="text-text-primary">{t('auth.dontHaveAnAccount')}</Text>
+        <Pressable onPress={() => router.push('/auth/register')}>
           <Text className="text-primary underline">
-            {t("auth.createAccount")}
+            {t('auth.createAccount')}
           </Text>
         </Pressable>
       </View>

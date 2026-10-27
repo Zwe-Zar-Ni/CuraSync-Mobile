@@ -1,21 +1,21 @@
-import useTheme from "@/common/hooks/useTheme";
-import Button from "@/shared/components/Button";
-import TextField from "@/shared/components/TextField";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { router } from "expo-router";
-import { ChevronLeft } from "lucide-react-native";
-import { useEffect } from "react";
-import { Controller, useForm } from "react-hook-form";
-import { Pressable, ScrollView, Text, View } from "react-native";
-import { useTranslation } from "react-i18next";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { useUpdateProfile } from "../queries";
+import useTheme from '@/common/hooks/useTheme';
+import Button from '@/shared/components/Button';
+import TextField from '@/shared/components/TextField';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { router } from 'expo-router';
+import { ChevronLeft } from 'lucide-react-native';
+import { useEffect } from 'react';
+import { Controller, useForm } from 'react-hook-form';
+import { Pressable, ScrollView, Text, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { useUpdateProfile } from '../queries';
 import {
   EditProfileSchema,
-  EditProfileValidator
-} from "../validations/edit-profile";
-import useAuth from "@/common/hooks/useAuth";
-import { Doctor } from "@/common/types";
+  EditProfileValidator,
+} from '../validations/edit-profile';
+import useAuth from '@/common/hooks/useAuth';
+import { Doctor } from '@/common/types';
 
 const EditProfilePage = () => {
   const { t } = useTranslation();
@@ -29,29 +29,29 @@ const EditProfilePage = () => {
     control,
     handleSubmit,
     reset,
-    formState: { errors, isSubmitting }
+    formState: { errors, isSubmitting },
   } = useForm<EditProfileSchema>({
     resolver: zodResolver(EditProfileValidator),
     defaultValues: {
-      name: "",
-      phone_number: "",
-      license_number: "",
-      standard_consultation_fee: "",
-      bio: ""
-    }
+      name: '',
+      phone_number: '',
+      license_number: '',
+      standard_consultation_fee: '',
+      bio: '',
+    },
   });
 
   useEffect(() => {
     if (!user) return;
     reset({
-      name: user.user.name ?? "",
-      phone_number: user.user.phone_number ?? "",
-      license_number: (user as Doctor).profile.license_number ?? "",
+      name: user.user.name ?? '',
+      phone_number: user.user.phone_number ?? '',
+      license_number: (user as Doctor).profile.license_number ?? '',
       standard_consultation_fee:
         (user as Doctor).profile.standard_consultation_fee === null
-          ? ""
+          ? ''
           : String((user as Doctor).profile.standard_consultation_fee),
-      bio: (user as Doctor).profile.bio ?? ""
+      bio: (user as Doctor).profile.bio ?? '',
     });
   }, [user, reset]);
 
@@ -62,7 +62,7 @@ const EditProfilePage = () => {
       },
       onError: (error) => {
         console.log(error);
-      }
+      },
     });
   };
 
@@ -78,10 +78,10 @@ const EditProfilePage = () => {
           </Pressable>
         ) : null}
         <Text className="text-2xl leading-10 font-medium text-text-primary">
-          {t("profile.editPersonalInformation")}
+          {t('profile.editPersonalInformation')}
         </Text>
         <Text className="font-medium text-text-secondary">
-          {t("profile.updatePersonalDetails")}
+          {t('profile.updatePersonalDetails')}
         </Text>
       </View>
       <ScrollView
@@ -94,10 +94,10 @@ const EditProfilePage = () => {
             name="name"
             render={({ field: { onChange, onBlur, value } }) => (
               <TextField
-                value={value ?? ""}
+                value={value ?? ''}
                 onBlur={onBlur}
                 onChangeText={onChange}
-                label={t("labels.name")}
+                label={t('labels.name')}
                 placeholder="Enter your name"
                 error={errors.name ? errors.name.message : undefined}
               />
@@ -109,10 +109,10 @@ const EditProfilePage = () => {
             name="phone_number"
             render={({ field: { onChange, onBlur, value } }) => (
               <TextField
-                value={value ?? ""}
+                value={value ?? ''}
                 onBlur={onBlur}
                 onChangeText={onChange}
-                label={t("labels.phoneNumber")}
+                label={t('labels.phoneNumber')}
                 placeholder="Enter your phone number"
                 keyboardType="phone-pad"
                 error={
@@ -127,10 +127,10 @@ const EditProfilePage = () => {
             name="license_number"
             render={({ field: { onChange, onBlur, value } }) => (
               <TextField
-                value={value ?? ""}
+                value={value ?? ''}
                 onBlur={onBlur}
                 onChangeText={onChange}
-                label={t("labels.licenseNumber")}
+                label={t('labels.licenseNumber')}
                 placeholder="Enter your license number"
                 error={
                   errors.license_number
@@ -146,10 +146,10 @@ const EditProfilePage = () => {
             name="standard_consultation_fee"
             render={({ field: { onChange, onBlur, value } }) => (
               <TextField
-                value={value ?? ""}
+                value={value ?? ''}
                 onBlur={onBlur}
                 onChangeText={onChange}
-                label={t("labels.standardConsultationFee")}
+                label={t('labels.standardConsultationFee')}
                 placeholder="Enter your standard consultation fee"
                 keyboardType="numeric"
                 error={
@@ -166,10 +166,10 @@ const EditProfilePage = () => {
             name="bio"
             render={({ field: { onChange, onBlur, value } }) => (
               <TextField
-                value={value ?? ""}
+                value={value ?? ''}
                 onBlur={onBlur}
                 onChangeText={onChange}
-                label={t("labels.bio")}
+                label={t('labels.bio')}
                 placeholder="Enter your Bio"
                 multiline
                 numberOfLines={4}
@@ -181,13 +181,13 @@ const EditProfilePage = () => {
 
           <Button
             onPress={handleSubmit(onSubmit)}
-            text={t("actions.save")}
+            text={t('actions.save')}
             className="mt-4"
             disabled={isSubmitting || isPending}
           />
           <Button
             onPress={() => router.back()}
-            text={t("actions.cancel")}
+            text={t('actions.cancel')}
             variant="outline"
             disabled={isSubmitting || isPending}
           />

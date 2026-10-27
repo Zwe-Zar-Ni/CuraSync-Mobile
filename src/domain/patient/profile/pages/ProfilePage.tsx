@@ -1,11 +1,11 @@
-import { ScrollView, View } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import Heading from "../components/Heading";
-import PersonalInformation from "../components/PersonalInformation";
-import Settings from "../components/Settings";
-import AccountSettings from "../components/AccountSettings";
-import useAuth from "@/common/hooks/useAuth";
-import { Patient } from "@/common/types";
+import { ScrollView, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import Heading from '../components/Heading';
+import PersonalInformation from '../components/PersonalInformation';
+import Settings from '../components/Settings';
+import AccountSettings from '../components/AccountSettings';
+import useAuth from '@/common/hooks/useAuth';
+import { Patient } from '@/common/types';
 
 const PatientProfilePage = () => {
   const insets = useSafeAreaInsets();

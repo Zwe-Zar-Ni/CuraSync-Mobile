@@ -1,15 +1,15 @@
-import { httpClient } from "@/common/api/apiClient";
-import { Qualification } from "../types/qualification";
-import { toNullable } from "@/common/utils/transformers";
+import { httpClient } from '@/common/api/apiClient';
+import { Qualification } from '../types/qualification';
+import { toNullable } from '@/common/utils/transformers';
 import {
   QualificationSchema,
-  UpdateQualificationSchema
-} from "../validations/qualification";
+  UpdateQualificationSchema,
+} from '../validations/qualification';
 
 class QualificationService {
   async getQualifications() {
     const response = await httpClient.get<Qualification[]>(
-      "/doctors/qualifications"
+      '/doctors/qualifications',
     );
     return response.data;
   }
@@ -18,12 +18,12 @@ class QualificationService {
     const payload = {
       name: input.name.trim(),
       institution: input.institution.trim(),
-      year: Number(input.year.trim()),
-      certificate_url: toNullable(input.certificate_url)
+      year: input.year,
+      certificate_url: toNullable(input.certificate_url),
     };
     const response = await httpClient.post<Qualification>(
-      "/doctors/qualifications",
-      payload
+      '/doctors/qualifications',
+      payload,
     );
     return response.data;
   }
@@ -32,12 +32,12 @@ class QualificationService {
     const payload = {
       name: input.name.trim(),
       institution: input.institution.trim(),
-      year: Number(input.year.trim()),
-      certificate_url: toNullable(input.certificate_url)
+      year: input.year,
+      certificate_url: toNullable(input.certificate_url),
     };
     const response = await httpClient.patch<Qualification>(
       `/doctors/qualifications/${id}`,
-      payload
+      payload,
     );
     return response.data;
   }

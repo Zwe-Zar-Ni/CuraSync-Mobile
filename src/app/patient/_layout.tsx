@@ -1,42 +1,42 @@
-import useTheme from "@/common/hooks/useTheme";
-import { usePathname } from "expo-router";
-import { TabList, Tabs, TabSlot, TabTrigger } from "expo-router/ui";
-import { Home, Search, User } from "lucide-react-native";
-import { Text, View } from "react-native";
+import useTheme from '@/common/hooks/useTheme';
+import { usePathname } from 'expo-router';
+import { TabList, Tabs, TabSlot, TabTrigger } from 'expo-router/ui';
+import { Home, Search, User } from 'lucide-react-native';
+import { Text, View } from 'react-native';
 
 const tabs = [
   {
-    name: "Home",
-    href: "/patient/home",
-    icon: Home
+    name: 'Home',
+    href: '/patient/home',
+    icon: Home,
   },
   {
-    name: "Search",
-    href: "/patient/search",
-    icon: Search
+    name: 'Search',
+    href: '/patient/search',
+    icon: Search,
   },
   {
-    name: "Profile",
-    href: "/patient/profile",
-    icon: User
-  }
+    name: 'Profile',
+    href: '/patient/profile',
+    icon: User,
+  },
 ] as const;
 
 const PatientLayout = () => {
   const { colors, text } = useTheme();
   const pathname = usePathname();
 
-  const showTabs = pathname.split("/").length === 3;
+  const showTabs = pathname.split('/').length === 3;
 
   return (
     <Tabs className="bg-background">
       <TabSlot />
 
       <TabList
-        className={`bg-surface h-15 bottom-6 mx-6 rounded-full ${showTabs ? "flex-row" : "hidden"}`}
+        className={`bg-surface h-15 bottom-6 mx-6 rounded-full ${showTabs ? 'flex-row' : 'hidden'}`}
       >
         {tabs.map((tab, index) =>
-          tab.name === "Search" ? (
+          tab.name === 'Search' ? (
             <TabTrigger
               name={tab.name}
               href={tab.href}
@@ -71,7 +71,7 @@ const PatientLayout = () => {
                 ) : null}
               </View>
             </TabTrigger>
-          )
+          ),
         )}
       </TabList>
     </Tabs>

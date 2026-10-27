@@ -10,11 +10,11 @@ export type Schedule = {
 };
 
 export const DAY_KEYS = [
-  "schedules.sunday",
-  "schedules.monday",
-  "schedules.tuesday",
-  "schedules.wednesday",
-  "schedules.thursday",
-  "schedules.friday",
-  "schedules.saturday"
+  'schedules.sunday',
+  'schedules.monday',
+  'schedules.tuesday',
+  'schedules.wednesday',
+  'schedules.thursday',
+  'schedules.friday',
+  'schedules.saturday',
 ] as const;

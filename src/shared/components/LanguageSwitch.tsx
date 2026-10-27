@@ -1,11 +1,11 @@
-import useTheme from "@/common/hooks/useTheme";
-import { languages } from "@/common/localisation/i18n";
-import { setLocale } from "@/common/localisation/utils";
-import { Circle, CircleCheck, X } from "lucide-react-native";
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
-import { Pressable, View, Text } from "react-native";
-import Modal from "react-native-modal";
+import useTheme from '@/common/hooks/useTheme';
+import { languages } from '@/common/localisation/i18n';
+import { setLocale } from '@/common/localisation/utils';
+import { Circle, CircleCheck, X } from 'lucide-react-native';
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { Pressable, View, Text } from 'react-native';
+import Modal from 'react-native-modal';
 
 const LanguageSwitch = () => {
   const { text } = useTheme();
@@ -30,8 +30,8 @@ const LanguageSwitch = () => {
         </Text>
       </Pressable>
       <Modal
-        style={{ justifyContent: "flex-end", margin: 0 }}
-        backdropColor={"#0C0C0C"}
+        style={{ justifyContent: 'flex-end', margin: 0 }}
+        backdropColor={'#0C0C0C'}
         onBackButtonPress={() => setVisibility(false)}
         onBackdropPress={() => setVisibility(false)}
         isVisible={visibility}
@@ -57,7 +57,7 @@ const LanguageSwitch = () => {
                 <View className="flex-1 flex-row items-center gap-2">
                   <Text>{language.flag}</Text>
                   <Text
-                    className={`font-medium ${i18n.language === language.id ? "text-primary" : "text-text-primary"}`}
+                    className={`font-medium ${i18n.language === language.id ? 'text-primary' : 'text-text-primary'}`}
                   >
                     {language.name}
                   </Text>

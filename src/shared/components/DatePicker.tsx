@@ -1,19 +1,19 @@
-import DateTimePicker, { DateType } from "react-native-ui-datepicker";
-import { View } from "react-native";
-import { useState } from "react";
-import dayjs from "dayjs";
-import { ChevronLeft, ChevronRight } from "lucide-react-native";
-import useTheme from "@/common/hooks/useTheme";
+import DateTimePicker, { DateType } from 'react-native-ui-datepicker';
+import { View } from 'react-native';
+import { useState } from 'react';
+import dayjs from 'dayjs';
+import { ChevronLeft, ChevronRight } from 'lucide-react-native';
+import useTheme from '@/common/hooks/useTheme';
 
 type Props = {
   date: DateType;
   setDate: (e: DateType) => void;
-  mode?: "single" | "range";
+  mode?: 'single' | 'range';
   startDate?: DateType;
   endDate?: DateType;
   setRangeDate?: (e: { startDate: DateType; endDate: DateType }) => void;
   allowRangeReset?: boolean;
-  type?: "day" | "time" | "month";
+  type?: 'day' | 'time' | 'month';
   minDate?: DateType;
   maxDate?: DateType;
 };
@@ -27,14 +27,14 @@ type DatePickerChange = {
 const DatePicker = ({
   date,
   setDate,
-  mode = "single",
+  mode = 'single',
   startDate,
   endDate,
   setRangeDate,
   allowRangeReset,
-  type = "day",
+  type = 'day',
   minDate,
-  maxDate
+  maxDate,
 }: Props) => {
   const { text, colors } = useTheme();
   const initialVisibleDate = dayjs(date ?? minDate ?? new Date());
@@ -70,15 +70,15 @@ const DatePicker = ({
         year={visibleYear}
         onMonthChange={setVisibleMonth}
         onYearChange={setVisibleYear}
-        timePicker={type === "time"}
-        initialView={type === "time" ? "time" : "day"}
+        timePicker={type === 'time'}
+        initialView={type === 'time' ? 'time' : 'day'}
         use12Hours={true}
         hideHeader={false}
         onChange={(value: DatePickerChange) => {
-          if (mode === "range") {
+          if (mode === 'range') {
             setRangeDate?.({
               startDate: value.startDate,
-              endDate: value.endDate
+              endDate: value.endDate,
             });
             return;
           }
@@ -86,68 +86,68 @@ const DatePicker = ({
         }}
         components={{
           IconPrev: <ChevronLeft color={text.secondary} />,
-          IconNext: <ChevronRight color={text.secondary} />
+          IconNext: <ChevronRight color={text.secondary} />,
         }}
         styles={{
           disabled: {
             backgroundColor: colors.surface,
-            opacity: 0.45
+            opacity: 0.45,
           },
           disabled_label: {
-            color: text.secondary
+            color: text.secondary,
           },
           day_cell: {
-            height: 50
+            height: 50,
           },
           day_label: {
             color: text.primary,
-            fontSize: 16
+            fontSize: 16,
           },
           month: {
             backgroundColor: colors.surface,
-            borderRadius: 6
+            borderRadius: 6,
           },
           month_label: {
-            color: text.primary
+            color: text.primary,
           },
           year_label: {
-            color: text.primary
+            color: text.primary,
           },
           weekday_label: {
-            color: text.secondary
+            color: text.secondary,
           },
           month_selector_label: {
-            color: text.primary
+            color: text.primary,
           },
           year_selector_label: {
-            color: text.primary
+            color: text.primary,
           },
           time_selector_label: {
-            color: text.primary
+            color: text.primary,
           },
           time_label: {
             color: text.primary,
-            fontSize: 18
+            fontSize: 18,
           },
           day: {
-            borderRadius: 6
+            borderRadius: 6,
           },
           range_fill: {
-            backgroundColor: colors.secondary
+            backgroundColor: colors.secondary,
           },
           range_middle: {
-            backgroundColor: colors.secondary
+            backgroundColor: colors.secondary,
           },
           today: { borderColor: colors.secondary, borderWidth: 1 },
           today_label: {
-            color: colors.secondary
+            color: colors.secondary,
           },
           selected: { backgroundColor: colors.primary },
-          selected_label: { color: "white" },
+          selected_label: { color: 'white' },
           range_start: { backgroundColor: colors.primary },
-          range_start_label: { color: "white" },
+          range_start_label: { color: 'white' },
           range_end: { backgroundColor: colors.primary },
-          range_end_label: { color: "white" }
+          range_end_label: { color: 'white' },
         }}
       />
     </View>

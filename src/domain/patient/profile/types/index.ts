@@ -1,7 +1,7 @@
-import type { PatientProfile, User } from "@/common/types";
+import type { PatientProfile, User } from '@/common/types';
 
 export type PatientProfileResponse = {
   user: User;
-  role: "patient";
+  role: 'patient';
   profile: PatientProfile;
 };

@@ -1,7 +1,7 @@
-import { useTranslation } from "react-i18next";
-import { Pressable, Text, View } from "react-native";
+import { useTranslation } from 'react-i18next';
+import { Pressable, Text, View } from 'react-native';
 
-type Gender = "M" | "F";
+type Gender = 'M' | 'F';
 
 type Props = {
   value: Gender | null;
@@ -10,8 +10,8 @@ type Props = {
 };
 
 const GENDERS = [
-  { value: "M", label: "options.male" },
-  { value: "F", label: "options.female" }
+  { value: 'M', label: 'options.male' },
+  { value: 'F', label: 'options.female' },
 ] as const;
 
 const GenderField = ({ value, onChange, error }: Props) => {
@@ -20,17 +20,17 @@ const GenderField = ({ value, onChange, error }: Props) => {
   return (
     <View>
       <Text className="text-sm font-medium text-text-tertiary mb-1">
-        {t("labels.gender")}
+        {t('labels.gender')}
       </Text>
       <View className="flex-row gap-2">
         {GENDERS.map((gender) => (
           <Pressable
             key={gender.value}
-            className={`flex-1 justify-center items-center h-12 border rounded-xl ${value === gender.value ? "border-secondary" : "border-surface"}`}
+            className={`flex-1 justify-center items-center h-12 border rounded-xl ${value === gender.value ? 'border-secondary' : 'border-surface'}`}
             onPress={() => onChange(gender.value)}
           >
             <Text
-              className={`${value === gender.value ? "text-secondary" : "text-text-primary"}`}
+              className={`${value === gender.value ? 'text-secondary' : 'text-text-primary'}`}
             >
               {t(gender.label)}
             </Text>

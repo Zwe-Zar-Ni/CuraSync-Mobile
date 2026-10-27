@@ -1,13 +1,13 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const TOKEN_KEY = "accessToken";
+const TOKEN_KEY = 'accessToken';
 
 export const setToken = async (token: string) => {
   try {
     await AsyncStorage.setItem(TOKEN_KEY, token);
     return true;
   } catch (error) {
-    console.error("Error saving token:", error);
+    console.error('Error saving token:', error);
     return false;
   }
 };

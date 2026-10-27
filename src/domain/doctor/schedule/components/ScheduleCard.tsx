@@ -1,8 +1,8 @@
-import useTheme from "@/common/hooks/useTheme";
-import { Clock, Timer, Trash2 } from "lucide-react-native";
-import { Pressable, Text, View } from "react-native";
-import { useTranslation } from "react-i18next";
-import { DAY_KEYS, type Schedule } from "../types";
+import useTheme from '@/common/hooks/useTheme';
+import { Clock, Timer, Trash2 } from 'lucide-react-native';
+import { Pressable, Text, View } from 'react-native';
+import { useTranslation } from 'react-i18next';
+import { DAY_KEYS, type Schedule } from '../types';
 
 type Props = {
   schedule: Schedule;
@@ -27,7 +27,8 @@ const ScheduleCard = ({ schedule, onEdit, onDelete }: Props) => {
           <View className="flex-row items-center gap-2 mt-1">
             <Clock color={text.secondary} size={16} />
             <Text className="text-sm text-text-secondary">
-              {schedule.start_time.slice(0, 5)} – {schedule.end_time.slice(0, 5)}
+              {schedule.start_time.slice(0, 5)} –{' '}
+              {schedule.end_time.slice(0, 5)}
             </Text>
           </View>
         </View>
@@ -39,16 +40,16 @@ const ScheduleCard = ({ schedule, onEdit, onDelete }: Props) => {
         <View className="flex-row items-center gap-1 border border-border rounded-full px-2 py-0.5">
           <Timer color={text.secondary} size={14} />
           <Text className="text-xs text-text-secondary">
-            {t("schedules.minutesValue", {
-              value: schedule.slot_duration_minutes
+            {t('schedules.minutesValue', {
+              value: schedule.slot_duration_minutes,
             })}
           </Text>
         </View>
         <View className="border border-border rounded-full px-2 py-0.5">
           <Text className="text-xs text-text-secondary">
             {schedule.is_active
-              ? t("schedules.active")
-              : t("schedules.inactive")}
+              ? t('schedules.active')
+              : t('schedules.inactive')}
           </Text>
         </View>
       </View>

@@ -1,10 +1,10 @@
-import useTheme from "@/common/hooks/useTheme";
-import type { Specialization } from "@/common/types";
-import { Check } from "lucide-react-native";
-import { useTranslation } from "react-i18next";
-import { Image, Pressable, ScrollView, Text, View } from "react-native";
+import useTheme from '@/common/hooks/useTheme';
+import type { Specialization } from '@/common/types';
+import { Check } from 'lucide-react-native';
+import { useTranslation } from 'react-i18next';
+import { Image, Pressable, ScrollView, Text, View } from 'react-native';
 
-import Pulse from "@/assets/images/pulse.png";
+import Pulse from '@/assets/images/pulse.png';
 
 type Props = {
   options: Specialization[];
@@ -20,7 +20,7 @@ const SpecializationField = ({ options, value, onChange, error }: Props) => {
   return (
     <View>
       <Text className="text-sm font-medium text-text-tertiary mb-1">
-        {t("specialties.specialization")}
+        {t('specialties.specialization')}
       </Text>
       {options.length ? (
         <ScrollView className="max-h-120" showsVerticalScrollIndicator={false}>
@@ -28,7 +28,7 @@ const SpecializationField = ({ options, value, onChange, error }: Props) => {
             <Pressable
               key={option.id}
               onPress={() => onChange(option.id)}
-              className={`bg-surface rounded-xl mb-2 border p-3 flex-row ${option.id === value ? "border-secondary" : "border-border"}`}
+              className={`bg-surface rounded-xl mb-2 border p-3 flex-row ${option.id === value ? 'border-secondary' : 'border-border'}`}
             >
               <View className="flex-1">
                 <View className="flex-row items-center">
@@ -65,7 +65,7 @@ const SpecializationField = ({ options, value, onChange, error }: Props) => {
         </ScrollView>
       ) : (
         <Text className="text-sm text-text-secondary">
-          {t("specialties.allAdded")}
+          {t('specialties.allAdded')}
         </Text>
       )}
       {error ? (

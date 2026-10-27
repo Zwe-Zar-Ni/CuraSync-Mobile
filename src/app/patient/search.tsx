@@ -1,4 +1,4 @@
-import SearchPage from "@/domain/patient/search/pages/SearchPage";
+import SearchPage from '@/domain/patient/search/pages/SearchPage';
 
 const search = () => {
   return <SearchPage />;

@@ -1,13 +1,13 @@
-import { LogOut, Trash, X } from "lucide-react-native";
-import { View, Text, Pressable } from "react-native";
-import { useTranslation } from "react-i18next";
-import { router } from "expo-router";
-import { removeToken } from "@/common/utils/auth";
-import { useLogout, useDeleteAccount } from "../queries";
-import useTheme from "@/common/hooks/useTheme";
-import Modal from "react-native-modal";
-import Button from "@/shared/components/Button";
-import { useState } from "react";
+import { LogOut, Trash, X } from 'lucide-react-native';
+import { View, Text, Pressable } from 'react-native';
+import { useTranslation } from 'react-i18next';
+import { router } from 'expo-router';
+import { removeToken } from '@/common/utils/auth';
+import { useLogout, useDeleteAccount } from '../queries';
+import useTheme from '@/common/hooks/useTheme';
+import Modal from 'react-native-modal';
+import Button from '@/shared/components/Button';
+import { useState } from 'react';
 
 const AccountSettings = () => {
   const { t } = useTranslation();
@@ -25,15 +25,15 @@ const AccountSettings = () => {
     logout(undefined, {
       onSuccess: async () => {
         await removeToken();
-        router.replace("/");
+        router.replace('/');
       },
       onError: async () => {
         await removeToken();
-        router.replace("/");
+        router.replace('/');
       },
       onSettled: () => {
         setShowLogout(false);
-      }
+      },
     });
   };
 
@@ -41,15 +41,15 @@ const AccountSettings = () => {
     deleteAccount(undefined, {
       onSuccess: async () => {
         await removeToken();
-        router.replace("/");
+        router.replace('/');
       },
       onError: async () => {
         await removeToken();
-        router.replace("/");
+        router.replace('/');
       },
       onSettled: () => {
         setShowDelete(false);
-      }
+      },
     });
   };
 
@@ -61,7 +61,7 @@ const AccountSettings = () => {
         disabled={isPending}
       >
         <LogOut color="white" size={21} />
-        <Text className="text-white font-medium">{t("profile.logout")}</Text>
+        <Text className="text-white font-medium">{t('profile.logout')}</Text>
       </Pressable>
       <Pressable
         className="p-3 rounded-full border border-red-600 mt-4 flex-row justify-center items-center gap-2 disabled:opacity-40"
@@ -70,13 +70,13 @@ const AccountSettings = () => {
       >
         <Trash color="red" size={21} />
         <Text className="text-red-500 font-medium">
-          {t("profile.deleteAccount")}
+          {t('profile.deleteAccount')}
         </Text>
       </Pressable>
 
       <Modal
-        style={{ justifyContent: "flex-end", margin: 0 }}
-        backdropColor={"#0C0C0C"}
+        style={{ justifyContent: 'flex-end', margin: 0 }}
+        backdropColor={'#0C0C0C'}
         onBackButtonPress={() => setShowLogout(false)}
         onBackdropPress={() => setShowLogout(false)}
         isVisible={showLogout}
@@ -84,7 +84,7 @@ const AccountSettings = () => {
         <View className="bg-background">
           <View className="relative bg-surface py-3 px-2 items-center">
             <Text className="text-md text-text-primary font-medium">
-              {t("profile.logout")}
+              {t('profile.logout')}
             </Text>
             <View className="absolute top-3 right-4">
               <Pressable onPress={() => setShowLogout(false)}>
@@ -94,17 +94,17 @@ const AccountSettings = () => {
           </View>
           <View className="px-4 mt-8">
             <Text className="text-md font-medium text-text-primary">
-              {t("profile.logoutConfirm") ?? "Are you sure you want to logout?"}
+              {t('profile.logoutConfirm') ?? 'Are you sure you want to logout?'}
             </Text>
           </View>
           <View className="px-4 mt-8 pb-6 gap-3">
             <Button
-              text={t("profile.logout")}
+              text={t('profile.logout')}
               onPress={handleLogoutConfirm}
               disabled={isPending}
             />
             <Button
-              text={t("actions.cancel")}
+              text={t('actions.cancel')}
               variant="outline"
               onPress={() => setShowLogout(false)}
               disabled={isPending}
@@ -114,8 +114,8 @@ const AccountSettings = () => {
       </Modal>
 
       <Modal
-        style={{ justifyContent: "flex-end", margin: 0 }}
-        backdropColor={"#0C0C0C"}
+        style={{ justifyContent: 'flex-end', margin: 0 }}
+        backdropColor={'#0C0C0C'}
         onBackButtonPress={() => setShowDelete(false)}
         onBackdropPress={() => setShowDelete(false)}
         isVisible={showDelete}
@@ -123,7 +123,7 @@ const AccountSettings = () => {
         <View className="bg-background">
           <View className="relative bg-surface py-3 px-2 items-center">
             <Text className="text-md text-text-primary font-medium">
-              {t("profile.deleteAccount")}
+              {t('profile.deleteAccount')}
             </Text>
             <View className="absolute top-3 right-4">
               <Pressable onPress={() => setShowDelete(false)}>
@@ -133,18 +133,18 @@ const AccountSettings = () => {
           </View>
           <View className="px-4 mt-8">
             <Text className="text-md font-medium text-text-primary">
-              {t("profile.deleteConfirm") ??
-                "Are you sure you want to delete your account? This action cannot be undone."}
+              {t('profile.deleteConfirm') ??
+                'Are you sure you want to delete your account? This action cannot be undone.'}
             </Text>
           </View>
           <View className="px-4 mt-8 pb-6 gap-3">
             <Button
-              text={t("profile.deleteAccount")}
+              text={t('profile.deleteAccount')}
               onPress={handleDeleteConfirm}
               disabled={isPending}
             />
             <Button
-              text={t("actions.cancel")}
+              text={t('actions.cancel')}
               variant="outline"
               onPress={() => setShowDelete(false)}
               disabled={isPending}

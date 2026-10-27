@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
-import { Pressable, Text } from "react-native";
+import { ReactNode } from 'react';
+import { Pressable, Text } from 'react-native';
 
 type Props = {
   prefixIcon?: ReactNode;
@@ -11,12 +11,12 @@ type Props = {
   onPress: () => void;
 };
 
-type ButtonVariant = "default" | "outline" | "ghost";
+type ButtonVariant = 'default' | 'outline' | 'ghost';
 
 export const variants = {
-  default: "bg-primary",
-  outline: "bg-transparent border border-secondary",
-  ghost: "bg-transparent"
+  default: 'bg-primary',
+  outline: 'bg-transparent border border-secondary',
+  ghost: 'bg-transparent',
 } as const;
 
 const Button = ({
@@ -26,18 +26,18 @@ const Button = ({
   variant,
   className,
   disabled = false,
-  onPress
+  onPress,
 }: Props) => {
   return (
     <Pressable
       onPress={onPress}
-      className={`rounded-full gap-2 px-4 flex flex-row justify-center items-center h-12 disabled:opacity-40 ${variants[variant ?? "default"]} ${className}`}
+      className={`rounded-full gap-2 px-4 flex flex-row justify-center items-center h-12 disabled:opacity-40 ${variants[variant ?? 'default']} ${className}`}
       disabled={disabled}
     >
       {prefixIcon ? prefixIcon : null}
       {text ? (
         <Text
-          className={`text-md font-medium ${variant === "default" || variant === undefined ? "text-white" : "text-text-primary"}`}
+          className={`text-md font-medium ${variant === 'default' || variant === undefined ? 'text-white' : 'text-text-primary'}`}
         >
           {text}
         </Text>

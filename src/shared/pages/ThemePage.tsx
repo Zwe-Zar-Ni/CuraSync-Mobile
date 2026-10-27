@@ -1,9 +1,9 @@
-import { View, Text, Pressable } from "react-native";
-import useTheme, { themes } from "@/common/hooks/useTheme";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { ChevronLeft, Circle, CircleCheck } from "lucide-react-native";
-import { router } from "expo-router";
-import { useTranslation } from "react-i18next";
+import { View, Text, Pressable } from 'react-native';
+import useTheme, { themes } from '@/common/hooks/useTheme';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { ChevronLeft, Circle, CircleCheck } from 'lucide-react-native';
+import { router } from 'expo-router';
+import { useTranslation } from 'react-i18next';
 
 const ThemePage = () => {
   const insets = useSafeAreaInsets();
@@ -20,7 +20,7 @@ const ThemePage = () => {
           <ChevronLeft color={text.secondary} size={24} />
         </Pressable>
         <Text className="text-text-primary font-semibold text-xl">
-          {t("profile.theme")}
+          {t('profile.theme')}
         </Text>
       </View>
       {themes.map((t) => (
@@ -34,7 +34,7 @@ const ThemePage = () => {
             size={24}
           />
           <Text
-            className={`flex-1 text-lg ${theme === t.name ? "text-secondary" : "text-text-secondary"}`}
+            className={`flex-1 text-lg ${theme === t.name ? 'text-secondary' : 'text-text-secondary'}`}
           >
             {t.label}
           </Text>

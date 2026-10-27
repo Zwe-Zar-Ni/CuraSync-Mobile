@@ -1,10 +1,10 @@
-import useTheme from "@/common/hooks/useTheme";
-import { Calendar, X } from "lucide-react-native";
-import { useState } from "react";
-import { useTranslation } from "react-i18next";
-import { View, Text, Pressable, FlatList } from "react-native";
-import Modal from "react-native-modal";
-import Button from "./Button";
+import useTheme from '@/common/hooks/useTheme';
+import { Calendar, X } from 'lucide-react-native';
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { View, Text, Pressable, FlatList } from 'react-native';
+import Modal from 'react-native-modal';
+import Button from './Button';
 
 const getOptions = () => {
   const years = [];
@@ -31,23 +31,23 @@ const YearPickerField = ({ onChange, value, disabled }: Props) => {
   return (
     <View>
       <Text className="text-sm font-medium text-text-secondary mb-3">
-        {t("qualifications.year")}
+        {t('qualifications.year')}
       </Text>
       <Pressable
-        className={`w-full flex-row items-center gap-2 bg-surface rounded-lg p-3 border border-border ${disabled ? "opacity-75" : "opacity-100"}`}
+        className={`w-full flex-row items-center gap-2 bg-surface rounded-lg p-3 border border-border ${disabled ? 'opacity-75' : 'opacity-100'}`}
         onPress={() => setVisibility(true)}
         disabled={disabled}
       >
         <Calendar color={text.secondary} size={21} />
         <Text
-          className={`text-md font-regular ${value ? "text-text-primary" : "text-text-tertiary"} flex-1`}
+          className={`text-md font-regular ${value ? 'text-text-primary' : 'text-text-tertiary'} flex-1`}
         >
-          {value ?? "E.g. 2020"}
+          {value ?? 'E.g. 2020'}
         </Text>
       </Pressable>
       <Modal
-        style={{ justifyContent: "flex-end", margin: 0 }}
-        backdropColor={"#0C0C0C"}
+        style={{ justifyContent: 'flex-end', margin: 0 }}
+        backdropColor={'#0C0C0C'}
         onBackButtonPress={() => setVisibility(false)}
         onBackdropPress={() => setVisibility(false)}
         isVisible={visibility}
@@ -73,10 +73,10 @@ const YearPickerField = ({ onChange, value, disabled }: Props) => {
               <Pressable
                 key={item}
                 onPress={() => setUiYear(item)}
-                className={`border rounded-xl p-4 px-8 m-2 flex-1 ${uiYear === item ? "border-primary" : "border-border"}`}
+                className={`border rounded-xl p-4 px-8 m-2 flex-1 ${uiYear === item ? 'border-primary' : 'border-border'}`}
               >
                 <Text
-                  className={`font-medium ${uiYear === item ? "text-primary" : "text-text-primary"}`}
+                  className={`font-medium ${uiYear === item ? 'text-primary' : 'text-text-primary'}`}
                 >
                   {item}
                 </Text>

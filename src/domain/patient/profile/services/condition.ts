@@ -1,14 +1,14 @@
-import { httpClient } from "@/common/api/apiClient";
-import { Condition } from "../types/condition";
+import { httpClient } from '@/common/api/apiClient';
+import { Condition } from '../types/condition';
 import {
   ConditionSchema,
-  UpdateConditionSchema
-} from "../validations/condition";
-import { toNullable } from "@/common/utils/transformers";
+  UpdateConditionSchema,
+} from '../validations/condition';
+import { toNullable } from '@/common/utils/transformers';
 
 class ConditionService {
   async getConditions() {
-    const response = await httpClient.get<Condition[]>("/patients/conditions");
+    const response = await httpClient.get<Condition[]>('/patients/conditions');
     return response.data;
   }
 
@@ -17,11 +17,11 @@ class ConditionService {
       name: input.name.trim(),
       diagnosis_date: toNullable(input.diagnosis_date),
       status: input.status,
-      note: toNullable(input.note)
+      note: toNullable(input.note),
     };
     const response = await httpClient.post<Condition>(
-      "/patients/conditions",
-      payload
+      '/patients/conditions',
+      payload,
     );
     return response.data;
   }
@@ -31,11 +31,11 @@ class ConditionService {
       name: input.name.trim(),
       diagnosis_date: toNullable(input.diagnosis_date),
       status: input.status,
-      note: toNullable(input.note)
+      note: toNullable(input.note),
     };
     const response = await httpClient.patch<Condition>(
       `/patients/conditions/${id}`,
-      payload
+      payload,
     );
     return response.data;
   }

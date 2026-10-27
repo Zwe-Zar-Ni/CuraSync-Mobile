@@ -1,20 +1,20 @@
-import useTheme from "@/common/hooks/useTheme";
-import type { ApiError } from "@/common/types";
-import Button from "@/shared/components/Button";
-import TextField from "@/shared/components/TextField";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { X } from "lucide-react-native";
-import { useEffect } from "react";
-import { Controller, useForm } from "react-hook-form";
-import { Pressable, ScrollView, Text, View } from "react-native";
-import Modal from "react-native-modal";
-import { useTranslation } from "react-i18next";
-import { useCreateContact, useUpdateContact } from "../../queries/contact";
-import type { Contact } from "../../types/contact";
+import useTheme from '@/common/hooks/useTheme';
+import type { ApiError } from '@/common/types';
+import Button from '@/shared/components/Button';
+import TextField from '@/shared/components/TextField';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { X } from 'lucide-react-native';
+import { useEffect } from 'react';
+import { Controller, useForm } from 'react-hook-form';
+import { Pressable, ScrollView, Text, View } from 'react-native';
+import Modal from 'react-native-modal';
+import { useTranslation } from 'react-i18next';
+import { useCreateContact, useUpdateContact } from '../../queries/contact';
+import type { Contact } from '../../types/contact';
 import {
   ContactValidator,
-  type ContactSchema
-} from "../../validations/contact";
+  type ContactSchema,
+} from '../../validations/contact';
 
 type Props = {
   isVisible: boolean;
@@ -35,24 +35,24 @@ const ContactFormSheet = ({ isVisible, contact = null, onClose }: Props) => {
     control,
     handleSubmit,
     reset,
-    formState: { errors, isSubmitting }
+    formState: { errors, isSubmitting },
   } = useForm<ContactSchema>({
     resolver: zodResolver(ContactValidator),
     defaultValues: {
-      name: "",
-      phone_number: "",
+      name: '',
+      phone_number: '',
       email: null,
-      address: null
-    }
+      address: null,
+    },
   });
 
   useEffect(() => {
     if (!isVisible) return;
     reset({
-      name: contact?.name ?? "",
-      phone_number: contact?.phone_number ?? "",
+      name: contact?.name ?? '',
+      phone_number: contact?.phone_number ?? '',
       email: contact?.email ?? null,
-      address: contact?.address ?? null
+      address: contact?.address ?? null,
     });
   }, [isVisible, contact, reset]);
 
@@ -61,7 +61,7 @@ const ContactFormSheet = ({ isVisible, contact = null, onClose }: Props) => {
       onSuccess: () => onClose(),
       onError: (error: ApiError) => {
         console.log(error);
-      }
+      },
     };
 
     if (contact) {
@@ -74,8 +74,8 @@ const ContactFormSheet = ({ isVisible, contact = null, onClose }: Props) => {
 
   return (
     <Modal
-      style={{ justifyContent: "flex-end", margin: 0 }}
-      backdropColor={"#0C0C0C"}
+      style={{ justifyContent: 'flex-end', margin: 0 }}
+      backdropColor={'#0C0C0C'}
       avoidKeyboard
       onBackButtonPress={onClose}
       onBackdropPress={onClose}
@@ -84,7 +84,7 @@ const ContactFormSheet = ({ isVisible, contact = null, onClose }: Props) => {
       <View className="bg-background">
         <View className="relative bg-surface py-3 px-2 items-center">
           <Text className="text-md text-text-primary font-medium">
-            {contact ? t("contacts.edit") : t("contacts.add")}
+            {contact ? t('contacts.edit') : t('contacts.add')}
           </Text>
           <View className="absolute top-3 right-4">
             <Pressable onPress={onClose}>
@@ -103,10 +103,10 @@ const ContactFormSheet = ({ isVisible, contact = null, onClose }: Props) => {
               name="name"
               render={({ field: { onChange, onBlur, value } }) => (
                 <TextField
-                  value={value ?? ""}
+                  value={value ?? ''}
                   onBlur={onBlur}
                   onChangeText={onChange}
-                  label={t("labels.name")}
+                  label={t('labels.name')}
                   placeholder="Full Name"
                   error={errors.name ? errors.name.message : undefined}
                 />
@@ -118,10 +118,10 @@ const ContactFormSheet = ({ isVisible, contact = null, onClose }: Props) => {
               name="phone_number"
               render={({ field: { onChange, onBlur, value } }) => (
                 <TextField
-                  value={value ?? ""}
+                  value={value ?? ''}
                   onBlur={onBlur}
                   onChangeText={onChange}
-                  label={t("labels.phoneNumber")}
+                  label={t('labels.phoneNumber')}
                   placeholder="Phone Number"
                   keyboardType="phone-pad"
                   error={
@@ -138,10 +138,10 @@ const ContactFormSheet = ({ isVisible, contact = null, onClose }: Props) => {
               name="email"
               render={({ field: { onChange, onBlur, value } }) => (
                 <TextField
-                  value={value ?? ""}
+                  value={value ?? ''}
                   onBlur={onBlur}
                   onChangeText={(next) => onChange(next.length ? next : null)}
-                  label={t("labels.email")}
+                  label={t('labels.email')}
                   placeholder="Email Address"
                   keyboardType="email-address"
                   autoCapitalize="none"
@@ -155,10 +155,10 @@ const ContactFormSheet = ({ isVisible, contact = null, onClose }: Props) => {
               name="address"
               render={({ field: { onChange, onBlur, value } }) => (
                 <TextField
-                  value={value ?? ""}
+                  value={value ?? ''}
                   onBlur={onBlur}
                   onChangeText={(next) => onChange(next.length ? next : null)}
-                  label={t("contacts.address")}
+                  label={t('contacts.address')}
                   placeholder="Address"
                   error={errors.address ? errors.address.message : undefined}
                 />
@@ -168,12 +168,12 @@ const ContactFormSheet = ({ isVisible, contact = null, onClose }: Props) => {
         </ScrollView>
         <View className="px-4 pb-6 gap-3">
           <Button
-            text={t("actions.save")}
+            text={t('actions.save')}
             onPress={handleSubmit(onSubmit)}
             disabled={isSubmitting || isPending}
           />
           <Button
-            text={t("actions.cancel")}
+            text={t('actions.cancel')}
             variant="outline"
             onPress={onClose}
             disabled={isSubmitting || isPending}

@@ -1,7 +1,7 @@
-import { ArrowUpRight } from "lucide-react-native";
-import { View, Text, Image, Pressable } from "react-native";
-import type { Doctor } from "../types";
-import DoctorProfile from "@/assets/images/doctor-profile.png";
+import { ArrowUpRight } from 'lucide-react-native';
+import { View, Text, Image, Pressable } from 'react-native';
+import type { Doctor } from '../types';
+import DoctorProfile from '@/assets/images/doctor-profile.png';
 
 type Props = {
   doctor: Doctor;
@@ -14,11 +14,11 @@ const DoctorCard = ({ doctor }: Props) => {
     <View
       className="bg-surface relative pb-12 p-2 rounded-2xl mb-10"
       style={{
-        elevation: 1
+        elevation: 1,
       }}
     >
       <View className="relative h-40">
-        {profile_url && profile_url !== "" ? (
+        {profile_url && profile_url !== '' ? (
           <Image
             src={profile_url}
             className="w-full h-full rounded-xl"
@@ -45,13 +45,13 @@ const DoctorCard = ({ doctor }: Props) => {
         {name}
       </Text>
       <Text className="text-text-secondary font-medium">
-        {specilizations[0]?.name ?? ""}
+        {specilizations[0]?.name ?? ''}
       </Text>
       <View className="absolute -bottom-7 left-1/2 right-1/2 rounded-full justify-center items-center">
         <Pressable
           className="bg-primary rounded-full w-14 h-14 justify-center items-center border-3 border-background"
           style={{
-            elevation: 1
+            elevation: 1,
           }}
         >
           <ArrowUpRight color="white" size={24} />

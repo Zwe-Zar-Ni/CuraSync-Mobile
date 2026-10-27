@@ -1,4 +1,4 @@
-import OverridesPage from "@/domain/doctor/schedule/pages/OverridesPage";
+import OverridesPage from '@/domain/doctor/schedule/pages/OverridesPage';
 
 const DoctorScheduleOverrides = () => {
   return <OverridesPage />;

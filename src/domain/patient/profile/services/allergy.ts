@@ -1,11 +1,11 @@
-import { httpClient } from "@/common/api/apiClient";
-import { Allergy } from "../types/allergy";
-import { AllergySchema, UpdateAllergySchema } from "../validations/allergy";
-import { toNullable } from "@/common/utils/transformers";
+import { httpClient } from '@/common/api/apiClient';
+import { Allergy } from '../types/allergy';
+import { AllergySchema, UpdateAllergySchema } from '../validations/allergy';
+import { toNullable } from '@/common/utils/transformers';
 
 class AllergyService {
   async getAllergies() {
-    const response = await httpClient.get<Allergy[]>("/patients/allergies");
+    const response = await httpClient.get<Allergy[]>('/patients/allergies');
     return response.data;
   }
 
@@ -13,11 +13,11 @@ class AllergyService {
     const payload = {
       name: input.name.trim(),
       severity: input.severity,
-      note: toNullable(input.note)
+      note: toNullable(input.note),
     };
     const response = await httpClient.post<Allergy>(
-      "/patients/allergies",
-      payload
+      '/patients/allergies',
+      payload,
     );
     return response.data;
   }
@@ -26,11 +26,11 @@ class AllergyService {
     const payload = {
       name: input.name.trim(),
       severity: input.severity,
-      note: toNullable(input.note)
+      note: toNullable(input.note),
     };
     const response = await httpClient.patch<Allergy>(
       `/patients/allergies/${id}`,
-      payload
+      payload,
     );
     return response.data;
   }

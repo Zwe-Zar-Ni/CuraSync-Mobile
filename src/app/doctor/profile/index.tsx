@@ -1,4 +1,4 @@
-import DoctorProfilePage from "@/domain/doctor/profile/pages/ProfilePage";
+import DoctorProfilePage from '@/domain/doctor/profile/pages/ProfilePage';
 
 const DoctorProfile = () => {
   return <DoctorProfilePage />;

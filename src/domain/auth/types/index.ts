@@ -1,4 +1,4 @@
-import { UserProfile } from "@/common/types";
+import { UserProfile } from '@/common/types';
 
 export type AuthResponse = {
   token: string;

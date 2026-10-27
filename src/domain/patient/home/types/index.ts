@@ -25,5 +25,5 @@ export type Consultation = {
   id: number;
   doctor: Doctor;
   scheduled_at: string;
-  visit_type: "virtual" | "in_person";
+  visit_type: 'virtual' | 'in_person';
 };

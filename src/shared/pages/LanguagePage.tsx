@@ -1,11 +1,11 @@
-import useTheme from "@/common/hooks/useTheme";
-import { languages } from "@/common/localisation/i18n";
-import { setLocale } from "@/common/localisation/utils";
-import { router } from "expo-router";
-import { ChevronLeft, Circle, CircleCheck } from "lucide-react-native";
-import { useTranslation } from "react-i18next";
-import { View, Text, Pressable } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import useTheme from '@/common/hooks/useTheme';
+import { languages } from '@/common/localisation/i18n';
+import { setLocale } from '@/common/localisation/utils';
+import { router } from 'expo-router';
+import { ChevronLeft, Circle, CircleCheck } from 'lucide-react-native';
+import { useTranslation } from 'react-i18next';
+import { View, Text, Pressable } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const LanguagePage = () => {
   const { t, i18n } = useTranslation();
@@ -27,7 +27,7 @@ const LanguagePage = () => {
           <ChevronLeft color={text.secondary} size={24} />
         </Pressable>
         <Text className="text-text-primary font-semibold text-xl">
-          {t("profile.language")}
+          {t('profile.language')}
         </Text>
       </View>
       <View className="gap-2 p-2">
@@ -40,7 +40,7 @@ const LanguagePage = () => {
             <View className="flex-1 flex-row items-center gap-2">
               <Text>{language.flag}</Text>
               <Text
-                className={`font-medium ${i18n.language === language.id ? "text-primary" : "text-text-primary"}`}
+                className={`font-medium ${i18n.language === language.id ? 'text-primary' : 'text-text-primary'}`}
               >
                 {language.name}
               </Text>
