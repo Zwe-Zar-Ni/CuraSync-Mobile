@@ -10,14 +10,14 @@ import { PatientProfileSchema } from '../validations/patient-profile';
 class AuthService {
   async registerPatient(input: RegisterSchema) {
     const response = await httpClient.post<AuthResponse>(
-      '/auth/register-patient',
+      '/auth/register/patient',
       input,
     );
     return response.data;
   }
   async registerDoctor(input: RegisterDoctorSchema) {
     const response = await httpClient.post<AuthResponse>(
-      '/auth/register-doctor',
+      '/auth/register/doctor',
       input,
     );
     return response.data;

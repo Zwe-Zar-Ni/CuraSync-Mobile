@@ -11,6 +11,7 @@ import { useTranslation } from 'react-i18next';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLogin } from '../queries';
 import { LoginSchema, LoginValidator } from '../validations/login';
+import { setRefreshToken, setToken } from '@/common/utils/auth';
 
 const LoginPage = () => {
   const { t } = useTranslation();
@@ -34,10 +35,12 @@ const LoginPage = () => {
     mutate(data, {
       onSuccess: (response) => {
         console.log('response - ', response);
+        setToken(response.access_token);
+        setRefreshToken(response.refresh_token);
         router.push('/doctor/home');
       },
       onError: (error) => {
-        console.log('error - ', error);
+        console.log('error - ', error.data);
       },
     });
   };

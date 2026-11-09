@@ -5,9 +5,18 @@ import Button from '@/shared/components/Button';
 import WelcomeImage from '../assets/images/welcome.png';
 import { useTranslation } from 'react-i18next';
 import LanguageSwitch from '@/shared/components/LanguageSwitch';
+import useAuth from '@/common/hooks/useAuth';
 
 const WelcomePage = () => {
   const { t } = useTranslation();
+  const { isAuthenticated, user } = useAuth();
+
+  if (isAuthenticated && user?.role === 'doctor') {
+    router.push('/doctor/home');
+  }
+  if (isAuthenticated && user?.role === 'patient') {
+    router.push('/patient/home');
+  }
 
   return (
     <View className="flex-1 h-screen bg-background justify-center items-center px-3">

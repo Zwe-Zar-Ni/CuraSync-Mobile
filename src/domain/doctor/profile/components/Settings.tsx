@@ -15,7 +15,7 @@ const Settings = () => {
       <View className="bg-surface p-2 rounded-xl border border-border mt-1">
         <Pressable
           className="flex-row items-center gap-3 py-3 border-b border-border"
-          onPress={() => router.push('/patient/profile/language')}
+          onPress={() => router.push('/doctor/profile/language')}
         >
           <Languages color={colors.secondary} size={22} />
           <Text className="flex-1 text-text-primary">
@@ -25,7 +25,7 @@ const Settings = () => {
         </Pressable>
         <Pressable
           className="flex-row items-center gap-3 py-3"
-          onPress={() => router.push('/patient/profile/theme')}
+          onPress={() => router.push('/doctor/profile/theme')}
         >
           <Palette color={colors.secondary} size={22} />
           <Text className="flex-1 text-text-primary">{t('profile.theme')}</Text>

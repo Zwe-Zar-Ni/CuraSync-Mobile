@@ -2,7 +2,7 @@ import { LogOut, Trash, X } from 'lucide-react-native';
 import { View, Text, Pressable } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { router } from 'expo-router';
-import { removeToken } from '@/common/utils/auth';
+import { removeRefreshToken, removeToken } from '@/common/utils/auth';
 import { useLogout, useDeleteAccount } from '../queries';
 import useTheme from '@/common/hooks/useTheme';
 import Modal from 'react-native-modal';
@@ -21,20 +21,15 @@ const AccountSettings = () => {
 
   const isPending = isLoggingOut || isDeleting;
 
-  const handleLogoutConfirm = () => {
+  const handleLogoutConfirm = async () => {
     logout(undefined, {
-      onSuccess: async () => {
-        await removeToken();
-        router.replace('/');
-      },
-      onError: async () => {
-        await removeToken();
-        router.replace('/');
-      },
       onSettled: () => {
         setShowLogout(false);
       },
     });
+    await removeToken();
+    await removeRefreshToken();
+    router.replace('/');
   };
 
   const handleDeleteConfirm = () => {

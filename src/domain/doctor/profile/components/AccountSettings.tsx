@@ -2,7 +2,7 @@ import { LogOut, Trash, X } from 'lucide-react-native';
 import { View, Text, Pressable } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import { router } from 'expo-router';
-import { removeToken } from '@/common/utils/auth';
+import { removeRefreshToken, removeToken } from '@/common/utils/auth';
 import { useLogout, useDeleteAccount } from '../queries';
 import useTheme from '@/common/hooks/useTheme';
 import Modal from 'react-native-modal';
@@ -37,20 +37,15 @@ const AccountSettings = () => {
     });
   };
 
-  const handleDeleteConfirm = () => {
+  const handleDeleteConfirm = async () => {
     deleteAccount(undefined, {
-      onSuccess: async () => {
-        await removeToken();
-        router.replace('/');
-      },
-      onError: async () => {
-        await removeToken();
-        router.replace('/');
-      },
       onSettled: () => {
         setShowDelete(false);
       },
     });
+    await removeToken();
+    await removeRefreshToken();
+    router.replace('/');
   };
 
   return (

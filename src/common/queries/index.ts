@@ -6,6 +6,7 @@ export const useGetProfile = () => {
   return useQuery({
     queryKey: ['profile-me'],
     queryFn: commonService.getProfile,
+    staleTime: 1000 * 60 * 10, // 10 minutes
   });
 };
 

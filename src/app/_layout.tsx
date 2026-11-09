@@ -1,5 +1,4 @@
 import { QueryClientProvider } from '@tanstack/react-query';
-import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { StatusBar } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
@@ -10,6 +9,7 @@ import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { getLocale } from '@/common/localisation/utils';
 import useTheme from '@/common/hooks/useTheme';
+import RootLayoutStack from '@/shared/layouts/RootComponent';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -32,12 +32,7 @@ export default function RootLayout() {
   return (
     <SafeAreaProvider>
       <QueryClientProvider client={queryClient}>
-        <Stack>
-          <Stack.Screen name="auth" options={{ headerShown: false }} />
-          <Stack.Screen name="index" options={{ headerShown: false }} />
-          <Stack.Screen name="patient" options={{ headerShown: false }} />
-          <Stack.Screen name="doctor" options={{ headerShown: false }} />
-        </Stack>
+        <RootLayoutStack />
         <StatusBar
           barStyle={theme.includes('dark') ? 'light-content' : 'dark-content'}
           animated={true}

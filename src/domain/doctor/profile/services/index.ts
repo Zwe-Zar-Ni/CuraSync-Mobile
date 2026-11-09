@@ -2,7 +2,6 @@ import { httpClient } from '@/common/api/apiClient';
 import { Doctor } from '@/common/types';
 import { toNullable, toFee } from '@/common/utils/transformers';
 import type { EditProfileSchema } from '../validations/edit-profile';
-import { doctorProfile } from '@/common/service/dummy';
 
 class ProfileService {
   async updateProfile(input: EditProfileSchema) {
@@ -21,11 +20,11 @@ class ProfileService {
   }
 
   async logout() {
-    await httpClient.post('/me/logout');
+    await httpClient.post('/auth/logout');
   }
 
   async deleteAccount() {
-    await httpClient.post('/me/delete-account');
+    await httpClient.post('/auth/delete-account');
   }
 }
 

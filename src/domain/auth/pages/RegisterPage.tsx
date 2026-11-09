@@ -11,6 +11,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useRegisterPatient } from '../queries';
 import { RegisterSchema, RegisterValidator } from '../validations/register';
 import { useTranslation } from 'react-i18next';
+import { setRefreshToken, setToken } from '@/common/utils/auth';
 
 const RegisterPage = () => {
   const { t } = useTranslation();
@@ -34,8 +35,9 @@ const RegisterPage = () => {
 
   const onSubmit = (data: RegisterSchema) => {
     mutate(data, {
-      onSuccess: (response) => {
-        console.log('response - ', response);
+      onSuccess: async (response) => {
+        await setToken(response.access_token);
+        await setRefreshToken(response.refresh_token);
         router.push('/auth/patient-profile');
       },
       onError: (error) => {

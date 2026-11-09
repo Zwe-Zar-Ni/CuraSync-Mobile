@@ -1,5 +1,6 @@
+import useAuth from '@/common/hooks/useAuth';
 import useTheme from '@/common/hooks/useTheme';
-import { usePathname } from 'expo-router';
+import { router, usePathname } from 'expo-router';
 import { TabList, Tabs, TabSlot, TabTrigger } from 'expo-router/ui';
 import { Home, Search, User } from 'lucide-react-native';
 import { Text, View } from 'react-native';
@@ -27,6 +28,16 @@ const PatientLayout = () => {
   const pathname = usePathname();
 
   const showTabs = pathname.split('/').length === 3;
+
+  const { isAuthenticated, isLoading, user } = useAuth();
+
+  if (isLoading) {
+    return null; // or a loading spinner
+  }
+
+  if (!isAuthenticated || user?.role !== 'patient') {
+    router.replace('/auth/login');
+  }
 
   return (
     <Tabs className="bg-background">
