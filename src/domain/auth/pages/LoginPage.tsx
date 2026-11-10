@@ -12,12 +12,14 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useLogin } from '../queries';
 import { LoginSchema, LoginValidator } from '../validations/login';
 import { setRefreshToken, setToken } from '@/common/utils/auth';
+import useAuth from '@/common/hooks/useAuth';
 
 const LoginPage = () => {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const { text } = useTheme();
 
+  const { refetch } = useAuth();
   const { mutate, isPending } = useLogin();
   const {
     control,
@@ -33,10 +35,10 @@ const LoginPage = () => {
 
   const onSubmit = (data: LoginSchema) => {
     mutate(data, {
-      onSuccess: (response) => {
-        console.log('response - ', response);
-        setToken(response.access_token);
-        setRefreshToken(response.refresh_token);
+      onSuccess: async (response) => {
+        await setToken(response.access_token);
+        await setRefreshToken(response.refresh_token);
+        await refetch();
         router.push('/doctor/home');
       },
       onError: (error) => {

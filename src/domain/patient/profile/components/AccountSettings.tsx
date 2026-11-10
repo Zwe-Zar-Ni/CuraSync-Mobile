@@ -8,11 +8,13 @@ import useTheme from '@/common/hooks/useTheme';
 import Modal from 'react-native-modal';
 import Button from '@/shared/components/Button';
 import { useState } from 'react';
+import useAuth from '@/common/hooks/useAuth';
 
 const AccountSettings = () => {
   const { t } = useTranslation();
   const { text } = useTheme();
 
+  const { refetch } = useAuth();
   const { mutate: logout, isPending: isLoggingOut } = useLogout();
   const { mutate: deleteAccount, isPending: isDeleting } = useDeleteAccount();
 
@@ -22,25 +24,22 @@ const AccountSettings = () => {
   const isPending = isLoggingOut || isDeleting;
 
   const handleLogoutConfirm = async () => {
-    logout(undefined, {
-      onSettled: () => {
-        setShowLogout(false);
-      },
-    });
+    logout();
+    setShowLogout(false);
     await removeToken();
     await removeRefreshToken();
-    router.replace('/');
+    router.replace('/auth/login');
   };
 
   const handleDeleteConfirm = () => {
     deleteAccount(undefined, {
       onSuccess: async () => {
         await removeToken();
-        router.replace('/');
+        await removeRefreshToken();
+        router.replace('/auth/login');
       },
       onError: async () => {
-        await removeToken();
-        router.replace('/');
+        console.log('Error deleting account');
       },
       onSettled: () => {
         setShowDelete(false);

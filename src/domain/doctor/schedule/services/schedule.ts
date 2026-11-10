@@ -1,10 +1,18 @@
-import type { Schedule } from '../types';
+import type { Schedule, ScheduleRequest } from '../types';
 import { httpClient } from '@/common/api/apiClient';
 import { ScheduleSchema, UpdateScheduleSchema } from '../validations/schedule';
 
 class ScheduleService {
   async getSchedules() {
     const response = await httpClient.get<Schedule[]>('/doctors/schedules');
+    return response.data;
+  }
+
+  async getScheduleRequests() {
+    const response = await httpClient.get<ScheduleRequest[]>(
+      '/doctors/schedule-requests',
+    );
+    console.log(response.data);
     return response.data;
   }
 
@@ -16,7 +24,7 @@ class ScheduleService {
       slot_duration_minutes: input.slot_duration_minutes,
     };
     const response = await httpClient.post<Schedule>(
-      '/doctors/schedules',
+      '/doctors/schedule-requests',
       payload,
     );
     return response.data;
@@ -30,14 +38,14 @@ class ScheduleService {
       slot_duration_minutes: input.slot_duration_minutes,
     };
     const response = await httpClient.patch<Schedule>(
-      `/doctors/schedules/${id}`,
+      `/doctors/schedule-requests/${id}`,
       payload,
     );
     return response.data;
   }
 
   async deleteSchedule(id: number) {
-    await httpClient.delete(`/doctors/schedules/${id}`);
+    await httpClient.delete(`/doctors/schedule-requests/${id}`);
   }
 }
 

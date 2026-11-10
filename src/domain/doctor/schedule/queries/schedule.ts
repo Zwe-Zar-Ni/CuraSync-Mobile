@@ -1,13 +1,20 @@
 import { ApiError } from '@/common/types';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import scheduleService from '../services/schedule';
-import type { Schedule } from '../types';
+import type { Schedule, ScheduleRequest } from '../types';
 import { ScheduleSchema, UpdateScheduleSchema } from '../validations/schedule';
 
 export const useGetSchedules = () => {
   return useQuery<Schedule[], ApiError>({
     queryKey: ['doctor-schedules'],
     queryFn: scheduleService.getSchedules,
+  });
+};
+
+export const useGetScheduleRequests = () => {
+  return useQuery<ScheduleRequest[], ApiError>({
+    queryKey: ['doctor-schedule-requests'],
+    queryFn: scheduleService.getScheduleRequests,
   });
 };
 
@@ -18,7 +25,7 @@ export const useCreateSchedule = () => {
     mutationKey: ['create-doctor-schedule'],
     mutationFn: scheduleService.createSchedule,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['doctor-schedules'] });
+      queryClient.invalidateQueries({ queryKey: ['doctor-schedule-requests'] });
     },
   });
 };
@@ -30,7 +37,7 @@ export const useUpdateSchedule = () => {
     mutationKey: ['update-doctor-schedule'],
     mutationFn: scheduleService.updateSchedule,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['doctor-schedules'] });
+      queryClient.invalidateQueries({ queryKey: ['doctor-schedule-requests'] });
     },
   });
 };
@@ -42,7 +49,7 @@ export const useDeleteSchedule = () => {
     mutationKey: ['delete-doctor-schedule'],
     mutationFn: scheduleService.deleteSchedule,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['doctor-schedules'] });
+      queryClient.invalidateQueries({ queryKey: ['doctor-schedule-requests'] });
     },
   });
 };

@@ -18,3 +18,24 @@ export const DAY_KEYS = [
   'schedules.friday',
   'schedules.saturday',
 ] as const;
+
+export type ScheduleRequest = {
+  admin_note: null | string;
+  created_at: string;
+  data: {
+    day_of_week: number;
+    end_time: string;
+    slot_duration_minutes: number;
+    start_time: string;
+  };
+  doctor_id: number;
+  doctor_note: null | string;
+  doctor_schedule: null | Schedule;
+  doctor_schedule_id: null | number;
+  id: number;
+  request_type: 'CREATE' | 'UPDATE' | 'DELETE';
+  reviewed_at: null | string;
+  status: 'PENDING' | 'APPROVED' | 'REJECTED';
+  updated_at: string;
+  user_id: null | number;
+};

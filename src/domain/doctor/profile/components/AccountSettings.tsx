@@ -21,31 +21,20 @@ const AccountSettings = () => {
 
   const isPending = isLoggingOut || isDeleting;
 
-  const handleLogoutConfirm = () => {
-    logout(undefined, {
-      onSuccess: async () => {
-        await removeToken();
-        router.replace('/');
-      },
-      onError: async () => {
-        await removeToken();
-        router.replace('/');
-      },
-      onSettled: () => {
-        setShowLogout(false);
-      },
-    });
+  const handleLogoutConfirm = async () => {
+    logout();
+    setShowLogout(false);
+    await removeToken();
+    await removeRefreshToken();
+    router.replace('/auth/login');
   };
 
   const handleDeleteConfirm = async () => {
-    deleteAccount(undefined, {
-      onSettled: () => {
-        setShowDelete(false);
-      },
-    });
+    deleteAccount();
+    setShowDelete(false);
     await removeToken();
     await removeRefreshToken();
-    router.replace('/');
+    router.replace('/auth/login');
   };
 
   return (

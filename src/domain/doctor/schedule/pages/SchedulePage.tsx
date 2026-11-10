@@ -55,7 +55,7 @@ const DoctorSchedulePage = () => {
           </View>
           <Pressable
             className="bg-surface border border-border rounded-full p-2"
-            onPress={() => router.push('/doctor/schedule/overrides')}
+            onPress={() => router.push('/doctor/schedule/requests')}
             hitSlop={8}
           >
             <CalendarOff color={text.secondary} size={20} />

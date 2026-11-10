@@ -38,7 +38,6 @@ const RegisterDoctorPage = () => {
   const onSubmit = (data: RegisterDoctorSchema) => {
     mutate(data, {
       onSuccess: (response) => {
-        console.log('response - ', response);
         router.push('/auth/doctor-profile');
       },
       onError: (error) => {

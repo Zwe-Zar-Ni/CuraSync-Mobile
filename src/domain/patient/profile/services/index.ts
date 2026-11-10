@@ -17,11 +17,11 @@ class ProfileService {
   }
 
   async logout() {
-    await httpClient.post('/me/logout');
+    await httpClient.post('/auth/logout');
   }
 
   async deleteAccount() {
-    await httpClient.post('/me/delete-account');
+    await httpClient.post('/auth/delete-account');
   }
 }
 

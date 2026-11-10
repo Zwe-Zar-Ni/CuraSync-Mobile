@@ -38,7 +38,7 @@ const ScheduleCard = ({ schedule, onEdit, onDelete }: Props) => {
       </View>
       <View className="flex-row items-center gap-2 mt-3">
         <View className="flex-row items-center gap-1 border border-border rounded-full px-2 py-0.5">
-          <Timer color={text.secondary} size={14} />
+          <Timer color={text.secondary} size={12} />
           <Text className="text-xs text-text-secondary">
             {t('schedules.minutesValue', {
               value: schedule.slot_duration_minutes,

@@ -24,9 +24,7 @@ const UpcomingConsultations = ({ consultations }: Props) => {
       <View className="mt-2">
         {consultations && consultations.length ? (
           <UpcomingConsultation consultation={consultations[0]} />
-        ) : (
-          0
-        )}
+        ) : null}
       </View>
     </View>
   );

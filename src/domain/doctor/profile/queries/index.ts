@@ -16,15 +16,23 @@ export const useUpdateProfile = () => {
 };
 
 export const useLogout = () => {
+  const queryClient = useQueryClient();
   return useMutation<void, ApiError, void>({
     mutationKey: ['doctor-logout'],
     mutationFn: profileService.logout,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['profile-me'] });
+    },
   });
 };
 
 export const useDeleteAccount = () => {
+  const queryClient = useQueryClient();
   return useMutation<void, ApiError, void>({
     mutationKey: ['doctor-delete-account'],
     mutationFn: profileService.deleteAccount,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['profile-me'] });
+    },
   });
 };

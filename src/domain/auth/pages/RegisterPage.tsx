@@ -12,12 +12,14 @@ import { useRegisterPatient } from '../queries';
 import { RegisterSchema, RegisterValidator } from '../validations/register';
 import { useTranslation } from 'react-i18next';
 import { setRefreshToken, setToken } from '@/common/utils/auth';
+import useAuth from '@/common/hooks/useAuth';
 
 const RegisterPage = () => {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
   const { text } = useTheme();
 
+  const { refetch } = useAuth();
   const { mutate, isPending } = useRegisterPatient();
   const {
     control,
@@ -38,6 +40,7 @@ const RegisterPage = () => {
       onSuccess: async (response) => {
         await setToken(response.access_token);
         await setRefreshToken(response.refresh_token);
+        await refetch();
         router.push('/auth/patient-profile');
       },
       onError: (error) => {

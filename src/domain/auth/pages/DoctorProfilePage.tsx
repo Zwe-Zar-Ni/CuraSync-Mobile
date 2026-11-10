@@ -32,7 +32,7 @@ const DoctorProfilePage = () => {
   const onSubmit = (data: DoctorProfileSchema) => {
     mutate(data, {
       onSuccess: (response) => {
-        console.log('response - ', response);
+        router.push('/doctor/home');
       },
       onError: (error) => {
         console.log('error - ', error);
