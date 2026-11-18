@@ -12,11 +12,12 @@ type Props = {
 
 const Heading = ({ profile, isAuthenticated }: Props) => {
   const { t } = useTranslation();
+
   return (
     <View className="flex-col items-center justify-center">
-      {profile?.user.profile_url && profile?.user.profile_url !== '' ? (
+      {profile?.user.profile_image && profile?.user.profile_image !== '' ? (
         <Image
-          src={profile?.user.profile_url}
+          src={profile?.user.profile_image}
           className="w-25 h-25 rounded-full border border-border"
           resizeMode="cover"
           width={100}

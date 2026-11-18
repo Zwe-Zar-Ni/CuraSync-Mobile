@@ -17,7 +17,11 @@ const QualificationsPage = () => {
   const { text } = useTheme();
   const { t } = useTranslation();
 
-  const { data: qualifications } = useGetQualifications();
+  const {
+    data: qualifications,
+    refetch,
+    isRefetching,
+  } = useGetQualifications();
 
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [selected, setSelected] = useState<Qualification | null>(null);
@@ -53,6 +57,8 @@ const QualificationsPage = () => {
       </View>
       <FlashList
         data={qualifications ?? []}
+        refreshing={isRefetching}
+        onRefresh={refetch}
         showsVerticalScrollIndicator={false}
         renderItem={({ item }) => (
           <QualificationCard

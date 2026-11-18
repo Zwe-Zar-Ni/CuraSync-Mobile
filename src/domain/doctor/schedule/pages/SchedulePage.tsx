@@ -1,7 +1,13 @@
 import { FlashList } from '@shopify/flash-list';
 import useTheme from '@/common/hooks/useTheme';
 import { router } from 'expo-router';
-import { CalendarOff, CalendarX, ChevronLeft, Plus } from 'lucide-react-native';
+import {
+  CalendarOff,
+  CalendarX,
+  ChevronLeft,
+  CircleDashedCheck,
+  Plus,
+} from 'lucide-react-native';
 import { useState } from 'react';
 import { Pressable, Text, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
@@ -17,7 +23,12 @@ const DoctorSchedulePage = () => {
   const { text } = useTheme();
   const { t } = useTranslation();
 
-  const { data: schedules } = useGetSchedules();
+  const {
+    data: schedules,
+    refetch,
+    isRefetching,
+    isPending,
+  } = useGetSchedules();
 
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [selected, setSelected] = useState<Schedule | null>(null);
@@ -58,12 +69,14 @@ const DoctorSchedulePage = () => {
             onPress={() => router.push('/doctor/schedule/requests')}
             hitSlop={8}
           >
-            <CalendarOff color={text.secondary} size={20} />
+            <CircleDashedCheck color={text.secondary} size={20} />
           </Pressable>
         </View>
       </View>
       <FlashList
         data={schedules ?? []}
+        refreshing={isRefetching}
+        onRefresh={refetch}
         showsVerticalScrollIndicator={false}
         renderItem={({ item }) => (
           <ScheduleCard

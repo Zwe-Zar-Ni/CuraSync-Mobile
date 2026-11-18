@@ -117,7 +117,7 @@ httpClient.interceptors.response.use(
     }
 
     if (!isUnauthorized) {
-      console.error(response?.data ?? 'Something went wrong');
+      console.warn(response?.data ?? 'Something went wrong');
     }
     return Promise.reject(response ?? error);
   },

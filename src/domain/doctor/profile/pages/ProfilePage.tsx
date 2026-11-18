@@ -1,4 +1,4 @@
-import { ScrollView, View } from 'react-native';
+import { RefreshControl, ScrollView, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import Heading from '../components/Heading';
 import PersonalInformation from '../components/PersonalInformation';
@@ -9,13 +9,19 @@ import { Doctor } from '@/common/types';
 
 const DoctorProfilePage = () => {
   const insets = useSafeAreaInsets();
-  const { user, isAuthenticated } = useAuth();
+  const { user, isAuthenticated, refetch, isRefetching } = useAuth();
+
   return (
     <View
       className="flex-1 bg-background px-3"
       style={{ paddingTop: insets.top + 8 }}
     >
-      <ScrollView showsVerticalScrollIndicator={false}>
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        refreshControl={
+          <RefreshControl refreshing={isRefetching} onRefresh={refetch} />
+        }
+      >
         <Heading profile={user as Doctor} isAuthenticated={isAuthenticated} />
         <PersonalInformation isAuthenticated={isAuthenticated} />
         <Settings />

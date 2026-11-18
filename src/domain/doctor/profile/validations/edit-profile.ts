@@ -12,6 +12,7 @@ export const EditProfileValidator = z.object({
     ])
     .nullable(),
   bio: z.string().max(1000).nullable(),
+  profile_image_id: z.number().nullable(),
 });
 
 export type EditProfileSchema = z.infer<typeof EditProfileValidator>;

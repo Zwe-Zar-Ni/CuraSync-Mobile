@@ -1,7 +1,7 @@
 import { useGetProfile } from '../queries';
 
 const useAuth = () => {
-  const { data, isLoading, isError, refetch } = useGetProfile();
+  const { data, isLoading, isError, refetch, isRefetching } = useGetProfile();
 
   return {
     isLoading,
@@ -9,6 +9,7 @@ const useAuth = () => {
     isAuthenticated: !!data,
     user: data!,
     refetch,
+    isRefetching,
   };
 };
 

@@ -13,7 +13,12 @@ const ScheduleRequestsPage = () => {
   const { text } = useTheme();
   const { t } = useTranslation();
 
-  const { data: scheduleRequests } = useGetScheduleRequests();
+  const {
+    data: scheduleRequests,
+    refetch,
+    isRefetching,
+    isPending,
+  } = useGetScheduleRequests();
 
   return (
     <View
@@ -39,6 +44,8 @@ const ScheduleRequestsPage = () => {
       </View>
       <FlashList
         data={scheduleRequests ?? []}
+        refreshing={isRefetching}
+        onRefresh={refetch}
         showsVerticalScrollIndicator={false}
         renderItem={({ item }) => <ScheduleRequestCard request={item} />}
         ItemSeparatorComponent={() => <View className="h-3" />}
@@ -46,10 +53,7 @@ const ScheduleRequestsPage = () => {
           <View className="items-center gap-2 mt-20">
             <CalendarX color={text.secondary} size={40} />
             <Text className="text-md font-medium text-text-primary">
-              {t('schedules.empty')}
-            </Text>
-            <Text className="text-sm text-text-secondary text-center">
-              {t('schedules.emptyHint')}
+              {t('schedules.requests_empty')}
             </Text>
           </View>
         }

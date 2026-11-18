@@ -50,7 +50,7 @@ const EditProfilePage = () => {
     reset({
       name: user.user.name ?? '',
       phone_number: user.user.phone_number ?? '',
-      profile_url: user.user.profile_url ?? '',
+      profile_url: user.user.profile_image ?? '',
       date_of_birth: (user as Patient).profile.date_of_birth ?? '',
       gender: (user as Patient).profile.gender,
       blood_type: (user as Patient).profile.blood_type ?? '',

@@ -30,7 +30,8 @@ export type User = {
   name: string;
   email: string;
   phone_number: string | null;
-  profile_url: string | null;
+  profile_image_id: number | null;
+  profile_image: string | null;
 };
 
 export type DoctorProfile = {

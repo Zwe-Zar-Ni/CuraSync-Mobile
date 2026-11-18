@@ -1,4 +1,4 @@
-import { router } from 'expo-router';
+import { Redirect, router } from 'expo-router';
 import { Image, Pressable, Text, View } from 'react-native';
 
 import Button from '@/shared/components/Button';
@@ -12,10 +12,10 @@ const WelcomePage = () => {
   const { isAuthenticated, user } = useAuth();
 
   if (isAuthenticated && user?.role === 'doctor') {
-    router.push('/doctor/home');
+    return <Redirect href="/doctor/home" />;
   }
   if (isAuthenticated && user?.role === 'patient') {
-    router.push('/patient/home');
+    return <Redirect href="/patient/home" />;
   }
 
   return (

@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native';
 import { DAY_KEYS, ScheduleRequest } from '../types';
 import { useTranslation } from 'react-i18next';
-import { Clock, Timer } from 'lucide-react-native';
+import { Clock, Info, Timer } from 'lucide-react-native';
 import useTheme from '@/common/hooks/useTheme';
 
 const StatusBadge = ({ status }: { status: ScheduleRequest['status'] }) => {
@@ -93,7 +93,7 @@ const ScheduleRequestCard = ({ request }: Props) => {
         <RequestTypeBadge requestType={request.request_type} />
         <StatusBadge status={request.status} />
       </View>
-      <View className="flex-row items-center gap-2 mt-3">
+      <View className="flex-row items-center gap-2 my-3">
         <View className="flex-row items-center gap-1 border border-border rounded-full px-2 py-0.5">
           <Timer color={text.secondary} size={12} />
           <Text className="text-xs text-text-secondary">
@@ -103,6 +103,14 @@ const ScheduleRequestCard = ({ request }: Props) => {
           </Text>
         </View>
       </View>
+      {request.reviewed_at && request.admin_note ? (
+        <View className="flex-row gap-1 items-start">
+          <Info size={16} color={text.secondary} />
+          <Text className="text-text-secondary text-sm flex-1">
+            {request.admin_note}
+          </Text>
+        </View>
+      ) : null}
     </View>
   );
 };

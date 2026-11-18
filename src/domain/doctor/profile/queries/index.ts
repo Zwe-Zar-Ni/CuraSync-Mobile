@@ -9,8 +9,8 @@ export const useUpdateProfile = () => {
   return useMutation<Doctor, ApiError, EditProfileSchema>({
     mutationKey: ['update-doctor-profile'],
     mutationFn: profileService.updateProfile,
-    onSuccess: (data) => {
-      queryClient.setQueryData(['doctor-me'], data);
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['profile-me'] });
     },
   });
 };

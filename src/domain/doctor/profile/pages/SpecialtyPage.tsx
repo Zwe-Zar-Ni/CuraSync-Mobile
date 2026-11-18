@@ -17,7 +17,7 @@ const SpecialtyPage = () => {
   const { text } = useTheme();
   const { t } = useTranslation();
 
-  const { data: specialties } = useGetSpecialties();
+  const { data: specialties, refetch, isRefetching } = useGetSpecialties();
 
   const [isFormVisible, setIsFormVisible] = useState(false);
   const [removing, setRemoving] = useState<DoctorSpecialty | null>(null);
@@ -42,6 +42,8 @@ const SpecialtyPage = () => {
       </View>
       <FlashList
         data={specialties ?? []}
+        refreshing={isRefetching}
+        onRefresh={refetch}
         showsVerticalScrollIndicator={false}
         renderItem={({ item }) => (
           <SpecialtyCard specialty={item} onDelete={setRemoving} />

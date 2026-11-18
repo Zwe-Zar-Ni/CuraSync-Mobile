@@ -150,7 +150,10 @@
     "invalidTime": "Pick a valid time",
     "endAfterStart": "End time must be after start time",
     "deleteTitle": "Delete schedule?",
-    "deleteMessage": "This schedule will be removed from your weekly hours."
+    "deleteMessage": "This schedule will be removed from your weekly hours.",
+    "requests_title": "Schedule Requests",
+    "requests_subtitle": "Schedules waiting for approval.",
+    "requests_empty": "No schedules are waiting for aproval."
   },
   "overrides": {
     "title": "Schedule Overrides",
