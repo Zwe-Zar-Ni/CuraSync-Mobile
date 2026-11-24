@@ -14,12 +14,12 @@ import {
   useCreateCondition,
   useUpdateCondition,
 } from '../../queries/condition';
-import type { Condition } from '../../types/condition';
 import {
   ConditionValidator,
   type ConditionSchema,
 } from '../../validations/condition';
 import StatusField from './StatusField';
+import { Condition } from '@/common/types/patient';
 
 type Props = {
   isVisible: boolean;

@@ -65,11 +65,3 @@ export type Patient = {
 };
 
 export type UserProfile = Doctor | Patient;
-
-export type Specialization = {
-  id: number;
-  name: string;
-  description: string | null;
-  icon_url: string | null;
-  doctors_count: number;
-};

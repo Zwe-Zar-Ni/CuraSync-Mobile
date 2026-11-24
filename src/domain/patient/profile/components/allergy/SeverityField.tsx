@@ -1,6 +1,6 @@
+import { AllergySeverity } from '@/common/types/patient';
 import { useTranslation } from 'react-i18next';
 import { Pressable, Text, View } from 'react-native';
-import type { AllergySeverity } from '../../types/allergy';
 
 type Severity = AllergySeverity;
 

@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
-import { ApiError, Specialization } from '../types';
+import { ApiError } from '../types';
 import commonService from '../service';
+import { Specialization } from '../types/doctor';
 
 export const useGetProfile = () => {
   return useQuery({

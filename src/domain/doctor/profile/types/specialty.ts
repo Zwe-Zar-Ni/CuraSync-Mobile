@@ -1,4 +1,4 @@
-import { Specialization } from '@/common/types';
+import { Specialization } from '@/common/types/doctor';
 
 export type DoctorSpecialtyPayload = {
   specialization_id: number;

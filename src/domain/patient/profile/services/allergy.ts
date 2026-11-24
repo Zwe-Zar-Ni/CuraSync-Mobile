@@ -1,7 +1,7 @@
 import { httpClient } from '@/common/api/apiClient';
-import { Allergy } from '../types/allergy';
 import { AllergySchema, UpdateAllergySchema } from '../validations/allergy';
 import { toNullable } from '@/common/utils/transformers';
+import { Allergy } from '@/common/types/patient';
 
 class AllergyService {
   async getAllergies() {

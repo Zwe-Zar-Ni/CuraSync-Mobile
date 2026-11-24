@@ -18,9 +18,9 @@ const UpcomingConsultation = ({ consultation }: Props) => {
   return (
     <View className="p-4 rounded-2xl border border-border bg-surface/50">
       <View className="flex-row gap-2">
-        {doctor.profile_url ? (
+        {doctor.profile_image ? (
           <Image
-            src={doctor.profile_url}
+            src={doctor.profile_image}
             className="w-16 h-16 rounded-full"
             resizeMode="cover"
             width={64}

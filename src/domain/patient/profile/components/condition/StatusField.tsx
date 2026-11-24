@@ -1,6 +1,6 @@
+import { ConditionStatus } from '@/common/types/patient';
 import { useTranslation } from 'react-i18next';
 import { Pressable, Text, View } from 'react-native';
-import type { ConditionStatus } from '../../types/condition';
 
 type Status = ConditionStatus;
 

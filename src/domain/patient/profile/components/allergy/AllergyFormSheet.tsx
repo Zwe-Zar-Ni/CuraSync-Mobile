@@ -10,12 +10,12 @@ import { Pressable, ScrollView, Text, View } from 'react-native';
 import Modal from 'react-native-modal';
 import { useTranslation } from 'react-i18next';
 import { useCreateAllergy, useUpdateAllergy } from '../../queries/allergy';
-import type { Allergy } from '../../types/allergy';
 import {
   AllergyValidator,
   type AllergySchema,
 } from '../../validations/allergy';
 import SeverityField from './SeverityField';
+import { Allergy } from '@/common/types/patient';
 
 type Props = {
   isVisible: boolean;

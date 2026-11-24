@@ -10,7 +10,7 @@ import ConditionCard from '../components/condition/ConditionCard';
 import ConditionDeleteSheet from '../components/condition/ConditionDeleteSheet';
 import ConditionFormSheet from '../components/condition/ConditionFormSheet';
 import { useGetConditions } from '../queries/condition';
-import type { Condition } from '../types/condition';
+import { Condition } from '@/common/types/patient';
 
 const ConditionsPage = () => {
   const insets = useSafeAreaInsets();

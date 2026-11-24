@@ -10,11 +10,11 @@ import { Pressable, ScrollView, Text, View } from 'react-native';
 import Modal from 'react-native-modal';
 import { useTranslation } from 'react-i18next';
 import { useCreateContact, useUpdateContact } from '../../queries/contact';
-import type { Contact } from '../../types/contact';
 import {
   ContactValidator,
   type ContactSchema,
 } from '../../validations/contact';
+import { Contact } from '@/common/types/patient';
 
 type Props = {
   isVisible: boolean;

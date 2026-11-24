@@ -1,8 +1,8 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { Contact } from '../types/contact';
 import { ApiError } from '@/common/types';
 import contactService from '../services/contact';
 import { ContactSchema, UpdateContactSchema } from '../validations/contact';
+import { Contact } from '@/common/types/patient';
 
 export const useGetContacts = () => {
   return useQuery<Contact[], ApiError>({

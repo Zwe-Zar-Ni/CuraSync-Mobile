@@ -1,14 +1,14 @@
 import { ArrowUpRight } from 'lucide-react-native';
 import { View, Text, Image, Pressable } from 'react-native';
-import type { Doctor } from '../types';
 import DoctorProfile from '@/assets/images/doctor-profile.png';
+import { DoctorResource } from '@/common/types/doctor';
 
 type Props = {
-  doctor: Doctor;
+  doctor: DoctorResource;
 };
 
 const DoctorCard = ({ doctor }: Props) => {
-  const { name, profile_url, average_rating, specilizations } = doctor;
+  const { name, profile_image, average_rating, specilizations } = doctor;
 
   return (
     <View
@@ -18,9 +18,9 @@ const DoctorCard = ({ doctor }: Props) => {
       }}
     >
       <View className="relative h-40">
-        {profile_url && profile_url !== '' ? (
+        {profile_image && profile_image !== '' ? (
           <Image
-            src={profile_url}
+            src={profile_image}
             className="w-full h-full rounded-xl"
             resizeMode="cover"
             width={64}

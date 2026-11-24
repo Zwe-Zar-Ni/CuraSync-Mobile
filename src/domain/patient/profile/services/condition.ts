@@ -1,10 +1,10 @@
 import { httpClient } from '@/common/api/apiClient';
-import { Condition } from '../types/condition';
 import {
   ConditionSchema,
   UpdateConditionSchema,
 } from '../validations/condition';
 import { toNullable } from '@/common/utils/transformers';
+import { Condition } from '@/common/types/patient';
 
 class ConditionService {
   async getConditions() {

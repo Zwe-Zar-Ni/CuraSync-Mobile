@@ -10,7 +10,7 @@ import AllergyCard from '../components/allergy/AllergyCard';
 import AllergyDeleteSheet from '../components/allergy/AllergyDeleteSheet';
 import AllergyFormSheet from '../components/allergy/AllergyFormSheet';
 import { useGetAllergies } from '../queries/allergy';
-import type { Allergy } from '../types/allergy';
+import { Allergy } from '@/common/types/patient';
 
 const AllergiesPage = () => {
   const insets = useSafeAreaInsets();

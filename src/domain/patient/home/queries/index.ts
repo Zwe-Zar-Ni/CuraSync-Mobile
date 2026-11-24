@@ -1,7 +1,7 @@
 import { ApiError, PaginatedResponse } from '@/common/types';
 import homeService from '../services';
-import { Doctor, Specialization } from '../types';
 import { useQuery } from '@tanstack/react-query';
+import { DoctorResource, Specialization } from '@/common/types/doctor';
 
 export const useGetSpecializations = () => {
   return useQuery<Specialization[], ApiError>({
@@ -11,7 +11,7 @@ export const useGetSpecializations = () => {
 };
 
 export const useGetDoctors = (specializationId?: number) => {
-  return useQuery<PaginatedResponse<Doctor>, ApiError>({
+  return useQuery<PaginatedResponse<DoctorResource>, ApiError>({
     queryKey: ['doctors', specializationId],
     queryFn: () => homeService.getDoctors(specializationId),
   });

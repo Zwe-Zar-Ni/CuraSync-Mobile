@@ -5,7 +5,7 @@ import { Pressable, Text, View } from 'react-native';
 import Modal from 'react-native-modal';
 import { useTranslation } from 'react-i18next';
 import { useDeleteCondition } from '../../queries/condition';
-import type { Condition } from '../../types/condition';
+import { Condition } from '@/common/types/patient';
 
 type Props = {
   condition: Condition | null;

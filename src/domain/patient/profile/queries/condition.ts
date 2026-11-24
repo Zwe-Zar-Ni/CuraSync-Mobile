@@ -1,11 +1,11 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { Condition } from '../types/condition';
 import { ApiError } from '@/common/types';
 import conditionService from '../services/condition';
 import {
   ConditionSchema,
   UpdateConditionSchema,
 } from '../validations/condition';
+import { Condition } from '@/common/types/patient';
 
 export const useGetConditions = () => {
   return useQuery<Condition[], ApiError>({

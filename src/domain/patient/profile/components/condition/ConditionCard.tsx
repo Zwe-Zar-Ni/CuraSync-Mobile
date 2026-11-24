@@ -3,7 +3,7 @@ import { CalendarDays, Trash2 } from 'lucide-react-native';
 import { Pressable, Text, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import useTheme from '@/common/hooks/useTheme';
-import type { Condition, ConditionStatus } from '../../types/condition';
+import { Condition, ConditionStatus } from '@/common/types/patient';
 
 type Props = {
   condition: Condition;

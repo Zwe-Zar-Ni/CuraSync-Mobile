@@ -10,7 +10,7 @@ import ContactCard from '../components/contact/ContactCard';
 import ContactDeleteSheet from '../components/contact/ContactDeleteSheet';
 import ContactFormSheet from '../components/contact/ContactFormSheet';
 import { useGetContacts } from '../queries/contact';
-import type { Contact } from '../types/contact';
+import { Contact } from '@/common/types/patient';
 
 const ContactsPage = () => {
   const insets = useSafeAreaInsets();

@@ -5,7 +5,7 @@ import { Pressable, Text, View } from 'react-native';
 import Modal from 'react-native-modal';
 import { useTranslation } from 'react-i18next';
 import { useDeleteContact } from '../../queries/contact';
-import type { Contact } from '../../types/contact';
+import { Contact } from '@/common/types/patient';
 
 type Props = {
   contact: Contact | null;

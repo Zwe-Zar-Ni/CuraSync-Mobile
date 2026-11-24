@@ -1,8 +1,8 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { Allergy } from '../types/allergy';
 import { ApiError } from '@/common/types';
 import allergyService from '../services/allergy';
 import { AllergySchema, UpdateAllergySchema } from '../validations/allergy';
+import { Allergy } from '@/common/types/patient';
 
 export const useGetAllergies = () => {
   return useQuery<Allergy[], ApiError>({

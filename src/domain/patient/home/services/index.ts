@@ -1,6 +1,6 @@
 import { httpClient } from '@/common/api/apiClient';
-import { Doctor, Specialization } from '../types';
 import { PaginatedResponse } from '@/common/types';
+import { DoctorResource, Specialization } from '@/common/types/doctor';
 
 class HomeService {
   async getSpecializations() {
@@ -11,7 +11,7 @@ class HomeService {
   }
 
   async getDoctors(specializationId?: number) {
-    const response = await httpClient.get<PaginatedResponse<Doctor>>(
+    const response = await httpClient.get<PaginatedResponse<DoctorResource>>(
       '/public/doctors',
       {
         params: {

@@ -1,5 +1,6 @@
 import { httpClient } from '../api/apiClient';
-import { Doctor, Patient, Specialization } from '../types';
+import { Doctor, Patient } from '../types';
+import { Specialization } from '../types/doctor';
 
 class CommonService {
   async getProfile() {

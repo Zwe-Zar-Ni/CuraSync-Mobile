@@ -2,7 +2,7 @@ import { Trash2 } from 'lucide-react-native';
 import { Pressable, Text, View } from 'react-native';
 import { useTranslation } from 'react-i18next';
 import useTheme from '@/common/hooks/useTheme';
-import type { Allergy, AllergySeverity } from '../../types/allergy';
+import { Allergy, AllergySeverity } from '@/common/types/patient';
 
 type Props = {
   allergy: Allergy;

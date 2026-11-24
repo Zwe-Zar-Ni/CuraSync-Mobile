@@ -5,7 +5,7 @@ import { Pressable, Text, View } from 'react-native';
 import Modal from 'react-native-modal';
 import { useTranslation } from 'react-i18next';
 import { useDeleteAllergy } from '../../queries/allergy';
-import type { Allergy } from '../../types/allergy';
+import { Allergy } from '@/common/types/patient';
 
 type Props = {
   allergy: Allergy | null;

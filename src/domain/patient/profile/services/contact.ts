@@ -1,7 +1,7 @@
 import { httpClient } from '@/common/api/apiClient';
-import { Contact } from '../types/contact';
 import { ContactSchema, UpdateContactSchema } from '../validations/contact';
 import { toNullable } from '@/common/utils/transformers';
+import { Contact } from '@/common/types/patient';
 
 class ContactService {
   async getContacts() {

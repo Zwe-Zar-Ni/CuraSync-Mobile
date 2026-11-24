@@ -1,7 +1,7 @@
 import { Mail, MapPin, Phone, Trash2 } from 'lucide-react-native';
 import { Pressable, Text, View } from 'react-native';
 import useTheme from '@/common/hooks/useTheme';
-import type { Contact } from '../../types/contact';
+import { Contact } from '@/common/types/patient';
 
 type Props = {
   contact: Contact;
